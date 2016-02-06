@@ -87,13 +87,15 @@ public class CSVImport {
 				
 				System.out.println(TEMP.size());
 				
-				for (int j=0;j<TEMP.size()/combinations;j++){
+				for (int j=0;j<TEMP.size();j+=combinations){
 					System.out.print(TEMP.get(j)+"  ");
 					SoulShield combinedSS = new SoulShield(base);
 					
+					int temp = j;
 					for (int k = 0;k<combinations;k++){
-						System.out.print(content[6+TEMP.get(j+k)]+"  ");
-						combinedSS.add(content[6+TEMP.get(j+k)]);	
+						System.out.print(content[6+TEMP.get(temp)]+"  ");
+						combinedSS.add(content[6+TEMP.get(temp)]);
+						temp++;
 					}
 					shields.add(combinedSS);
 					System.out.println("++");
