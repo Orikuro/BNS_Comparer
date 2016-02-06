@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modell.SoulShield;
+import modell.SoulShields;
 
 public class CSVImport {
 
@@ -22,7 +23,7 @@ public class CSVImport {
 
 	}
 
-	public static void generate(int[] s, int position, int nextInt, int k, int N) {
+	private static void generate(int[] s, int position, int nextInt, int k, int N) {
 		if (position == k) {
 			showCombination(s);
 			return;
@@ -32,14 +33,6 @@ public class CSVImport {
 			generate(s, position + 1, i + 1, k, N);
 		}
 
-	}
-
-	private static void combis(String[] args) {
-		int N = Integer.parseInt(args[0]);
-		int k = Integer.parseInt(args[1]);
-
-		int[] s = new int[k];
-		generate(s, 0, 0, k, N);
 	}
 
 	private static final File CSV = new File("data" + File.separator + "bopae.csv");
@@ -148,11 +141,10 @@ public class CSVImport {
 				S_8.add(s);
 				break;
 			}
-
 		}
 	}
 
-	public static void main(String[] args) {
+	public static SoulShields importSoulShields() {
 		List<SoulShield> shields = convertCSVtoBopae(readCSV());
 
 		for (SoulShield x : shields) {
@@ -181,6 +173,8 @@ public class CSVImport {
 
 		double alles = s1*s2*s3*s4*s5*s6*s7*s8;
 		System.out.println(alles);
+		
+		return new SoulShields(S_1, S_2, S_3, S_4, S_5, S_6, S_7, S_8);
 	}
 
 }
