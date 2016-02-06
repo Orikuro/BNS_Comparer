@@ -58,16 +58,6 @@ public class SoulShield {
 		this.critdef = critdef;
 	}
 
-
-
-
-
-	@Override
-	public String toString() {
-		return "SoulShield [" + set + " = " + position + ", hp=" + hp + ", accuracy=" + accuracy + ", def=" + def
-				+ ", block=" + block + ", evasion=" + evasion + ", crit=" + crit + ", maxenchant=" + maxenchant + "]";
-	}
-
 	public SoulSet getSet() {
 		return set;
 	}
@@ -147,7 +137,10 @@ public class SoulShield {
 		if (temp.endsWith("eva")) {
 			evasion += new Integer(temp.substring(0, temp.indexOf("eva")).trim());
 		}
-		if (temp.endsWith("def")) {
+		if (temp.endsWith("critdef")) {
+			critdef += new Integer(temp.substring(0, temp.indexOf("critdef")).trim());
+		}
+		else if (temp.endsWith("def")) {
 			def += new Integer(temp.substring(0, temp.indexOf("def")).trim());
 		}
 		if (temp.endsWith("crit")) {
@@ -156,10 +149,13 @@ public class SoulShield {
 		if (temp.endsWith("block")) {
 			block += new Integer(temp.substring(0, temp.indexOf("block")).trim());
 		}
-		if (temp.endsWith("critdef")) {
-			critdef += new Integer(temp.substring(0, temp.indexOf("critdef")).trim());
-		}
-
+	}
+	
+	@Override
+	public String toString() {
+		return "SoulShield [" + set + " = " + position + ", maxenchant=" + maxenchant + ", hp=" + hp
+				+ ", accuracy=" + accuracy + ", crit=" + crit + ", def=" + def + ", block=" + block + ", evasion="
+				+ evasion + ", critdef=" + critdef + "]";
 	}
 
 }

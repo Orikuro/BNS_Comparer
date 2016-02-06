@@ -94,7 +94,7 @@ public class CSVImport {
 					for (int k = 0;k<combinations;k++){
 						
 						System.out.print(content[6+TEMP.get(j)]+"  ");
-						
+						combinedSS.add(content[6+TEMP.get(j)]);
 						shields.add(combinedSS);
 					}
 					System.out.println("++");
@@ -112,7 +112,11 @@ public class CSVImport {
 	private List<SoulShield> SHIELDS;
 
 	public static void main(String[] args) {
-		convertCSVtoBopae(readCSV());
+		List<SoulShield> shields = convertCSVtoBopae(readCSV());
+		
+		for (SoulShield x : shields){
+			System.out.println(x);
+		}
 	}
 
 }
