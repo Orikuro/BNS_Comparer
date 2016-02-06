@@ -1,0 +1,18 @@
+name;pos;maxenchant;Main-1;Main-2;combinations;Sub-1;Sub-2;Sub-3;Sub-4
+Blackram;1;98;1810 hp;137 accu;1;58 block;58 def;58 crit;
+Blackram;2;102;1890 hp;143 accu;1;61 block;61 def;61 crit;
+Blackram;3;107;1980 hp;150 eva;1;64 block;64 accu;640 hp;
+Blackram;4;112;2070 hp;156 def;1;67 block;67 crit;670 hp;
+Blackram;5;121;2240 hp;170 eva;1;72 block;72 def;72 crit;
+Blackram;6;126;4090 hp;;1;75 block;75 def;75 crit;
+Blackram;7;130;2410 hp;182 block;1;78 accu;78 def;78 crit;
+Blackram;8;135;2500 hp;189 crit;1;80 accu;80 def;800 hp;
+;;;;;;;;;
+Moonwater;1;98;1810 hp;;2;1370 hp;58 critdef;58 def;58 block
+Moonwater;2;102;1890 hp;;2;143 crit;61 critdef;61 def;610 hp
+Moonwater;3;107;1980 hp;;2;150 block;150 critdef;640 hp;
+Moonwater;4;112;2070 hp;;2;156 def;156 critdef;670 hp;67 eva
+Moonwater;5;121;2240 hp;;2;170 eva;170 critdef;72 def;720 hp
+Moonwater;6;126;2330 hp;;2;176 def;75 crit;75 critdef;750 hp
+Moonwater;7;130;2410 hp;;2;182 def;78 eva;78 block;780 hp
+Moonwater;8;135;2500 hp;;2;1890 hp;80 critdef;80 eva;80 block
