@@ -60,24 +60,31 @@ public class CSVImport {
 
 		List<SoulShield> shields = new ArrayList<>();
 
-		for (int i = 1; i < input.size(); i++) {
+		for (int i = 1; i < input.size() - 16; i++) {
 			if (input.get(i).length() > 9) {
 				String csvline = input.get(i);
 				String[] content = csvline.split(";");
-				for (String x: content){
-					//System.out.println(x);
+				for (String x : content) {
+					System.out.println(x);
 				}
+
+				SoulShield base = new SoulShield(content[0], content[1], content[2]);
+				base.add(content[3]);
+				base.add(content[4]);
 				
-				SoulShield base = new SoulShield(content[0].trim(), content[1].trim());
+				int combinations = new Integer(content[5].trim());
+				int substats = content.length-6;
 				
-				System.out.println(base);
+				
+				System.out.println(base + " "+combinations + " "+substats);
+				int[] s = new int[combinations];
+				
+				generate(s, 0, 0, combinations, substats);
 			}
 		}
 
 		return shields;
 	}
-	
-
 
 	private List<SoulShield> SHIELDS;
 

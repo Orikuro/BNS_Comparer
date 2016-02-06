@@ -1,4 +1,4 @@
-name;pos;maxenchant;Main-1;Main-2;combinations;Sub-1;Sub-2;Sub-3;Sub-4
+setname;pos;maxenchant;Main-1;Main-2;combinations;Sub-1;Sub-2;Sub-3;Sub-4
 Blackram;1;98;1810 hp;137 accu;1;58 block;58 def;58 crit;
 Blackram;2;102;1890 hp;143 accu;1;61 block;61 def;61 crit;
 Blackram;3;107;1980 hp;150 eva;1;64 block;64 accu;640 hp;
