@@ -65,7 +65,7 @@ public class CSVImport {
 
 		List<SoulShield> shields = new ArrayList<>();
 
-		for (int i = 1; i < input.size() - 0; i++) {
+		for (int i = 1; i < input.size() - 7; i++) {
 			if (input.get(i).length() > 9) {
 				String csvline = input.get(i);
 				String[] content = csvline.split(";");
@@ -87,16 +87,15 @@ public class CSVImport {
 				
 				System.out.println(TEMP.size());
 				
-				for (int j=0;j<TEMP.size();j++){
-				//	System.out.print(TEMP.get(j)+"  ");
+				for (int j=0;j<TEMP.size()/combinations;j++){
+					System.out.print(TEMP.get(j)+"  ");
 					SoulShield combinedSS = new SoulShield(base);
 					
 					for (int k = 0;k<combinations;k++){
-						
-						System.out.print(content[6+TEMP.get(j)]+"  ");
-						combinedSS.add(content[6+TEMP.get(j)]);
-						shields.add(combinedSS);
+						System.out.print(content[6+TEMP.get(j+k)]+"  ");
+						combinedSS.add(content[6+TEMP.get(j+k)]);	
 					}
+					shields.add(combinedSS);
 					System.out.println("++");
 				}
 				
