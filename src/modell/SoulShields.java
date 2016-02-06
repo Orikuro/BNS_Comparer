@@ -1,0 +1,93 @@
+package modell;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SoulShields {
+	private List<SoulShield> S_1 = new ArrayList<>();
+	private List<SoulShield> S_2 = new ArrayList<>();
+	private List<SoulShield> S_3 = new ArrayList<>();
+	private List<SoulShield> S_4 = new ArrayList<>();
+	private List<SoulShield> S_5 = new ArrayList<>();
+	private List<SoulShield> S_6 = new ArrayList<>();
+	private List<SoulShield> S_7 = new ArrayList<>();
+	private List<SoulShield> S_8 = new ArrayList<>();
+
+	public SoulShields(List<SoulShield> s_1, List<SoulShield> s_2, List<SoulShield> s_3, List<SoulShield> s_4,
+			List<SoulShield> s_5, List<SoulShield> s_6, List<SoulShield> s_7, List<SoulShield> s_8) {
+		super();
+		S_1 = s_1;
+		S_2 = s_2;
+		S_3 = s_3;
+		S_4 = s_4;
+		S_5 = s_5;
+		S_6 = s_6;
+		S_7 = s_7;
+		S_8 = s_8;
+	}
+
+	public List<SoulShield> getS_1() {
+		return S_1;
+	}
+
+	public void setS_1(List<SoulShield> s_1) {
+		S_1 = s_1;
+	}
+
+	public List<SoulShield> getS_2() {
+		return S_2;
+	}
+
+	public void setS_2(List<SoulShield> s_2) {
+		S_2 = s_2;
+	}
+
+	public List<SoulShield> getS_3() {
+		return S_3;
+	}
+
+	public void setS_3(List<SoulShield> s_3) {
+		S_3 = s_3;
+	}
+
+	public List<SoulShield> getS_4() {
+		return S_4;
+	}
+
+	public void setS_4(List<SoulShield> s_4) {
+		S_4 = s_4;
+	}
+
+	public List<SoulShield> getS_5() {
+		return S_5;
+	}
+
+	public void setS_5(List<SoulShield> s_5) {
+		S_5 = s_5;
+	}
+
+	public List<SoulShield> getS_6() {
+		return S_6;
+	}
+
+	public void setS_6(List<SoulShield> s_6) {
+		S_6 = s_6;
+	}
+
+	public List<SoulShield> getS_7() {
+		return S_7;
+	}
+
+	public void setS_7(List<SoulShield> s_7) {
+		S_7 = s_7;
+	}
+
+	public List<SoulShield> getS_8() {
+		return S_8;
+	}
+
+	public void setS_8(List<SoulShield> s_8) {
+		S_8 = s_8;
+	}
+
+}
