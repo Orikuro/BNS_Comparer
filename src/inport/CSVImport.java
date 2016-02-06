@@ -11,11 +11,15 @@ import modell.SoulShield;
 
 public class CSVImport {
 
+	private static List<Integer> TEMP = new ArrayList<>(); 
+	
 	private static void showCombination(int[] s) {
 		for (int i = 0; i < s.length; i++) {
-			System.out.print(s[i] + " ");
+		//	System.out.print(s[i] + " ");
+			TEMP.add(s[i]);
 		}
-		System.out.println();
+		//System.out.println();
+		
 	}
 
 	public static void generate(int[] s, int position, int nextInt, int k, int N) {
@@ -27,6 +31,7 @@ public class CSVImport {
 			s[position] = i;
 			generate(s, position + 1, i + 1, k, N);
 		}
+
 	}
 
 	private static void combis(String[] args) {
@@ -60,12 +65,12 @@ public class CSVImport {
 
 		List<SoulShield> shields = new ArrayList<>();
 
-		for (int i = 1; i < input.size() - 16; i++) {
+		for (int i = 1; i < input.size() - 0; i++) {
 			if (input.get(i).length() > 9) {
 				String csvline = input.get(i);
 				String[] content = csvline.split(";");
 				for (String x : content) {
-					System.out.println(x);
+			//		System.out.println(x);
 				}
 
 				SoulShield base = new SoulShield(content[0], content[1], content[2]);
@@ -75,11 +80,16 @@ public class CSVImport {
 				int combinations = new Integer(content[5].trim());
 				int substats = content.length-6;
 				
-				
 				System.out.println(base + " "+combinations + " "+substats);
 				int[] s = new int[combinations];
 				
 				generate(s, 0, 0, combinations, substats);
+				for (int j=0;j<TEMP.size();j++){
+					System.out.print(TEMP.get(j)+"  ");
+				}
+				System.out.println("--");
+				TEMP.clear();
+				
 			}
 		}
 
