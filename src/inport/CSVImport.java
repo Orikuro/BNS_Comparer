@@ -87,6 +87,10 @@ public class CSVImport {
 				for (int j=0;j<TEMP.size();j++){
 					System.out.print(TEMP.get(j)+"  ");
 				}
+				
+				SoulShield combinedSS = new SoulShield(base);
+				
+				
 				System.out.println("--");
 				TEMP.clear();
 				

@@ -22,6 +22,46 @@ public class SoulShield {
 
 	}
 
+	public SoulShield(SoulShield base) {
+		this.set = base.getSet();
+		this.position = base.getPosition();
+		this.maxenchant = base.getMaxenchant();
+		this.hp = base.getHp();
+		this.accuracy = base.getAccuracy();
+		this.crit = base.getCrit();
+		this.def = base.getDef();
+		this.block = base.getBlock();
+		this.evasion = base.getEvasion();
+		this.critdef = base.getCritdef();
+	}
+
+
+	public int getPosition() {
+		return position;
+	}
+
+
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
+
+
+
+	public int getCritdef() {
+		return critdef;
+	}
+
+
+
+	public void setCritdef(int critdef) {
+		this.critdef = critdef;
+	}
+
+
+
+
+
 	@Override
 	public String toString() {
 		return "SoulShield [" + set + " = " + position + ", hp=" + hp + ", accuracy=" + accuracy + ", def=" + def
