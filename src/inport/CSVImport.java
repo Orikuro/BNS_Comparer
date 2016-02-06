@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+import modell.SoulShield;
 
 public class CSVImport {
 
@@ -35,22 +39,50 @@ public class CSVImport {
 
 	private static final File CSV = new File("data" + File.separator + "bopae.csv");
 
-	private static void readCSV() {
+	private static List<String> readCSV() {
+		List<String> csvfile = new ArrayList<>();
 
 		String thisLine = "";
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(CSV), "UTF-8"));
 			while ((thisLine = br.readLine()) != null) {
-				System.out.println(thisLine);
+				csvfile.add(thisLine);
 			}
+			br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+		return csvfile;
 	}
 
+	private static List<SoulShield> convertCSVtoBopae(List<String> input) {
+
+		List<SoulShield> shields = new ArrayList<>();
+
+		for (int i = 1; i < input.size(); i++) {
+			if (input.get(i).length() > 9) {
+				String csvline = input.get(i);
+				String[] content = csvline.split(";");
+				for (String x: content){
+					//System.out.println(x);
+				}
+				
+				SoulShield base = new SoulShield(content[0].trim(), content[1].trim());
+				
+				System.out.println(base);
+			}
+		}
+
+		return shields;
+	}
+	
+
+
+	private List<SoulShield> SHIELDS;
+
 	public static void main(String[] args) {
-		readCSV();
+		convertCSVtoBopae(readCSV());
 	}
 
 }

@@ -4,6 +4,7 @@ public class SoulShield {
 	
 	private SoulSet set;
 	
+	private int position;
 	private int hp;
 	private int accuracy;
 	private int def;
@@ -28,10 +29,18 @@ public class SoulShield {
 		super();
 	}
 	
+	public SoulShield(String name, String pos) {
+		set = new SoulSet(name);
+		position = new Integer(pos);
+		
+	}
+	
+
 	@Override
 	public String toString() {
-		return "SoulShield [set=" + set + ", hp=" + hp + ", accuracy=" + accuracy + ", def=" + def + ", block=" + block + ", evasion=" + evasion + ", crit=" + crit
-				+ ", maxenchant=" + maxenchant + "]";
+		return "SoulShield [" + set + " = " + position + ", hp=" + hp + ", accuracy=" + accuracy + ", def="
+				+ def + ", block=" + block + ", evasion=" + evasion + ", crit=" + crit + ", maxenchant=" + maxenchant
+				+ "]";
 	}
 	public SoulSet getSet() {
 		return set;
