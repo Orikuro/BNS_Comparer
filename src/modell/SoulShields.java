@@ -1,7 +1,10 @@
 package modell;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+
+import comparators.Crit_SoulShield_Comparator;
 
 public class SoulShields {
 	private List<SoulShield> S_1 = new ArrayList<>();
@@ -88,6 +91,17 @@ public class SoulShields {
 
 	public void setS_8(List<SoulShield> s_8) {
 		S_8 = s_8;
+	}
+
+	public void sort(Comparator<? super SoulShield> comp) {
+		S_1.sort(comp);
+		S_2.sort(comp);
+		S_3.sort(comp);
+		S_4.sort(comp);
+		S_5.sort(comp);
+		S_6.sort(comp);
+		S_7.sort(comp);
+		S_8.sort(comp);
 	}
 
 }
