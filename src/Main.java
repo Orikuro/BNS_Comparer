@@ -24,7 +24,7 @@ public class Main {
 		shields.sort(comp);
 
 		// minimum stats
-		new ThreadStarter(args);
+		new ThreadStarter(args, shields);
 		
 //		new ThreadStarter(args, CPUS, results, price, ATK, MATK, COMBOSORT,
 //				items, NOINFO, nocsv);
