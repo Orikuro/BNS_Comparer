@@ -29,6 +29,12 @@ public class ComboSoul {
 				+ S_7.getCrit() + S_8.getCrit();
 	}
 
+	@Override
+	public String toString() {
+		return "ComboSoul [S_1=" + S_1 + ", S_2=" + S_2 + ", S_3=" + S_3 + ", S_4=" + S_4 + ", S_5=" + S_5 + ", S_6="
+				+ S_6 + ", S_7=" + S_7 + ", S_8=" + S_8 + ", crit=" + crit + "]";
+	}
+
 	public int getCrit() {
 		return crit;
 	}

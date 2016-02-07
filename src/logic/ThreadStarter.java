@@ -12,6 +12,7 @@ import java.util.concurrent.Future;
 
 import comparators.Crit_Combo_Comparator;
 import modell.ComboSoul;
+import modell.SoulShield;
 import modell.SoulShields;
 
 public class ThreadStarter {
@@ -30,6 +31,8 @@ public class ThreadStarter {
 		long total = shields.getS_1().size() * shields.getS_2().size() * shields.getS_3().size()
 				* shields.getS_4().size() * shields.getS_5().size() * shields.getS_6().size() * shields.getS_7().size()
 				* shields.getS_8().size();
+		
+		System.out.println(total + " Combinations");
 
 		long start = System.currentTimeMillis();
 		try {
@@ -85,6 +88,10 @@ public class ThreadStarter {
 		if (combs.size() == 0) {
 			System.out.println("Nothing found, price was too low.");
 			return;
+		}
+
+		for (int i = 0; i < 3; i++) {
+			System.out.println(combs.get(i));
 		}
 	}
 

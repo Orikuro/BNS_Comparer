@@ -43,8 +43,6 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 
 	private static int min = -1;
 
-	private List<ComboSoul> ComboSouls = new ArrayList<>();
-
 	@Override
 	public List<ComboSoul> call() throws Exception {
 
@@ -125,7 +123,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 		}
 
 		System.out.print("x");
-		return ComboSouls;
+		return combos;
 
 	}
 
