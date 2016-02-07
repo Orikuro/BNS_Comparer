@@ -6,327 +6,129 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import net.nexon.vindictus.itemcomparer.modell.Combo;
-import net.nexon.vindictus.itemcomparer.modell.ext.Armor;
-import net.nexon.vindictus.itemcomparer.modell.ext.Gloves;
-import net.nexon.vindictus.itemcomparer.modell.ext.Helm;
-import net.nexon.vindictus.itemcomparer.modell.ext.Pants;
-import net.nexon.vindictus.itemcomparer.modell.ext.Shoes;
+import comparators.Crit_Combo_Comparator;
+import modell.ComboSoul;
+import modell.SoulShield;
 
-public class ComboSoulCall implements Callable<List<Combo>> {
+public class ComboSoulCall implements Callable<List<ComboSoul>> {
 
-	private List<Shoes> shoes;
-	private List<Pants> pants;
-	private List<Gloves> gloves;
-	private List<Armor> armors;
-	private List<Helm> helms;
+	private List<SoulShield> S_1 = new ArrayList<>();
+	private List<SoulShield> S_2 = new ArrayList<>();
+	private List<SoulShield> S_3 = new ArrayList<>();
+	private List<SoulShield> S_4 = new ArrayList<>();
+	private List<SoulShield> S_5 = new ArrayList<>();
+	private List<SoulShield> S_6 = new ArrayList<>();
+	private List<SoulShield> S_7 = new ArrayList<>();
+	private List<SoulShield> S_8 = new ArrayList<>();
 
-	private Comparator<Combo> comp;
+	private Comparator<ComboSoul> comp = new Crit_Combo_Comparator();
+	private int results = 30;
+	private int thresh;
 
-	public ComboSoulCall(List<Shoes> sho, List<Pants> pan, List<Gloves> glov,
-			List<Armor> arms, List<Helm> hes, int result, Comparator<Combo> defc) {
-		
+	private List<ComboSoul> combos = new ArrayList<>();
+
+	public ComboSoulCall(List<SoulShield> s_1, List<SoulShield> s_2, List<SoulShield> s_3, List<SoulShield> s_4,
+			List<SoulShield> s_5, List<SoulShield> s_6, List<SoulShield> s_7, List<SoulShield> s_8,
+			List<ComboSoul> comboSouls) {
+		super();
+		S_1 = s_1;
+		S_2 = s_2;
+		S_3 = s_3;
+		S_4 = s_4;
+		S_5 = s_5;
+		S_6 = s_6;
+		S_7 = s_7;
+		S_8 = s_8;
+		ComboSouls = comboSouls;
+		thresh = results * 2;
 	}
 
 	private static int min = -1;
 
-	private List<Combo> combos = new ArrayList<>();
-
-	private double total_p = 0;
-	private double s_p = 0;
-	private double p_p = 0;
-	private double g_p = 0;
-	private double a_p = 0;
-	private double h_p = 0;
-	private int thresh;
+	private List<ComboSoul> ComboSouls = new ArrayList<>();
 
 	@Override
-	public List<Combo> call() throws Exception {
+	public List<ComboSoul> call() throws Exception {
 
 		String compname = comp.getClass().getSimpleName();
 
 		switch (compname) {
-		case "AtkComparator":
-			return callAtk();
-		case "DefComparator":
-			return callDef();
-		case "MatkComparator":
-			return callMatk();
-		case "StaDComparator":
-		case "StaAComparator":
-		case "StaMComparator":
-			return callSta();
+		// case "AtkComparator":
+		// return callAtk();
+		// case "DefComparator":
+		// return callDef();
+		// case "MatkComparator":
+		// return callMatk();
+		// case "StaDComparator":
+		// case "StaAComparator":
+		// case "StaMComparator":
+		// return callSta();
 		default:
-			return callStandard();
+			return callCrit();
 		}
 	}
 
-	private List<Combo> callStandard() throws Exception {
-		int i = 0;
-		for (Shoes s : shoes) {
-			s_p = s.getTotalPrice();
-			for (Pants p : pants) {
-				p_p = p.getTotalPrice();
-				for (Gloves g : gloves) {
-					g_p = g.getTotalPrice();
-					for (Armor a : armors) {
-						a_p = a.getTotalPrice();
-						for (Helm h : helms) {
-							h_p = h.getTotalPrice();
-							total_p = s_p + p_p + g_p + a_p + h_p;
-
-							if (total_p <= PRICE) {
-								combos.add(new Combo(s, p, g, a, h));
-							}
-							i++;
-							if (i % 1000000 == 0) {
-								System.out.print(".");
-							}
-							if (combos.size() > thresh) {
-								Collections.sort(combos, comp);
-								combos = new ArrayList<Combo>(combos.subList(0,
-										results));
-							}
-						}
-					}
-				}
-			}
-		}
-		System.out.print("x");
-		return combos;
-
-	}
-
-	private List<Combo> callDef() throws Exception {
-		int total_def = 0;
-		int s_def = 0;
-		int p_def = 0;
-		int g_def = 0;
-		int a_def = 0;
-		int h_def = 0;
+	private List<ComboSoul> callCrit() throws Exception {
 
 		int i = 0;
-		for (Shoes s : shoes) {
-			s_p = s.getTotalPrice();
-			s_def = s.getTotaldef();
-			for (Pants p : pants) {
-				p_p = p.getTotalPrice();
-				p_def = p.getTotaldef();
-				for (Gloves g : gloves) {
-					g_p = g.getTotalPrice();
-					g_def = g.getTotaldef();
-					for (Armor a : armors) {
-						a_p = a.getTotalPrice();
-						a_def = a.getTotaldef();
-						for (Helm h : helms) {
-							h_p = h.getTotalPrice();
-							h_def = h.getTotaldef();
-							total_p = s_p + p_p + g_p + a_p + h_p;
+		int total;
+		int t1;
+		int t2;
+		int t3;
+		int t4;
+		int t5;
+		int t6;
+		int t7;
+		int t8;
 
-							total_def = s_def + p_def + h_def + a_def + g_def
-									+ h_def;
-							if (total_p <= PRICE
-									&& (total_def + MAXIS[0]) >= min) {
-								Combo c = new Combo(s, p, g, a, h);
-								if (c.getAtk() >= ATK && c.getMatk() >= MATK) {
-									combos.add(c);
-								}
-							}
-							i++;
-							if (i % 1000000 == 0) {
-								System.out.print(".");
-							}
-							if (combos.size() > thresh) {
-								Collections.sort(combos, comp);
-								combos = new ArrayList<Combo>(combos.subList(0,
-										results));
-								synchronized (this) {
-									min = combos.get(results - 1).getDef();
+		for (SoulShield s1 : S_1) {
+			t1 = s1.getCrit();
+			for (SoulShield s2 : S_2) {
+				t2 = s2.getCrit();
+				for (SoulShield s3 : S_3) {
+					t3 = s3.getCrit();
+					for (SoulShield s4 : S_4) {
+						t4 = s4.getCrit();
+						for (SoulShield s5 : S_5) {
+							t5 = s5.getCrit();
+							for (SoulShield s6 : S_6) {
+								t6 = s6.getCrit();
+								for (SoulShield s7 : S_7) {
+									t7 = s7.getCrit();
+									for (SoulShield s8 : S_8) {
+										t8 = s8.getCrit();
+
+										total = t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8;
+
+										if (total >= min) {
+											ComboSoul c = new ComboSoul(s1, s2, s3, s4, s5, s6, s7, s8);
+											combos.add(c);
+										}
+										i++;
+										if (i % 1000000 == 0) {
+											System.out.print(".");
+										}
+										if (combos.size() > thresh) {
+											Collections.sort(combos, comp);
+											combos = new ArrayList<ComboSoul>(combos.subList(0, results));
+											synchronized (this) {
+												min = combos.get(results - 1).getCrit();
+											}
+										}
+
+									}
 								}
 							}
 						}
 					}
 				}
 			}
+
 		}
+
 		System.out.print("x");
-		return combos;
+		return ComboSouls;
 
 	}
 
-	private List<Combo> callAtk() throws Exception {
-
-		int total_def = 0;
-		int s_def = 0;
-		int p_def = 0;
-		int g_def = 0;
-		int a_def = 0;
-		int h_def = 0;
-
-		int i = 0;
-		for (Shoes s : shoes) {
-			s_p = s.getTotalPrice();
-			s_def = s.getTotalatk();
-			for (Pants p : pants) {
-				p_p = p.getTotalPrice();
-				p_def = p.getTotalatk();
-				for (Gloves g : gloves) {
-					g_p = g.getTotalPrice();
-					g_def = g.getTotalatk();
-					for (Armor a : armors) {
-						a_p = a.getTotalPrice();
-						a_def = a.getTotalatk();
-						for (Helm h : helms) {
-							h_p = h.getTotalPrice();
-							h_def = h.getTotalatk();
-							total_p = s_p + p_p + g_p + a_p + h_p;
-
-							total_def = s_def + p_def + h_def + a_def + g_def
-									+ h_def;
-
-							if (total_p <= PRICE
-									&& (total_def + MAXIS[1]) >= min) {
-								Combo c = new Combo(s, p, g, a, h);
-								if (c.getAtk() >= ATK) {
-									combos.add(c);
-								}
-							}
-							i++;
-							if (i % 1000000 == 0) {
-								System.out.print(".");
-							}
-							if (combos.size() > thresh) {
-								Collections.sort(combos, comp);
-								combos = new ArrayList<Combo>(combos.subList(0,
-										results));
-								synchronized (this) {
-									min = (int) combos.get(results - 1)
-											.getAtk();
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		System.out.print("x");
-		return combos;
-
-	}
-
-	private List<Combo> callMatk() throws Exception {
-		int total_def = 0;
-		int s_def = 0;
-		int p_def = 0;
-		int g_def = 0;
-		int a_def = 0;
-		int h_def = 0;
-
-		int i = 0;
-		for (Shoes s : shoes) {
-			s_p = s.getTotalPrice();
-			s_def = s.getTotalmatk();
-			for (Pants p : pants) {
-				p_p = p.getTotalPrice();
-				p_def = p.getTotalmatk();
-				for (Gloves g : gloves) {
-					g_p = g.getTotalPrice();
-					g_def = g.getTotalmatk();
-					for (Armor a : armors) {
-						a_p = a.getTotalPrice();
-						a_def = a.getTotalmatk();
-						for (Helm h : helms) {
-							h_p = h.getTotalPrice();
-							h_def = h.getTotalmatk();
-							total_p = s_p + p_p + g_p + a_p + h_p;
-
-							total_def = s_def + p_def + h_def + a_def + g_def
-									+ h_def;
-
-							if (total_p <= PRICE
-									&& (total_def + MAXIS[2]) >= min) {
-
-								Combo c = new Combo(s, p, g, a, h);
-								if (c.getMatk() >= MATK) {
-									combos.add(c);
-								}
-							}
-							i++;
-							if (i % 1000000 == 0) {
-								System.out.print(".");
-							}
-							if (combos.size() > thresh) {
-								Collections.sort(combos, comp);
-								combos = new ArrayList<Combo>(combos.subList(0,
-										results));
-								synchronized (this) {
-									min = combos.get(results - 1).getMatk();
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		System.out.print("x");
-		return combos;
-
-	}
-
-	private List<Combo> callSta() throws Exception {
-
-		int total_def = 0;
-		int s_def = 0;
-		int p_def = 0;
-		int g_def = 0;
-		int a_def = 0;
-		int h_def = 0;
-
-		int i = 0;
-		for (Shoes s : shoes) {
-			s_p = s.getTotalPrice();
-			s_def = s.getTotalsta();
-			for (Pants p : pants) {
-				p_p = p.getTotalPrice();
-				p_def = p.getTotalsta();
-				for (Gloves g : gloves) {
-					g_p = g.getTotalPrice();
-					g_def = g.getTotalsta();
-					for (Armor a : armors) {
-						a_p = a.getTotalPrice();
-						a_def = a.getTotalsta();
-						for (Helm h : helms) {
-							h_p = h.getTotalPrice();
-							h_def = h.getTotalsta();
-							total_p = s_p + p_p + g_p + a_p + h_p;
-
-							total_def = s_def + p_def + h_def + a_def + g_def
-									+ h_def;
-							if (total_p <= PRICE && (total_def) >= min) {
-								Combo c = new Combo(s, p, g, a, h);
-								if (c.getAtk() >= ATK && c.getMatk() >= MATK) {
-									combos.add(c);
-								}
-							}
-							i++;
-							if (i % 1000000 == 0) {
-								System.out.print(".");
-							}
-							if (combos.size() > thresh) {
-								Collections.sort(combos, comp);
-								combos = new ArrayList<Combo>(combos.subList(0,
-										results));
-								synchronized (this) {
-									min = combos.get(results - 1).getSta();
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		System.out.print("x");
-		return combos;
-
-	}
 }
