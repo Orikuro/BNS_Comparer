@@ -35,24 +35,17 @@ public class SoulShield {
 		this.critdef = base.getCritdef();
 	}
 
-
 	public int getPosition() {
 		return position;
 	}
-
-
 
 	public void setPosition(int position) {
 		this.position = position;
 	}
 
-
-
 	public int getCritdef() {
 		return critdef;
 	}
-
-
 
 	public void setCritdef(int critdef) {
 		this.critdef = critdef;
@@ -124,10 +117,11 @@ public class SoulShield {
 
 	public void add(String string) {
 
-		if (string == null || string.length() == 0) return;
-		
+		if (string == null || string.length() == 0)
+			return;
+
 		String temp = string.trim();
-		
+
 		if (temp.endsWith("hp")) {
 			hp += new Integer(temp.substring(0, temp.indexOf("hp")).trim());
 		}
@@ -139,8 +133,7 @@ public class SoulShield {
 		}
 		if (temp.endsWith("critdef")) {
 			critdef += new Integer(temp.substring(0, temp.indexOf("critdef")).trim());
-		}
-		else if (temp.endsWith("def")) {
+		} else if (temp.endsWith("def")) {
 			def += new Integer(temp.substring(0, temp.indexOf("def")).trim());
 		}
 		if (temp.endsWith("crit")) {
@@ -150,12 +143,41 @@ public class SoulShield {
 			block += new Integer(temp.substring(0, temp.indexOf("block")).trim());
 		}
 	}
-	
+
 	@Override
 	public String toString() {
-		return set + " = " + position + ", maxenchant=" + maxenchant + ", hp=" + hp
-				+ ", accuracy=" + accuracy + ", crit=" + crit + ", def=" + def + ", block=" + block + ", evasion="
-				+ evasion + ", critdef=" + critdef ;
+		StringBuilder builder = new StringBuilder();
+
+		builder.append(set);
+		builder.append(" = ");
+		builder.append(position);
+		builder.append(", hp=");
+		builder.append(hp);
+		if (accuracy > 0) {
+			builder.append(", accuracy=");
+			builder.append(accuracy);
+		}
+		if (crit > 0) {
+			builder.append(", crit=");
+			builder.append(crit);
+		}
+		if (def > 0) {
+			builder.append(", def=");
+			builder.append(def);
+		}
+		if (block > 0) {
+			builder.append(", block=");
+			builder.append(block);
+		}
+		if (evasion > 0) {
+			builder.append(", evasion=");
+			builder.append(evasion);
+		}
+		if (critdef > 0) {
+			builder.append(", critdef=");
+			builder.append(critdef);
+		}
+		return builder.toString();
 	}
 
 }
