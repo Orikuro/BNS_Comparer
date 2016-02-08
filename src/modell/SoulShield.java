@@ -153,9 +153,9 @@ public class SoulShield {
 	
 	@Override
 	public String toString() {
-		return "SoulShield [" + set + " = " + position + ", maxenchant=" + maxenchant + ", hp=" + hp
+		return set + " = " + position + ", maxenchant=" + maxenchant + ", hp=" + hp
 				+ ", accuracy=" + accuracy + ", crit=" + crit + ", def=" + def + ", block=" + block + ", evasion="
-				+ evasion + ", critdef=" + critdef + "]";
+				+ evasion + ", critdef=" + critdef ;
 	}
 
 }

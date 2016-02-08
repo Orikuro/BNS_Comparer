@@ -28,7 +28,7 @@ public class ThreadStarter {
 		int results = 30;
 
 		Crit_Combo_Comparator ccc = new Crit_Combo_Comparator();
-		long total = shields.getS_1().size() * shields.getS_2().size() * shields.getS_3().size()
+		long total = 1l*shields.getS_1().size() * shields.getS_2().size() * shields.getS_3().size()
 				* shields.getS_4().size() * shields.getS_5().size() * shields.getS_6().size() * shields.getS_7().size()
 				* shields.getS_8().size();
 		
