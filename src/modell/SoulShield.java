@@ -34,6 +34,10 @@ public class SoulShield {
 		this.evasion = base.getEvasion();
 		this.critdef = base.getCritdef();
 	}
+	
+	public int calcTotalAttributeBonus(){
+		return accuracy+crit+def+block+evasion+critdef;
+	}
 
 	public int getPosition() {
 		return position;
