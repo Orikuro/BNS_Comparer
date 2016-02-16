@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.concurrent.Callable;
 
 import comparators.*;
+import modell.AConsts;
 import modell.ComboSoul;
 import modell.SoulShield;
 
@@ -21,7 +22,6 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 	private List<SoulShield> S_7 = new ArrayList<>();
 	private List<SoulShield> S_8 = new ArrayList<>();
 
-	private Comparator<ComboSoul> comp = new Def_Combo_Comparator();
 	private int results = 30;
 	private int thresh;
 
@@ -46,13 +46,13 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 	@Override
 	public List<ComboSoul> call() throws Exception {
 
-		String compname = comp.getClass().getSimpleName();
+		String compname = AConsts.COMPARATOR.getClass().getSimpleName();
 
 		switch (compname) {
-		// case "AtkComparator":
-		// return callAtk();
-		// case "DefComparator":
-		// return callDef();
+		case "Crit_Combo_Comparator":
+			return callCrit();
+		case "Def_Combo_Comparator":
+			return callDef();
 		// case "MatkComparator":
 		// return callMatk();
 		// case "StaDComparator":
@@ -60,7 +60,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 		// case "StaMComparator":
 		// return callSta();
 		default:
-			return callDef();
+			return callCrit();
 		}
 	}
 
@@ -97,7 +97,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 											System.out.print(".");
 										}
 										if (combos.size() > thresh) {
-											Collections.sort(combos, comp);
+											Collections.sort(combos, AConsts.COMPARATOR);
 											combos = new ArrayList<ComboSoul>(combos.subList(0, results));
 											synchronized (this) {
 												min = combos.get(results - 1).getCrit();
@@ -152,7 +152,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 											System.out.print(".");
 										}
 										if (combos.size() > thresh) {
-											Collections.sort(combos, comp);
+											Collections.sort(combos, AConsts.COMPARATOR);
 											combos = new ArrayList<ComboSoul>(combos.subList(0, results));
 											synchronized (this) {
 												min = combos.get(results - 1).getDef();

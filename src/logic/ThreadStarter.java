@@ -3,7 +3,6 @@ package logic;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -11,7 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import comparators.*;
+import modell.AConsts;
 import modell.ComboSoul;
 import modell.SoulShields;
 
@@ -27,7 +26,6 @@ public class ThreadStarter {
 		List<ComboSoul> combs = new ArrayList<ComboSoul>();
 		int results = 30;
 
-		Comparator<ComboSoul> ccc = new Def_Combo_Comparator();
 		long total = 1l*shields.getS_1().size() * shields.getS_2().size() * shields.getS_3().size()
 				* shields.getS_4().size() * shields.getS_5().size() * shields.getS_6().size() * shields.getS_7().size()
 				* shields.getS_8().size();
@@ -53,12 +51,12 @@ public class ThreadStarter {
 			for (Future<List<ComboSoul>> res : f_ComboSouls) {
 				combs.addAll(res.get());
 				if (combs.size() > results * 2) {
-					Collections.sort(combs, ccc);
+					Collections.sort(combs, AConsts.COMPARATOR);
 					combs = new ArrayList<>(combs.subList(0, results));
 				}
 			}
 
-			Collections.sort(combs, ccc);
+			Collections.sort(combs, AConsts.COMPARATOR);
 
 			if (results > total) {
 				results = (int) total;
@@ -86,7 +84,7 @@ public class ThreadStarter {
 		sb.insert(0, "\n");
 
 		if (combs.size() == 0) {
-			System.out.println("Nothing found, price was too low.");
+			System.out.println("Nothing found");
 			return;
 		}
 

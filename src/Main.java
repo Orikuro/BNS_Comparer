@@ -18,7 +18,7 @@ public class Main {
 		SoulShields shields = CSVImport.importSoulShields();
 		
 		// enchant shields
-		String enchants = "200 def";
+		String enchants = "200 crit";
 		shields.enchantAll(enchants);
 
 
