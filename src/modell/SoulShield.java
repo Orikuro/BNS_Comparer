@@ -34,9 +34,9 @@ public class SoulShield {
 		this.evasion = base.getEvasion();
 		this.critdef = base.getCritdef();
 	}
-	
-	public int calcTotalAttributeBonus(){
-		return accuracy+crit+def+block+evasion+critdef;
+
+	public int calcTotalAttributeBonus() {
+		return accuracy + crit + def + block + evasion + critdef;
 	}
 
 	public int getPosition() {
@@ -146,6 +146,59 @@ public class SoulShield {
 		if (temp.endsWith("block")) {
 			block += new Integer(temp.substring(0, temp.indexOf("block")).trim());
 		}
+	}
+
+	public void addLimited(String string) {
+
+		if (string == null || string.length() == 0)
+			return;
+
+		String temp = string.trim();
+
+		int ench = 0;
+
+		if (temp.endsWith("accu")) {
+			ench = new Integer(temp.substring(0, temp.indexOf("accu")).trim());
+			if (ench > maxenchant) {
+				ench = maxenchant;
+			}
+			accuracy += ench;
+		}
+		if (temp.endsWith("eva")) {
+			ench = new Integer(temp.substring(0, temp.indexOf("eva")).trim());
+			if (ench > maxenchant) {
+				ench = maxenchant;
+			}
+			evasion += ench;
+		}
+		if (temp.endsWith("critdef")) {
+			ench = new Integer(temp.substring(0, temp.indexOf("critdef")).trim());
+			if (ench > maxenchant) {
+				ench = maxenchant;
+			}
+			critdef += ench;
+		} else if (temp.endsWith("def")) {
+			ench = new Integer(temp.substring(0, temp.indexOf("def")).trim());
+			if (ench > maxenchant) {
+				ench = maxenchant;
+			}
+			def += ench;
+		}
+		if (temp.endsWith("crit")) {
+			ench = new Integer(temp.substring(0, temp.indexOf("crit")).trim());
+			if (ench > maxenchant) {
+				ench = maxenchant;
+			}
+			crit += ench;
+		}
+		if (temp.endsWith("block")) {
+			ench = new Integer(temp.substring(0, temp.indexOf("block")).trim());
+			if (ench > maxenchant) {
+				ench = maxenchant;
+			}
+			block += ench;
+		}
+
 	}
 
 	@Override

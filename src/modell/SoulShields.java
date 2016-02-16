@@ -104,4 +104,62 @@ public class SoulShields {
 		S_8.sort(comp);
 	}
 
+	public void enchantAll(String enchants) {
+		enchant_1(enchants);
+		enchant_2(enchants);
+		enchant_3(enchants);
+		enchant_4(enchants);
+		enchant_5(enchants);
+		enchant_6(enchants);
+		enchant_7(enchants);
+		enchant_8(enchants);
+	}
+
+	public void enchant_1(String enchants) {
+		for (SoulShield s : S_1) {
+			s.addLimited(enchants);
+		}
+	}
+
+	public void enchant_2(String enchants) {
+		for (SoulShield s : S_2) {
+			s.addLimited(enchants);
+		}
+	}
+
+	public void enchant_3(String enchants) {
+		for (SoulShield s : S_3) {
+			s.addLimited(enchants);
+		}
+	}
+
+	public void enchant_4(String enchants) {
+		for (SoulShield s : S_4) {
+			s.addLimited(enchants);
+		}
+	}
+
+	public void enchant_5(String enchants) {
+		for (SoulShield s : S_5) {
+			s.addLimited(enchants);
+		}
+	}
+
+	public void enchant_6(String enchants) {
+		for (SoulShield s : S_6) {
+			s.addLimited(enchants);
+		}
+	}
+
+	public void enchant_7(String enchants) {
+		for (SoulShield s : S_7) {
+			s.addLimited(enchants);
+		}
+	}
+
+	public void enchant_8(String enchants) {
+		for (SoulShield s : S_8) {
+			s.addLimited(enchants);
+		}
+	}
 }

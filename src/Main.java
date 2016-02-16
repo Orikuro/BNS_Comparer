@@ -7,7 +7,7 @@ import modell.SoulShield;
 import modell.SoulShields;
 
 public class Main {
-	public static final String VERSION = "0.1 - 07.02.16 - by Nekuro/Orikuro";
+	public static final String VERSION = "0.2 - 16.02.16 - by Nekuro/Orikuro";
 
 	private static enum Sort {
 		crit, hp, critdef
@@ -16,6 +16,10 @@ public class Main {
 	public static void main(String[] args) {
 		// Import Shields
 		SoulShields shields = CSVImport.importSoulShields();
+		
+		// enchant shields
+		String enchants = "200 def";
+		shields.enchantAll(enchants);
 
 
 
