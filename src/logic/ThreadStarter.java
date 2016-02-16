@@ -3,6 +3,7 @@ package logic;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -10,9 +11,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import comparators.Crit_Combo_Comparator;
+import comparators.*;
 import modell.ComboSoul;
-import modell.SoulShield;
 import modell.SoulShields;
 
 public class ThreadStarter {
@@ -27,7 +27,7 @@ public class ThreadStarter {
 		List<ComboSoul> combs = new ArrayList<ComboSoul>();
 		int results = 30;
 
-		Crit_Combo_Comparator ccc = new Crit_Combo_Comparator();
+		Comparator<ComboSoul> ccc = new Def_Combo_Comparator();
 		long total = 1l*shields.getS_1().size() * shields.getS_2().size() * shields.getS_3().size()
 				* shields.getS_4().size() * shields.getS_5().size() * shields.getS_6().size() * shields.getS_7().size()
 				* shields.getS_8().size();
@@ -46,7 +46,7 @@ public class ThreadStarter {
 			}
 
 			// 2/4 Running
-			ExecutorService executor = Executors.newFixedThreadPool(4);
+			ExecutorService executor = Executors.newFixedThreadPool(8);
 			List<Future<List<ComboSoul>>> f_ComboSouls = executor.invokeAll(tasks);
 
 			// 3/4 Joining Results
