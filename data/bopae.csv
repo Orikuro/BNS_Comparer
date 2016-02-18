@@ -35,7 +35,7 @@ Endless Tower;6;147;3120 hp;206 def;1;88 crit;88 eva;88 block;
 Endless Tower;7;153;5370 hp;;1;91 def;91 eva;91 block;
 Endless Tower;8;158;3350 hp;221 crit;1;94 accu;94 def;94 eva;
 ;;;;;;;;;
-Bloodshade;1;114;2420 hp;160 accu;1;68 block;68 def;68 crit;
+Bloodshade;1;114;2420 hp;160 accu;1;68 block;68 eva;68 crit;
 Bloodshade;2;120;4220 hp;;1;71 accu;71 def;71 crit;
 Bloodshade;3;125;2650 hp;175 block;1;75 crit;75 accu;75 eva;
 Bloodshade;4;131;2770 hp;183 eva;1;78 accu;78 crit;78 block;
