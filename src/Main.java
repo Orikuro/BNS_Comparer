@@ -1,4 +1,8 @@
+import java.util.Arrays;
 import java.util.Comparator;
+
+import org.kohsuke.args4j.CmdLineParser;
+import org.kohsuke.args4j.Option;
 
 import comparators.Crit_SoulShield_Comparator;
 import inport.CSVImport;
@@ -6,22 +10,75 @@ import logic.ThreadStarter;
 import modell.SoulShield;
 import modell.SoulShields;
 
+
 public class Main {
-	public static final String VERSION = "0.2 - 16.02.16 - by Nekuro/Orikuro";
+	public static final String VERSION = "0.3 - 28.02.16 - by Nekuro/Orikuro";
 
 	private static enum Sort {
 		crit, hp, critdef
 	};
 
-	public static void main(String[] args) {
+	@Option(name = "-results", aliases = { "-r" }, usage = "the number of results, default: 30")
+	private int RESULTS = 30;
+
+	@Option(name = "-crit", usage = "minimum crit the combo must have, default: None")
+	private int CRIT = Integer.MIN_VALUE;
+
+	@Option(name = "-hp", usage = "minimum hp the combo must have, default: None")
+	private int HP = Integer.MIN_VALUE;
+
+	@Option(name = "-def", usage = "minimum def the combo must have, default: None")
+	private int DEF = Integer.MIN_VALUE;
+
+	@Option(name = "-critdef", usage = "minimum critdef the combo must have, default: None")
+	private int CRITDEF = Integer.MIN_VALUE;
+
+	@Option(name = "-block", usage = "minimum block the combo must have, default: None")
+	private int BLOCK = Integer.MIN_VALUE;
+	
+	@Option(name = "-eva", usage = "minimum eva the combo must have, default: None")
+	private int EVA = Integer.MIN_VALUE;
+	
+	@Option(name = "-accu", usage = "minimum accu the combo must have, default: None")
+	private int ACCU = Integer.MIN_VALUE;
+	
+	@Option(name = "-pierce", usage = "minimum pierce the combo must have, default: None")
+	private int PIERCE = Integer.MIN_VALUE;
+
+	public static void main(String[] args) throws Exception {
+		System.out.println(VERSION);
+
+		if (args == null || args.length < 1) {
+			//GUI.main(args);
+		}
+
+		new Main().startMain(args);
+	}
+
+	private void startMain(String[] args) throws Exception {
+		CmdLineParser cmdLineParser = new CmdLineParser(this);
+
+		cmdLineParser.setUsageWidth(120);
+		try {
+			cmdLineParser.parseArgument(args);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+
+			System.err.print("Usage: java -jar VindictusItemComparer.jar");
+			cmdLineParser.printSingleLineUsage(System.err);
+			System.err.println();
+
+			cmdLineParser.printUsage(System.err);
+			return;
+		}
+
+		
 		// Import Shields
 		SoulShields shields = CSVImport.importSoulShields();
-		
+
 		// enchant shields
 		String enchants = "200 crit";
 		shields.enchantAll(enchants);
-
-
 
 		// sortierung nach crit, critdef, hp
 		Comparator<? super SoulShield> comp = new Crit_SoulShield_Comparator();
@@ -29,9 +86,9 @@ public class Main {
 
 		// minimum stats
 		new ThreadStarter(args, shields);
-		
-//		new ThreadStarter(args, CPUS, results, price, ATK, MATK, COMBOSORT,
-//				items, NOINFO, nocsv);
+
+		// new ThreadStarter(args, CPUS, results, price, ATK, MATK, COMBOSORT,
+		// items, NOINFO, nocsv);
 
 	}
 
