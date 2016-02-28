@@ -1,50 +1,56 @@
-import java.util.Arrays;
 import java.util.Comparator;
 
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
-import comparators.Crit_SoulShield_Comparator;
+import comparators.*;
 import inport.CSVImport;
 import logic.ThreadStarter;
-import modell.SoulShield;
-import modell.SoulShields;
-
+import modell.*;
 
 public class Main {
-	public static final String VERSION = "0.3 - 28.02.16 - by Nekuro/Orikuro";
+	public static final String VERSION = "0.3 - 28.02.16 - by Nekuro";
 
 	private static enum Sort {
 		crit, hp, critdef
 	};
 
-	@Option(name = "-results", aliases = { "-r" }, usage = "the number of results, default: 30")
-	private int RESULTS = 30;
-
+	
+	// Main-Infos
+	
+	
+	
+	// Restrictions
 	@Option(name = "-crit", usage = "minimum crit the combo must have, default: None")
 	private int CRIT = Integer.MIN_VALUE;
-
 	@Option(name = "-hp", usage = "minimum hp the combo must have, default: None")
 	private int HP = Integer.MIN_VALUE;
-
 	@Option(name = "-def", usage = "minimum def the combo must have, default: None")
 	private int DEF = Integer.MIN_VALUE;
-
 	@Option(name = "-critdef", usage = "minimum critdef the combo must have, default: None")
 	private int CRITDEF = Integer.MIN_VALUE;
-
 	@Option(name = "-block", usage = "minimum block the combo must have, default: None")
 	private int BLOCK = Integer.MIN_VALUE;
-	
 	@Option(name = "-eva", usage = "minimum eva the combo must have, default: None")
 	private int EVA = Integer.MIN_VALUE;
-	
 	@Option(name = "-accu", usage = "minimum accu the combo must have, default: None")
 	private int ACCU = Integer.MIN_VALUE;
-	
 	@Option(name = "-pierce", usage = "minimum pierce the combo must have, default: None")
 	private int PIERCE = Integer.MIN_VALUE;
+	@Option(name = "-ignore", aliases = { "-i" }, usage = "ignore sets that contain those words, use  commas to separate names eg \"raider, champion\", default: disabled")
+	private String ignore = "";
+	
+	// Output
+	@Option(name = "-results", aliases = { "-r" }, usage = "the number of results, default: 30")
+	private int RESULTS = 30;
+	@Option(name = "-force", aliases = { "-f", "-cpus" }, usage = "force number of cpus, default: Systems Maximum")
+	private int CPUS = Runtime.getRuntime().availableProcessors();
+	@Option(name = "-noinfo", aliases = { "-no" }, usage = "if set, disables writing of .txt info files, default: false")
+	private boolean NOINFO = false;
+	@Option(name = "-nocsv", usage = "dont write .csv files (usefull for gui comparing with open consoles)")
+	private boolean nocsv = false;
 
+	
 	public static void main(String[] args) throws Exception {
 		System.out.println(VERSION);
 
@@ -64,7 +70,7 @@ public class Main {
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 
-			System.err.print("Usage: java -jar VindictusItemComparer.jar");
+			System.err.print("Usage: java -jar BNS_Comparer.jar");
 			cmdLineParser.printSingleLineUsage(System.err);
 			System.err.println();
 
