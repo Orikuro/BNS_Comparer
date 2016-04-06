@@ -40,7 +40,7 @@ public class CharImport {
 
 	private static void alpha() {
 		String x = "";
-		System.out.print("name;waffe;klasse;");
+		System.out.print("name;klasse;waffe;");
 		for (String asd : werteNamen) {
 			System.out.print(asd + ";");
 		}
@@ -54,15 +54,15 @@ public class CharImport {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
+			String[] nam = x.split("http://static.ncsoft.com/ingame/bns/character_v2/profile/");
+			System.out.print(nam[1].substring(0, nam[1].indexOf("."))+ ";");
+			
 			String[] stats = x.split("stat-point");
 			String[] a = x.split("grade_");
 			System.out.print(name + ";");
 			System.out.print(a[1].substring(3, a[1].indexOf("</")) + ";");
 			
-			String[] nam = x.split("http://static.ncsoft.com/ingame/bns/character_v2/profile/");
-			System.out.print(nam[1].substring(0, nam[1].indexOf("."))+ ";");
-			
+
 			for (int i : werteIndizes) {
 				System.out.print(stats[i].substring(2, stats[i].indexOf("</")) + ";");
 			}
