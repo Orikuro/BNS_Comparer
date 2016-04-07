@@ -73,7 +73,7 @@ public class CharImport {
 			sb.append(name + ";");
 			System.out.print(nam[1].substring(0, nam[1].indexOf(".")) + ";");
 			sb.append(nam[1].substring(0, nam[1].indexOf(".")) + ";");
-			
+
 			System.out.print(a[1].substring(3, a[1].indexOf("</")) + ";");
 			sb.append(a[1].substring(3, a[1].indexOf("</")) + ";");
 			for (int i : werteIndizes) {
@@ -90,7 +90,7 @@ public class CharImport {
 		}
 		writeResults(ergs);
 	}
-	
+
 	private static void writeResults(List<String> liste) {
 		File out = new File("_out" + File.separator);
 		out.mkdirs();
@@ -98,10 +98,9 @@ public class CharImport {
 			return;
 		try {
 			long time = System.currentTimeMillis();
-			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream("_out" + File.separator + time
-							+ ".csv"), "UTF-8"));
-			
+			BufferedWriter bw = new BufferedWriter(
+					new OutputStreamWriter(new FileOutputStream("_out" + File.separator + time + ".csv"), "UTF-8"));
+
 			for (int i = 0; i < liste.size(); i++) {
 
 				bw.write(liste.get(i));
@@ -125,7 +124,7 @@ public class CharImport {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) {
-
+		System.out.println("Charimporter Beta 0.1  07.04.2016");
 		if (args == null || args.length < 1) {
 			CHARS = readTxt("clan.txt");
 		} else {
