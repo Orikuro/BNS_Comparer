@@ -52,8 +52,8 @@ public class CharImport {
 			System.out.print(asd + ";");
 			sb.append(asd + ";");
 		}
-		System.out.print("1;2;3;4;5;6;7;8;9;10;");
-		sb.append("1;2;3;4;5;6;7;8;9;10;");
+		System.out.print("necklace;earring;bracelet;ring;belt;soul;");
+		sb.append("necklace;earring;bracelet;ring;belt;soul;");
 		System.out.println();
 		ergs.add(sb.toString());
 
@@ -68,21 +68,38 @@ public class CharImport {
 			String[] nam = x.split("http://static.ncsoft.com/ingame/bns/character_v2/profile/");
 
 			String[] stats = x.split("stat-point");
-			String[] a = x.split("grade_");
+			String[] a = x.split("div class=\"name\"");
 			System.out.print(name + ";");
 			sb.append(name + ";");
 			System.out.print(nam[1].substring(0, nam[1].indexOf(".")) + ";");
 			sb.append(nam[1].substring(0, nam[1].indexOf(".")) + ";");
 
-			System.out.print(a[1].substring(3, a[1].indexOf("</")) + ";");
-			sb.append(a[1].substring(3, a[1].indexOf("</")) + ";");
+			System.out
+					.print(a[1].substring(3, a[1].indexOf("</")).replace("<span class=\"grade_5\">", "").trim() + ";");
+			sb.append(a[1].substring(3, a[1].indexOf("</")).replace("<span class=\"grade_5\">", "").trim() + ";");
 			for (int i : werteIndizes) {
 				System.out.print(stats[i].substring(2, stats[i].indexOf("</")) + ";");
 				sb.append(stats[i].substring(2, stats[i].indexOf("</")) + ";");
 			}
 			for (int i = 2; i < a.length; i++) {
-				System.out.print(a[i].substring(3, a[i].indexOf("</")) + ";");
-				sb.append(a[i].substring(3, a[i].indexOf("</")) + ";");
+				if (i == 2 || i == 3 || i == 5 || i == 7 || i == 9) {
+					System.out.print(
+							a[i].substring(3, a[i].indexOf("</")).replace("<span class=\"grade_5\">", "").trim() + ";");
+					sb.append(
+							a[i].substring(3, a[i].indexOf("</")).replace("<span class=\"grade_5\">", "").trim() + ";");
+				}
+
+				if (i == 10) {
+					String soulname = a[i].substring(3, a[i].indexOf("</")).replace("<span class=\"grade_5\">", "")
+							.trim() + ";";
+					if (!soulname.contains("class=\"empty\"")) {
+						System.out.print(
+								a[i].substring(3, a[i].indexOf("</")).replace("<span class=\"grade_5\">", "").trim()
+										+ ";");
+						sb.append(a[i].substring(3, a[i].indexOf("</")).replace("<span class=\"grade_5\">", "").trim()
+								+ ";");
+					}
+				}
 			}
 
 			System.out.println("");
@@ -124,7 +141,7 @@ public class CharImport {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) {
-		System.out.println("Charimporter Beta 0.1  07.04.2016");
+		System.out.println("Charimporter Beta 0.1  11.04.2016");
 		if (args == null || args.length < 1) {
 			CHARS = readTxt("clan.txt");
 		} else {

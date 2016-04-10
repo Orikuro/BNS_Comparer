@@ -7,3 +7,4 @@ target
 .settings
 *.jar
 *.~lock.*
+clan.txt
