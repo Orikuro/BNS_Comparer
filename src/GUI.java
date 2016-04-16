@@ -38,7 +38,7 @@ public class GUI extends JFrame {
 	private JPanel contentPane;
 
 	private final static String VERSION = Main.VERSION;
-	private final int bitchcount = 6;
+	private final int bitchcount = 3;
 
 	private JTextField minatk_Text;
 	private JTextField ignore_Text;
@@ -390,7 +390,7 @@ public class GUI extends JFrame {
 		lblPic.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPic.setIcon(new ImageIcon(
 				GUI.class
-						.getResource("/net/nexon/vindictus/itemcomparer/covergirls/covergirl"
+						.getResource("/covergirls/covergirl"
 								+ getCovergirl() + ".jpg")));
 		splitPane.setLeftComponent(lblPic);
 	}

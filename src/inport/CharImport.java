@@ -81,6 +81,7 @@ public class CharImport {
 				System.out.print(stats[i].substring(2, stats[i].indexOf("</")) + ";");
 				sb.append(stats[i].substring(2, stats[i].indexOf("</")) + ";");
 			}
+			// TODO: grade_4 filter
 			for (int i = 2; i < a.length; i++) {
 				if (i == 2 || i == 3 || i == 5 || i == 7 || i == 9) {
 					System.out.print(
