@@ -24,14 +24,14 @@ public class Main {
 	public static String SETS = "";
 	
 	// sort
-	@Option(name = "-crit", usage = "minimum crit the combo must have, default: None")
+	@Option(name = "-sort", usage = "minimum crit the combo must have, default: None")
 	public static  int SORT = Integer.MIN_VALUE;
 	
 	// Buffs
 	// TODO: buffs
 	
 	// Enchants
-	@Option(name = "-results", aliases = { "-r" }, usage = "the number of results, default: 30")
+	@Option(name = "-cenchant", usage = "the number of results, default: 30")
 	public static  int CRIT_ENCHANT = 30;
 	
 	// Restrictions
@@ -41,19 +41,11 @@ public class Main {
 	public static  int HP = Integer.MIN_VALUE;
 	@Option(name = "-def", usage = "minimum def the combo must have, default: None")
 	public static  int DEF = Integer.MIN_VALUE;
-	@Option(name = "-critdef", usage = "minimum critdef the combo must have, default: None")
-	public static  int CRITDEF = Integer.MIN_VALUE;
-	@Option(name = "-block", usage = "minimum block the combo must have, default: None")
-	public static  int BLOCK = Integer.MIN_VALUE;
-	@Option(name = "-eva", usage = "minimum eva the combo must have, default: None")
-	public static  int EVA = Integer.MIN_VALUE;
 	@Option(name = "-accu", usage = "minimum accu the combo must have, default: None")
 	public static  int ACCU = Integer.MIN_VALUE;
 	@Option(name = "-pierce", usage = "minimum pierce the combo must have, default: None")
 	public static  int PIERCE = Integer.MIN_VALUE;
-	@Option(name = "-ignore", aliases = { "-i" }, usage = "ignore sets that contain those words, use  commas to separate names eg \"raider, champion\", default: disabled")
-	public static  String ignore = "";
-	@Option(name = "-nocsv", usage = "dont write .csv files (usefull for gui comparing with open consoles)")
+	@Option(name = "-critonly", usage = "dont write .csv files (usefull for gui comparing with open consoles)")
 	public static  boolean CRITONLY = false;
 	
 	
