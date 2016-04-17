@@ -130,6 +130,7 @@ public class CharImport {
 		in = in.replace("<span class=\"grade_3\">", "");
 		in = in.replace("<span class=\"grade_4\">", "");
 		in = in.replace("<span class=\"grade_5\">", "");
+		in = in.replace(" - Stage ", " ");
 
 		return in.trim() + ";";
 	}
