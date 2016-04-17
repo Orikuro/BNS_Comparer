@@ -1,3 +1,4 @@
+package amain;
 import java.util.Comparator;
 
 import org.kohsuke.args4j.CmdLineParser;
@@ -11,44 +12,60 @@ import modell.*;
 public class Main {
 	public static final String VERSION = "0.5 - 17.04.16 - by Orikuro";
 
+	public static Comparator<ComboSoul> COMPARATOR = new Crit_Combo_Comparator();
+
 	private static enum Sort {
-		crit, hp, critdef
+		crit, hp, def
 	};
 
 	
 	// Main-Infos
+	@Option(name = "-sets", usage = "sets to use use , for more than one. eg. \"Blackram, Mushin\"")
+	public static String SETS = "";
 	
+	// sort
+	@Option(name = "-crit", usage = "minimum crit the combo must have, default: None")
+	public static  int SORT = Integer.MIN_VALUE;
 	
+	// Buffs
+	// TODO: buffs
+	
+	// Enchants
+	@Option(name = "-results", aliases = { "-r" }, usage = "the number of results, default: 30")
+	public static  int CRIT_ENCHANT = 30;
 	
 	// Restrictions
 	@Option(name = "-crit", usage = "minimum crit the combo must have, default: None")
-	private int CRIT = Integer.MIN_VALUE;
+	public int CRIT = Integer.MIN_VALUE;
 	@Option(name = "-hp", usage = "minimum hp the combo must have, default: None")
-	private int HP = Integer.MIN_VALUE;
+	public static  int HP = Integer.MIN_VALUE;
 	@Option(name = "-def", usage = "minimum def the combo must have, default: None")
-	private int DEF = Integer.MIN_VALUE;
+	public static  int DEF = Integer.MIN_VALUE;
 	@Option(name = "-critdef", usage = "minimum critdef the combo must have, default: None")
-	private int CRITDEF = Integer.MIN_VALUE;
+	public static  int CRITDEF = Integer.MIN_VALUE;
 	@Option(name = "-block", usage = "minimum block the combo must have, default: None")
-	private int BLOCK = Integer.MIN_VALUE;
+	public static  int BLOCK = Integer.MIN_VALUE;
 	@Option(name = "-eva", usage = "minimum eva the combo must have, default: None")
-	private int EVA = Integer.MIN_VALUE;
+	public static  int EVA = Integer.MIN_VALUE;
 	@Option(name = "-accu", usage = "minimum accu the combo must have, default: None")
-	private int ACCU = Integer.MIN_VALUE;
+	public static  int ACCU = Integer.MIN_VALUE;
 	@Option(name = "-pierce", usage = "minimum pierce the combo must have, default: None")
-	private int PIERCE = Integer.MIN_VALUE;
+	public static  int PIERCE = Integer.MIN_VALUE;
 	@Option(name = "-ignore", aliases = { "-i" }, usage = "ignore sets that contain those words, use  commas to separate names eg \"raider, champion\", default: disabled")
-	private String ignore = "";
+	public static  String ignore = "";
+	@Option(name = "-nocsv", usage = "dont write .csv files (usefull for gui comparing with open consoles)")
+	public static  boolean CRITONLY = false;
+	
 	
 	// Output
 	@Option(name = "-results", aliases = { "-r" }, usage = "the number of results, default: 30")
-	private int RESULTS = 30;
+	public static  int RESULTS = 30;
 	@Option(name = "-force", aliases = { "-f", "-cpus" }, usage = "force number of cpus, default: Systems Maximum")
-	private int CPUS = Runtime.getRuntime().availableProcessors();
+	public static  int CPUS = Runtime.getRuntime().availableProcessors();
 	@Option(name = "-noinfo", aliases = { "-no" }, usage = "if set, disables writing of .txt info files, default: false")
-	private boolean NOINFO = false;
+	public static  boolean NOINFO = false;
 	@Option(name = "-nocsv", usage = "dont write .csv files (usefull for gui comparing with open consoles)")
-	private boolean nocsv = false;
+	public static  boolean NOCSV = false;
 
 	
 	public static void main(String[] args) throws Exception {
