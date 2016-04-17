@@ -35,6 +35,7 @@ import java.awt.FlowLayout;
 import java.awt.Component;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.JTextArea;
 
 public class GUI extends JFrame {
 
@@ -178,15 +179,14 @@ public class GUI extends JFrame {
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null, "Main", TitledBorder.LEADING,
-				TitledBorder.TOP, null, null));
+		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Sets", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.add(panel_1);
 
 		char_List = new JList();
 		panel_1.add(char_List);
 		char_List.setToolTipText("Sets");
 		char_List.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Sura", "Naksun", "Yeti", "Scorpio", "Naryu Labyrinth", "Bloodshade", "Endless Tower", "Mushin", "Moonwater", "Blackram"};
+			String[] values = new String[] {"Sura", "Naksun", "Yeti", "Scorpio", "Labyrinth", "Bloodshade", "Endless Tower", "Mushin", "Moonwater", "Blackram"};
 			public int getSize() {
 				return values.length;
 			}
@@ -195,21 +195,25 @@ public class GUI extends JFrame {
 			}
 		});
 		char_List.setSelectedIndex(0);
-
-		sort_List = new JList();
-		panel_1.add(sort_List);
-		sort_List.setToolTipText("Sort by");
-		sort_List.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		sort_List.setModel(new AbstractListModel() {
-			String[] values = new String[] {"crit", "hp", "def"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		sort_List.setSelectedIndex(0);
+		
+		JPanel panel_22 = new JPanel();
+		panel_22.setBorder(new TitledBorder(null, "Sort by", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.add(panel_22);
+		
+				sort_List = new JList();
+				panel_22.add(sort_List);
+				sort_List.setToolTipText("Sort by");
+				sort_List.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				sort_List.setModel(new AbstractListModel() {
+					String[] values = new String[] {"crit", "hp", "def"};
+					public int getSize() {
+						return values.length;
+					}
+					public Object getElementAt(int index) {
+						return values[index];
+					}
+				});
+				sort_List.setSelectedIndex(0);
 		
 		JPanel panel_15 = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel_15.getLayout();
@@ -224,14 +228,20 @@ public class GUI extends JFrame {
 		
 		JPanel panel_18 = new JPanel();
 		panel_19.add(panel_18);
+		panel_18.setLayout(new BoxLayout(panel_18, BoxLayout.Y_AXIS));
+		
+		JPanel panel_23 = new JPanel();
+		panel_18.add(panel_23);
 		
 		JComboBox buff1Box = new JComboBox();
-		buff1Box.setModel(new DefaultComboBoxModel(new String[] {"ALL", "Sura", "Naksun", "Yeti", "Scorpio", "Naryu Labyrinth", "Bloodshade", "Endless Tower", "Mushin", "Moonwater", "Blackram"}));
-		panel_18.add(buff1Box);
+		panel_23.add(buff1Box);
+		buff1Box.setModel(new DefaultComboBoxModel(new String[] {"ALL", "Sura", "Naksun", "Yeti", "Scorpio", "Labyrinth", "Bloodshade", "Endless Tower", "Mushin", "Moonwater", "Blackram"}));
 		
 		JComboBox buff1Combo = new JComboBox();
 		JComboBox buff2Box = new JComboBox();
 		JComboBox buff2Combo = new JComboBox();
+		
+		panel_23.add(buff1Combo);
 		buff1Combo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (buff1Combo.getSelectedIndex() == 1 || buff1Combo.getSelectedIndex() == 2){
@@ -247,20 +257,32 @@ public class GUI extends JFrame {
 		});
 		buff1Combo.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		buff1Combo.setModel(new DefaultComboBoxModel(new String[] {"ALL", "3", "5", "8"}));
-		panel_18.add(buff1Combo);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		panel_19.add(lblNewLabel_1);
+		JPanel panel_24 = new JPanel();
+		FlowLayout flowLayout_1 = (FlowLayout) panel_24.getLayout();
+		flowLayout_1.setAlignment(FlowLayout.LEFT);
+		flowLayout_1.setVgap(0);
+		flowLayout_1.setHgap(0);
+		panel_18.add(panel_24);
+		
+		JTextArea txtrTestTestTest = new JTextArea();
+		txtrTestTestTest.setWrapStyleWord(true);
+		txtrTestTestTest.setLineWrap(true);
+		txtrTestTestTest.setTabSize(10);
+		txtrTestTestTest.setEditable(false);
+		txtrTestTestTest.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		txtrTestTestTest.setText("xxx");
+		panel_24.add(txtrTestTestTest);
 		
 		JPanel panel_17 = new JPanel();
 		panel_19.add(panel_17);
+		panel_17.setLayout(new BoxLayout(panel_17, BoxLayout.Y_AXIS));
 		
 		JPanel panel_20 = new JPanel();
 		panel_17.add(panel_20);
 		
-
 		buff2Box.setEnabled(false);
-		buff2Box.setModel(new DefaultComboBoxModel(new String[] {"Sura", "Naksun", "Yeti", "Scorpio", "Naryu Labyrinth", "Bloodshade", "Endless Tower", "Mushin", "Moonwater", "Blackram"}));
+		buff2Box.setModel(new DefaultComboBoxModel(new String[] {"Sura", "Naksun", "Yeti", "Scorpio", "Labyrinth", "Bloodshade", "Endless Tower", "Mushin", "Moonwater", "Blackram"}));
 		buff2Box.setSelectedIndex(1);
 		panel_20.add(buff2Box);
 		
@@ -270,8 +292,21 @@ public class GUI extends JFrame {
 		buff2Combo.setModel(new DefaultComboBoxModel(new String[] {"3", "5"}));
 		panel_20.add(buff2Combo);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		panel_19.add(lblNewLabel);
+		JPanel panel_25 = new JPanel();
+		FlowLayout flowLayout_2 = (FlowLayout) panel_25.getLayout();
+		flowLayout_2.setAlignment(FlowLayout.LEFT);
+		flowLayout_2.setVgap(0);
+		flowLayout_2.setHgap(0);
+		panel_17.add(panel_25);
+		
+		JTextArea txtrYyy = new JTextArea();
+		txtrYyy.setWrapStyleWord(true);
+		txtrYyy.setText("yyy");
+		txtrYyy.setTabSize(10);
+		txtrYyy.setLineWrap(true);
+		txtrYyy.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		txtrYyy.setEditable(false);
+		panel_25.add(txtrYyy);
 		
 		JPanel panel_4 = new JPanel();
 		panel.add(panel_4);
@@ -350,6 +385,13 @@ public class GUI extends JFrame {
 		textField_1.setToolTipText("Minimum matk the sets must have");
 		textField_1.setColumns(5);
 		panel_8.add(textField_1);
+		
+		JPanel panel_21 = new JPanel();
+		panel_5.add(panel_21);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("crit only");
+		chckbxNewCheckBox.setToolTipText("Only use ss with crit");
+		panel_21.add(chckbxNewCheckBox);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new TitledBorder(null, "Other", TitledBorder.LEADING,

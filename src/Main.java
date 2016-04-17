@@ -9,7 +9,7 @@ import logic.ThreadStarter;
 import modell.*;
 
 public class Main {
-	public static final String VERSION = "0.4 - 17.04.16 - by Orikuro";
+	public static final String VERSION = "0.5 - 17.04.16 - by Orikuro";
 
 	private static enum Sort {
 		crit, hp, critdef
