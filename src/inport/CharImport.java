@@ -8,7 +8,10 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -69,14 +72,15 @@ public class CharImport {
 
 			String[] stats = x.split("stat-point");
 			String[] a = x.split("div class=\"name\"");
-			System.out.print(name + ";");
-			sb.append(name + ";");
+			System.out.print(toUTF8(name) + ";");
+			sb.append(toUTF8(name) + ";");
 			System.out.print(nam[1].substring(0, nam[1].indexOf(".")) + ";");
 			sb.append(nam[1].substring(0, nam[1].indexOf(".")) + ";");
 
-			System.out
-					.print(a[1].substring(3, a[1].indexOf("</")).replace("<span class=\"grade_5\">", "").trim() + ";");
-			sb.append(a[1].substring(3, a[1].indexOf("</")).replace("<span class=\"grade_5\">", "").trim() + ";");
+			String temp = a[1].substring(3, a[1].indexOf("</"));
+
+			System.out.print(filterGrade(temp));
+			sb.append(filterGrade(temp));
 			for (int i : werteIndizes) {
 				System.out.print(stats[i].substring(2, stats[i].indexOf("</")) + ";");
 				sb.append(stats[i].substring(2, stats[i].indexOf("</")) + ";");
@@ -84,10 +88,17 @@ public class CharImport {
 			// TODO: grade_4 filter
 			for (int i = 2; i < a.length; i++) {
 				if (i == 2 || i == 3 || i == 5 || i == 7 || i == 9) {
-					System.out.print(
-							a[i].substring(3, a[i].indexOf("</")).replace("<span class=\"grade_5\">", "").trim() + ";");
-					sb.append(
-							a[i].substring(3, a[i].indexOf("</")).replace("<span class=\"grade_5\">", "").trim() + ";");
+					temp = a[i].substring(3, a[i].indexOf("</"));
+					if (!temp.contains("class=\"empty\"")) {
+						System.out.print(filterGrade(temp));
+						sb.append(filterGrade(temp));
+					}
+					// System.out.print(
+					// a[i].substring(3, a[i].indexOf("</")).replace("<span
+					// class=\"grade_5\">", "").trim() + ";");
+					// sb.append(
+					// a[i].substring(3, a[i].indexOf("</")).replace("<span
+					// class=\"grade_5\">", "").trim() + ";");
 				}
 
 				if (i == 10) {
@@ -107,6 +118,29 @@ public class CharImport {
 			ergs.add(sb.toString());
 		}
 		writeResults(ergs);
+	}
+
+	private static String filterGrade(String in) {
+		in = in.replace("<span class=\"grade_1\">", "");
+		in = in.replace("<span class=\"grade_2\">", "");
+		in = in.replace("<span class=\"grade_3\">", "");
+		in = in.replace("<span class=\"grade_4\">", "");
+		in = in.replace("<span class=\"grade_5\">", "");
+
+		return in.trim() + ";";
+	}
+
+	private static String toUTF8(String name) {
+
+		String out = "";
+		try {
+			out = (URLDecoder.decode(name, "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return out;
 	}
 
 	private static void writeResults(List<String> liste) {
@@ -142,7 +176,7 @@ public class CharImport {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) {
-		System.out.println("Charimporter Beta 0.1  11.04.2016");
+		System.out.println("Charimporter Beta 0.2  17.04.2016");
 		if (args == null || args.length < 1) {
 			CHARS = readTxt("clan.txt");
 		} else {
