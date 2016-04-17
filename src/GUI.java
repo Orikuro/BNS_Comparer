@@ -32,6 +32,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ButtonGroup;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
+import java.awt.Component;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class GUI extends JFrame {
 
@@ -41,7 +44,6 @@ public class GUI extends JFrame {
 	private final int bitchcount = 3;
 
 	private JTextField minatk_Text;
-	private JTextField ignore_Text;
 	private JTextField result_Text;
 	private JTextField price_Text;
 	private JList char_List;
@@ -52,8 +54,6 @@ public class GUI extends JFrame {
 	private JTextField minmatk_Text;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -96,10 +96,6 @@ public class GUI extends JFrame {
 		if (minmatk_Text.getText().length() > 0) {
 			output += " -matk " + minmatk_Text.getText().trim();
 		}
-		if (ignore_Text.getText().length() > 0) {
-			output += " -i \"" + ignore_Text.getText().trim().replace(" ", "")
-					+ "\"";
-		}
 		if (price_Text.getText().length() > 0) {
 			output += " -price " + price_Text.getText().trim();
 		}
@@ -111,7 +107,7 @@ public class GUI extends JFrame {
 		String[] args = output.split(" ");
 
 		try {
-			String x = "cmd.exe /c start java -jar VindictusItemComparer.jar "
+			String x = "cmd.exe /c start java -jar BNS_Comparer.jar "
 					+ output;
 			if (System.getProperty("os.name").toLowerCase().contains("windows")) {
 				System.out.println(x);
@@ -139,9 +135,9 @@ public class GUI extends JFrame {
 	 */
 	public GUI() {
 
-		setTitle("VIC Starter GUI");
+		setTitle("BNS_Comparer GUI");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1280, 720);
+		setBounds(100, 100, 1280, 670);
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -190,13 +186,10 @@ public class GUI extends JFrame {
 		panel_1.add(char_List);
 		char_List.setToolTipText("Sets");
 		char_List.setModel(new AbstractListModel() {
-			String[] values = new String[] { "arisha", "evie", "fiona", "hurk",
-					"kai", "karok", "lann", "lynn", "vella" };
-
+			String[] values = new String[] {"Sura", "Naksun", "Yeti", "Scorpio", "Naryu Labyrinth", "Bloodshade", "Endless Tower", "Mushin", "Moonwater", "Blackram"};
 			public int getSize() {
 				return values.length;
 			}
-
 			public Object getElementAt(int index) {
 				return values[index];
 			}
@@ -217,11 +210,93 @@ public class GUI extends JFrame {
 			}
 		});
 		sort_List.setSelectedIndex(0);
+		
+		JPanel panel_15 = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel_15.getLayout();
+		flowLayout.setVgap(0);
+		flowLayout.setHgap(0);
+		panel_15.setBorder(new TitledBorder(null, "Buff", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.add(panel_15);
+		
+		JPanel panel_19 = new JPanel();
+		panel_15.add(panel_19);
+		panel_19.setLayout(new BoxLayout(panel_19, BoxLayout.Y_AXIS));
+		
+		JPanel panel_18 = new JPanel();
+		panel_19.add(panel_18);
+		
+		JComboBox buff1Box = new JComboBox();
+		buff1Box.setModel(new DefaultComboBoxModel(new String[] {"ALL", "Sura", "Naksun", "Yeti", "Scorpio", "Naryu Labyrinth", "Bloodshade", "Endless Tower", "Mushin", "Moonwater", "Blackram"}));
+		panel_18.add(buff1Box);
+		
+		JComboBox buff1Combo = new JComboBox();
+		JComboBox buff2Box = new JComboBox();
+		JComboBox buff2Combo = new JComboBox();
+		buff1Combo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (buff1Combo.getSelectedIndex() == 1 || buff1Combo.getSelectedIndex() == 2){
+					buff2Box.setEnabled(true);
+					buff2Combo.setEnabled(true);
+					
+				}
+				else{
+					buff2Box.setEnabled(false);
+					buff2Combo.setEnabled(false);
+				}
+			}
+		});
+		buff1Combo.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		buff1Combo.setModel(new DefaultComboBoxModel(new String[] {"ALL", "3", "5", "8"}));
+		panel_18.add(buff1Combo);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		panel_19.add(lblNewLabel_1);
+		
+		JPanel panel_17 = new JPanel();
+		panel_19.add(panel_17);
+		
+		JPanel panel_20 = new JPanel();
+		panel_17.add(panel_20);
+		
+
+		buff2Box.setEnabled(false);
+		buff2Box.setModel(new DefaultComboBoxModel(new String[] {"Sura", "Naksun", "Yeti", "Scorpio", "Naryu Labyrinth", "Bloodshade", "Endless Tower", "Mushin", "Moonwater", "Blackram"}));
+		buff2Box.setSelectedIndex(1);
+		panel_20.add(buff2Box);
+		
+
+		buff2Combo.setEnabled(false);
+		buff2Combo.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		buff2Combo.setModel(new DefaultComboBoxModel(new String[] {"3", "5"}));
+		panel_20.add(buff2Combo);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		panel_19.add(lblNewLabel);
+		
+		JPanel panel_4 = new JPanel();
+		panel.add(panel_4);
+		panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.Y_AXIS));
+		
+		JPanel panel_13 = new JPanel();
+		panel_13.setBorder(new TitledBorder(null, "Enchants", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_4.add(panel_13);
+		
+		JLabel lblCrit = new JLabel("Crit");
+		panel_13.add(lblCrit);
+		
+		JCheckBox chckbxMax = new JCheckBox("max");
+		chckbxMax.setSelected(true);
+		panel_13.add(chckbxMax);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setEnabled(false);
+		spinner.setModel(new SpinnerNumberModel(0, 0, 9999, 1));
+		panel_13.add(spinner);
 
 		JPanel panel_2 = new JPanel();
+		panel_4.add(panel_2);
 		panel_2.setBorder(new TitledBorder(null, "Restrictions",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.add(panel_2);
 
 		JPanel panel_12 = new JPanel();
 		panel_2.add(panel_12);
@@ -229,10 +304,7 @@ public class GUI extends JFrame {
 
 		JPanel panel_10 = new JPanel();
 		panel_12.add(panel_10);
-		panel_10.setBorder(new TitledBorder(UIManager
-				.getBorder("TitledBorder.border"), "Min atk",
-				TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0,
-						0, 0)));
+		panel_10.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min crit", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 
 		minatk_Text = new JTextField();
 		minatk_Text.setToolTipText("Minimum atk the sets must have");
@@ -240,10 +312,7 @@ public class GUI extends JFrame {
 		minatk_Text.setColumns(5);
 
 		JPanel panel_16 = new JPanel();
-		panel_16.setBorder(new TitledBorder(UIManager
-				.getBorder("TitledBorder.border"), "Min matk",
-				TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0,
-						0, 0)));
+		panel_16.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min accu", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 		panel_12.add(panel_16);
 
 		minmatk_Text = new JTextField();
@@ -253,37 +322,19 @@ public class GUI extends JFrame {
 
 		JPanel panel_11 = new JPanel();
 		panel_12.add(panel_11);
-		panel_11.setBorder(new TitledBorder(UIManager
-				.getBorder("TitledBorder.border"), "Price",
-				TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0,
-						0, 0)));
+		panel_11.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min pierce", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 
 		price_Text = new JTextField();
 		price_Text.setToolTipText("Maximum price (10 = 10million)");
 		price_Text.setColumns(5);
 		panel_11.add(price_Text);
-
-		JPanel panel_4 = new JPanel();
-		panel_12.add(panel_4);
-		panel_4.setBorder(new TitledBorder(UIManager
-				.getBorder("TitledBorder.border"), "Ignore",
-				TitledBorder.LEADING, TitledBorder.BOTTOM, null, Color.BLACK));
-
-		ignore_Text = new JTextField();
-		panel_4.add(ignore_Text);
-		ignore_Text
-				.setToolTipText("Sets containing those words will be ignored. Use comma for more words. E.g. arma,raider");
-		ignore_Text.setColumns(5);
 		
 		JPanel panel_5 = new JPanel();
 		panel_2.add(panel_5);
 		panel_5.setLayout(new BoxLayout(panel_5, BoxLayout.Y_AXIS));
 		
 		JPanel panel_7 = new JPanel();
-		panel_7.setBorder(new TitledBorder(UIManager
-						.getBorder("TitledBorder.border"), "Min atk",
-						TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0,
-								0, 0)));
+		panel_7.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min hp", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 		panel_5.add(panel_7);
 		
 		textField = new JTextField();
@@ -292,39 +343,13 @@ public class GUI extends JFrame {
 		panel_7.add(textField);
 		
 		JPanel panel_8 = new JPanel();
-		panel_8.setBorder(new TitledBorder(UIManager
-						.getBorder("TitledBorder.border"), "Min matk",
-						TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0,
-								0, 0)));
+		panel_8.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min def", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 		panel_5.add(panel_8);
 		
 		textField_1 = new JTextField();
 		textField_1.setToolTipText("Minimum matk the sets must have");
 		textField_1.setColumns(5);
 		panel_8.add(textField_1);
-		
-		JPanel panel_13 = new JPanel();
-		panel_13.setBorder(new TitledBorder(UIManager
-						.getBorder("TitledBorder.border"), "Price",
-						TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0,
-								0, 0)));
-		panel_5.add(panel_13);
-		
-		textField_2 = new JTextField();
-		textField_2.setToolTipText("Maximum price (10 = 10million)");
-		textField_2.setColumns(5);
-		panel_13.add(textField_2);
-		
-		JPanel panel_15 = new JPanel();
-		panel_15.setBorder(new TitledBorder(UIManager
-						.getBorder("TitledBorder.border"), "Ignore",
-						TitledBorder.LEADING, TitledBorder.BOTTOM, null, Color.BLACK));
-		panel_5.add(panel_15);
-		
-		textField_3 = new JTextField();
-		textField_3.setToolTipText("Sets containing those words will be ignored. Use comma for more words. E.g. arma,raider");
-		textField_3.setColumns(5);
-		panel_15.add(textField_3);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new TitledBorder(null, "Other", TitledBorder.LEADING,
