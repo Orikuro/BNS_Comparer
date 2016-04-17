@@ -188,8 +188,7 @@ public class GUI extends JFrame {
 
 		char_List = new JList();
 		panel_1.add(char_List);
-		char_List.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		char_List.setToolTipText("Character");
+		char_List.setToolTipText("Sets");
 		char_List.setModel(new AbstractListModel() {
 			String[] values = new String[] { "arisha", "evie", "fiona", "hurk",
 					"kai", "karok", "lann", "lynn", "vella" };
@@ -206,22 +205,18 @@ public class GUI extends JFrame {
 
 		sort_List = new JList();
 		panel_1.add(sort_List);
-		sort_List.setToolTipText("Sort");
+		sort_List.setToolTipText("Sort by");
 		sort_List.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		sort_List.setModel(new AbstractListModel() {
-			String[] values = new String[] { "atk", "matk", "def", "sta",
-					"staatk", "stamatk", "cheapdef", "cheapatk", "cheapmatk",
-					"cheapsta" };
-
+			String[] values = new String[] {"crit", "hp", "def"};
 			public int getSize() {
 				return values.length;
 			}
-
 			public Object getElementAt(int index) {
 				return values[index];
 			}
 		});
-		sort_List.setSelectedIndex(1);
+		sort_List.setSelectedIndex(0);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(null, "Restrictions",
