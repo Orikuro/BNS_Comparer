@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import comparators.Crit_SoulShield_Comparator;
+import comparators.CRIT_SoulShield_Comparator;
 
 public class SoulShields {
 	private List<SoulShield> S_1 = new ArrayList<>();

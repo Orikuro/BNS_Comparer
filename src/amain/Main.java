@@ -12,9 +12,9 @@ import modell.*;
 public class Main {
 	public static final String VERSION = "0.5 - 17.04.16 - by Orikuro";
 
-	public static Comparator<ComboSoul> COMPARATOR = new Crit_Combo_Comparator();
+	public static Comparator<ComboSoul> COMPARATOR = new CRIT_Combo_Comparator();
 
-	private static enum Sort {
+	public static enum Sort {
 		crit, hp, def
 	};
 
@@ -25,7 +25,22 @@ public class Main {
 	
 	// sort
 	@Option(name = "-sort", usage = "minimum crit the combo must have, default: None")
-	public static  int SORT = Integer.MIN_VALUE;
+	private void setComparator(Sort sort) {
+		switch (sort) {
+		case crit:
+			COMPARATOR = new CRIT_Combo_Comparator();
+			break;
+		case hp:
+			COMPARATOR = new HP_Combo_Comparator();
+			break;
+		case def:
+			COMPARATOR = new DEF_Combo_Comparator();
+			break;
+		default:
+			COMPARATOR = new CRIT_Combo_Comparator();
+			break;
+		}
+	}
 	
 	// Buffs
 	// TODO: buffs
@@ -96,7 +111,7 @@ public class Main {
 		shields.enchantAll(enchants);
 
 		// sortierung nach crit, critdef, hp
-		Comparator<? super SoulShield> comp = new Crit_SoulShield_Comparator();
+		Comparator<? super SoulShield> comp = new CRIT_SoulShield_Comparator();
 		shields.sort(comp);
 
 		// minimum stats

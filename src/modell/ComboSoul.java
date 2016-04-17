@@ -11,8 +11,9 @@ public class ComboSoul {
 	private SoulShield S_7;
 	private SoulShield S_8;
 
-	private int crit = 0;
-	
+	private int crit = 0;	
+	private int hp = 0;
+
 	private int def = 0;
 
 	public ComboSoul(SoulShield s_1, SoulShield s_2, SoulShield s_3, SoulShield s_4, SoulShield s_5, SoulShield s_6,
@@ -46,6 +47,10 @@ public class ComboSoul {
 	
 	public int getDef() {
 		return def;
+	}
+	
+	public int getHp() {
+		return hp;
 	}
 
 }
