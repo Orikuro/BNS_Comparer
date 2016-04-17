@@ -93,6 +93,10 @@ public class CharImport {
 						System.out.print(filterGrade(temp));
 						sb.append(filterGrade(temp));
 					}
+					else{
+						System.out.print(";");
+						sb.append(";");
+					}
 					// System.out.print(
 					// a[i].substring(3, a[i].indexOf("</")).replace("<span
 					// class=\"grade_5\">", "").trim() + ";");
