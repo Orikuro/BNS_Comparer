@@ -160,7 +160,7 @@ public class CSVImport {
 		System.out.println("7:\t"+s7);
 		System.out.println("8:\t"+s8);
 
-		double alles = s1*s2*s3*s4*s5*s6*s7*s8;
+		long alles = 1l*s1*s2*s3*s4*s5*s6*s7*s8;
 		System.out.println(alles+" max combos");
 		
 		return new SoulShields(S_1, S_2, S_3, S_4, S_5, S_6, S_7, S_8);

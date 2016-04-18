@@ -115,7 +115,7 @@ public class Main {
 		shields.sort(SOUL_COMPARATOR);	
 		
 		// enchant shields
-		String enchants = "200 crit";
+		String enchants = "900 crit";
 		shields.enchantAll(enchants);
 
 
