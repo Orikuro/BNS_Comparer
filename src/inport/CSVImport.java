@@ -67,15 +67,15 @@ public class CSVImport {
 				int combinations = new Integer(content[5].trim());
 				int substats = content.length - 6;
 
-				System.out.println(base + " " + combinations + " " + substats);
+			//	System.out.println(base + " " + combinations + " " + substats);
 				int[] s = new int[combinations];
 
 				generate(s, 0, 0, combinations, substats);
 
-				System.out.println(TEMP.size());
+			//	System.out.println(TEMP.size());
 
 				for (int j = 0; j < TEMP.size(); j += combinations) {
-					System.out.print(TEMP.get(j) + "  ");
+					//System.out.print(TEMP.get(j) + "  ");
 					SoulShield combinedSS = new SoulShield(base);
 
 					int temp = j;
@@ -139,7 +139,7 @@ public class CSVImport {
 		for (SoulShield x : shields) {
 			System.out.println(x);
 		}
-		System.out.println(shields.size());
+		System.out.println(shields.size()+" shields");
 		generateLists(shields);
 
 		int s1 = S_1.size();
@@ -151,17 +151,17 @@ public class CSVImport {
 		int s7 = S_7.size();
 		int s8 = S_8.size();
 
-		System.out.println(s1);
-		System.out.println(s2);
-		System.out.println(s3);
-		System.out.println(s4);
-		System.out.println(s5);
-		System.out.println(s6);
-		System.out.println(s7);
-		System.out.println(s8);
+		System.out.println("1:\t"+s1);
+		System.out.println("2:\t"+s2);
+		System.out.println("3:\t"+s3);
+		System.out.println("4:\t"+s4);
+		System.out.println("5:\t"+s5);
+		System.out.println("6:\t"+s6);
+		System.out.println("7:\t"+s7);
+		System.out.println("8:\t"+s8);
 
 		double alles = s1*s2*s3*s4*s5*s6*s7*s8;
-		System.out.println(alles);
+		System.out.println(alles+" max combos");
 		
 		return new SoulShields(S_1, S_2, S_3, S_4, S_5, S_6, S_7, S_8);
 	}
