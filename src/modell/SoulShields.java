@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import comparators.CRIT_SoulShield_Comparator;
-
 public class SoulShields {
 	private List<SoulShield> S_1 = new ArrayList<>();
 	private List<SoulShield> S_2 = new ArrayList<>();
@@ -161,5 +159,87 @@ public class SoulShields {
 		for (SoulShield s : S_8) {
 			s.addLimited(enchants);
 		}
+	}
+
+	public void filterName(String sETS) {
+		String setname;
+		int count = 0;
+		List<SoulShield> S1 = new ArrayList<>();
+		List<SoulShield> S2 = new ArrayList<>();
+		List<SoulShield> S3 = new ArrayList<>();
+		List<SoulShield> S4 = new ArrayList<>();
+		List<SoulShield> S5 = new ArrayList<>();
+		List<SoulShield> S6 = new ArrayList<>();
+		List<SoulShield> S7 = new ArrayList<>();
+		List<SoulShield> S8 = new ArrayList<>();
+
+		for (SoulShield s : S_1) {
+			setname = s.getSet().getName();
+			if (!sETS.contains(setname)) {
+				S1.add(s);
+				count++;
+			}
+		}
+		for (SoulShield s : S_2) {
+			setname = s.getSet().getName();
+			if (!sETS.contains(setname)) {
+				S2.add(s);
+				count++;
+			}
+		}
+		for (SoulShield s : S_3) {
+			setname = s.getSet().getName();
+			if (!sETS.contains(setname)) {
+				S3.add(s);
+				count++;
+			}
+		}
+		for (SoulShield s : S_4) {
+			setname = s.getSet().getName();
+			if (!sETS.contains(setname)) {
+				S4.add(s);
+				count++;
+			}
+		}
+		for (SoulShield s : S_5) {
+			setname = s.getSet().getName();
+			if (!sETS.contains(setname)) {
+				S5.add(s);
+				count++;
+			}
+		}
+		for (SoulShield s : S_6) {
+			setname = s.getSet().getName();
+			if (!sETS.contains(setname)) {
+				S6.add(s);
+				count++;
+			}
+		}
+		for (SoulShield s : S_7) {
+			setname = s.getSet().getName();
+			if (!sETS.contains(setname)) {
+				S7.add(s);
+				count++;
+			}
+		}
+		for (SoulShield s : S_8) {
+			setname = s.getSet().getName();
+			if (!sETS.contains(setname)) {
+				S8.add(s);
+				count++;
+			}
+		}
+		
+		S_1.removeAll(S1);
+		S_2.removeAll(S2);
+		S_3.removeAll(S3);
+		S_4.removeAll(S4);
+		S_5.removeAll(S5);
+		S_6.removeAll(S6);
+		S_7.removeAll(S7);
+		S_8.removeAll(S8);
+		
+		System.out.println(count + " Sets removed due to filter (" + sETS + ")");
+
 	}
 }

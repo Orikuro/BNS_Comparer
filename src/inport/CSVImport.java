@@ -16,11 +16,8 @@ public class CSVImport {
 
 	private static void showCombination(int[] s) {
 		for (int i = 0; i < s.length; i++) {
-			// System.out.print(s[i] + " ");
 			TEMP.add(s[i]);
 		}
-		// System.out.println();
-
 	}
 
 	private static void generate(int[] s, int position, int nextInt, int k, int N) {
@@ -62,9 +59,6 @@ public class CSVImport {
 			if (input.get(i).length() > 9) {
 				String csvline = input.get(i);
 				String[] content = csvline.split(";");
-				for (String x : content) {
-					// System.out.println(x);
-				}
 
 				SoulShield base = new SoulShield(content[0], content[1], content[2]);
 				base.add(content[3]);
@@ -86,17 +80,12 @@ public class CSVImport {
 
 					int temp = j;
 					for (int k = 0; k < combinations; k++) {
-						System.out.print(content[6 + TEMP.get(temp)] + "  ");
 						combinedSS.add(content[6 + TEMP.get(temp)]);
 						temp++;
 					}
 					shields.add(combinedSS);
-					System.out.println("++");
 				}
-
-				System.out.println("--");
 				TEMP.clear();
-
 			}
 		}
 

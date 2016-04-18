@@ -13,14 +13,15 @@ import modell.*;
 public class Main {
 	public static final String VERSION = "0.5 - 17.04.16 - by Orikuro";
 
-	public static Comparator<ComboSoul> COMPARATOR = new CRIT_Combo_Comparator();
-
+	public static Comparator<ComboSoul> COMBO_COMPARATOR = new CRIT_Combo_Comparator();
+	public static Comparator<SoulShield> SOUL_COMPARATOR = new CRIT_SoulShield_Comparator();
+	
 	public static enum Sort {
 		crit, hp, def
 	};
 
 	// Main-Infos
-	@Option(name = "-sets", required = true, usage = "sets to use use , for more than one. eg. \"Blackram, Mushin\"")
+	@Option(name = "-sets", required = true, usage = "sets to use, use ; for more than one. eg. \"Blackram; Mushin\"")
 	public static String SETS = "";
 
 	// sort
@@ -28,16 +29,19 @@ public class Main {
 	private void setComparator(Sort sort) {
 		switch (sort) {
 		case crit:
-			COMPARATOR = new CRIT_Combo_Comparator();
+			COMBO_COMPARATOR = new CRIT_Combo_Comparator();
+			
 			break;
 		case hp:
-			COMPARATOR = new HP_Combo_Comparator();
+			COMBO_COMPARATOR = new HP_Combo_Comparator();
+			
 			break;
 		case def:
-			COMPARATOR = new DEF_Combo_Comparator();
+			COMBO_COMPARATOR = new DEF_Combo_Comparator();
+			
 			break;
 		default:
-			COMPARATOR = new CRIT_Combo_Comparator();
+			COMBO_COMPARATOR = new CRIT_Combo_Comparator();
 			break;
 		}
 	}
@@ -101,16 +105,20 @@ public class Main {
 			return;
 		}
 
-		// Import Shields
+		// Import Shields + Sets
 		SoulShields shields = CSVImport.importSoulShields();
 
+		// Filter by Set-Names
+		shields.filterName(SETS);
+		
+		// pre-sort ss by crit, def, hp
+		shields.sort(SOUL_COMPARATOR);	
+		
 		// enchant shields
 		String enchants = "200 crit";
 		shields.enchantAll(enchants);
 
-		// sortierung nach crit, critdef, hp
-		Comparator<? super SoulShield> comp = new CRIT_SoulShield_Comparator();
-		shields.sort(comp);
+
 
 		// minimum stats
 		new ThreadStarter(args, shields);

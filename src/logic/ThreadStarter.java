@@ -51,12 +51,12 @@ public class ThreadStarter {
 			for (Future<List<ComboSoul>> res : f_ComboSouls) {
 				combs.addAll(res.get());
 				if (combs.size() > results * 2) {
-					Collections.sort(combs, Main.COMPARATOR);
+					Collections.sort(combs, Main.COMBO_COMPARATOR);
 					combs = new ArrayList<>(combs.subList(0, results));
 				}
 			}
 
-			Collections.sort(combs, Main.COMPARATOR);
+			Collections.sort(combs, Main.COMBO_COMPARATOR);
 
 			if (results > total) {
 				results = (int) total;

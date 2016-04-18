@@ -46,7 +46,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 	@Override
 	public List<ComboSoul> call() throws Exception {
 
-		String compname = Main.COMPARATOR.getClass().getSimpleName();
+		String compname = Main.COMBO_COMPARATOR.getClass().getSimpleName();
 
 		switch (compname) {
 		case "Crit_Combo_Comparator":
@@ -97,7 +97,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 											System.out.print(".");
 										}
 										if (combos.size() > thresh) {
-											Collections.sort(combos, Main.COMPARATOR);
+											Collections.sort(combos, Main.COMBO_COMPARATOR);
 											combos = new ArrayList<ComboSoul>(combos.subList(0, results));
 											synchronized (this) {
 												min = combos.get(results - 1).getCrit();
@@ -152,7 +152,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 											System.out.print(".");
 										}
 										if (combos.size() > thresh) {
-											Collections.sort(combos, Main.COMPARATOR);
+											Collections.sort(combos, Main.COMBO_COMPARATOR);
 											combos = new ArrayList<ComboSoul>(combos.subList(0, results));
 											synchronized (this) {
 												min = combos.get(results - 1).getDef();
