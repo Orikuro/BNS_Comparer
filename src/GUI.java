@@ -194,6 +194,7 @@ public class GUI extends JFrame {
 		char_List.setSelectedIndex(0);
 		
 		JPanel panel_22 = new JPanel();
+		panel_22.setAlignmentX(0.0f);
 		panel_22.setBorder(new TitledBorder(null, "Sort by", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.add(panel_22);
 		
@@ -325,81 +326,85 @@ public class GUI extends JFrame {
 		spinner.setModel(new SpinnerNumberModel(0, 0, 9999, 1));
 		panel_13.add(spinner);
 
-		JPanel panel_2 = new JPanel();
-		panel_4.add(panel_2);
-		panel_2.setBorder(new TitledBorder(null, "Restrictions",
-				TitledBorder.LEADING, TitledBorder.TOP, null, null));
-
-		JPanel panel_12 = new JPanel();
-		panel_2.add(panel_12);
-		panel_12.setLayout(new BoxLayout(panel_12, BoxLayout.Y_AXIS));
-
-		JPanel panel_10 = new JPanel();
-		panel_12.add(panel_10);
-		panel_10.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min crit", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
-
-		minatk_Text = new JTextField();
-		minatk_Text.setToolTipText("Minimum atk the sets must have");
-		panel_10.add(minatk_Text);
-		minatk_Text.setColumns(5);
-
-		JPanel panel_16 = new JPanel();
-		panel_16.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min accu", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
-		panel_12.add(panel_16);
-
-		minmatk_Text = new JTextField();
-		minmatk_Text.setToolTipText("Minimum matk the sets must have");
-		minmatk_Text.setColumns(5);
-		panel_16.add(minmatk_Text);
-
-		JPanel panel_11 = new JPanel();
-		panel_12.add(panel_11);
-		panel_11.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min pierce", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
-
-		price_Text = new JTextField();
-		price_Text.setToolTipText("Maximum price (10 = 10million)");
-		price_Text.setColumns(5);
-		panel_11.add(price_Text);
-		
-		JPanel panel_5 = new JPanel();
-		panel_2.add(panel_5);
-		panel_5.setLayout(new BoxLayout(panel_5, BoxLayout.Y_AXIS));
-		
-		JPanel panel_7 = new JPanel();
-		panel_7.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min hp", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
-		panel_5.add(panel_7);
-		
-		textField = new JTextField();
-		textField.setToolTipText("Minimum atk the sets must have");
-		textField.setColumns(5);
-		panel_7.add(textField);
-		
-		JPanel panel_8 = new JPanel();
-		panel_8.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min def", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
-		panel_5.add(panel_8);
-		
-		textField_1 = new JTextField();
-		textField_1.setToolTipText("Minimum matk the sets must have");
-		textField_1.setColumns(5);
-		panel_8.add(textField_1);
-		
-		JPanel panel_21 = new JPanel();
-		panel_5.add(panel_21);
-		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("crit only");
-		chckbxNewCheckBox.setToolTipText("Only use ss with crit");
-		panel_21.add(chckbxNewCheckBox);
-
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new TitledBorder(null, "Other", TitledBorder.LEADING,
 				TitledBorder.TOP, null, null));
 		panel.add(panel_3);
+		panel_3.setLayout(new BoxLayout(panel_3, BoxLayout.Y_AXIS));
+		
+				JPanel panel_2 = new JPanel();
+				panel_3.add(panel_2);
+				panel_2.setBorder(new TitledBorder(null, "Restrictions",
+						TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				
+						JPanel panel_12 = new JPanel();
+						panel_2.add(panel_12);
+						panel_12.setLayout(new BoxLayout(panel_12, BoxLayout.Y_AXIS));
+						
+								JPanel panel_10 = new JPanel();
+								panel_12.add(panel_10);
+								panel_10.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min crit", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+								
+										minatk_Text = new JTextField();
+										minatk_Text.setToolTipText("Minimum atk the sets must have");
+										panel_10.add(minatk_Text);
+										minatk_Text.setColumns(5);
+										
+												JPanel panel_16 = new JPanel();
+												panel_16.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min accu", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+												panel_12.add(panel_16);
+												
+														minmatk_Text = new JTextField();
+														minmatk_Text.setToolTipText("Minimum matk the sets must have");
+														minmatk_Text.setColumns(5);
+														panel_16.add(minmatk_Text);
+														
+																JPanel panel_11 = new JPanel();
+																panel_12.add(panel_11);
+																panel_11.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min pierce", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+																
+																		price_Text = new JTextField();
+																		price_Text.setToolTipText("Maximum price (10 = 10million)");
+																		price_Text.setColumns(5);
+																		panel_11.add(price_Text);
+																		
+																		JPanel panel_5 = new JPanel();
+																		panel_2.add(panel_5);
+																		panel_5.setLayout(new BoxLayout(panel_5, BoxLayout.Y_AXIS));
+																		
+																		JPanel panel_7 = new JPanel();
+																		panel_7.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min hp", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+																		panel_5.add(panel_7);
+																		
+																		textField = new JTextField();
+																		textField.setToolTipText("Minimum atk the sets must have");
+																		textField.setColumns(5);
+																		panel_7.add(textField);
+																		
+																		JPanel panel_8 = new JPanel();
+																		panel_8.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min def", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+																		panel_5.add(panel_8);
+																		
+																		textField_1 = new JTextField();
+																		textField_1.setToolTipText("Minimum matk the sets must have");
+																		textField_1.setColumns(5);
+																		panel_8.add(textField_1);
+																		
+																		JPanel panel_21 = new JPanel();
+																		panel_5.add(panel_21);
+																		
+																		JCheckBox chckbxNewCheckBox = new JCheckBox("crit only");
+																		chckbxNewCheckBox.setToolTipText("Only use ss with crit");
+																		panel_21.add(chckbxNewCheckBox);
+		
+		JPanel panel_26 = new JPanel();
+		panel_3.add(panel_26);
 
 		JPanel panel_6 = new JPanel();
+		panel_26.add(panel_6);
 		panel_6.setBorder(new TitledBorder(UIManager
 				.getBorder("TitledBorder.border"), "CPU", TitledBorder.LEADING,
 				TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
-		panel_3.add(panel_6);
 
 		cpu_List = new JList();
 		panel_6.add(cpu_List);
@@ -419,7 +424,7 @@ public class GUI extends JFrame {
 		cpu_List.setSelectedIndex(0);
 
 		JPanel panel_14 = new JPanel();
-		panel_3.add(panel_14);
+		panel_26.add(panel_14);
 		panel_14.setLayout(new BoxLayout(panel_14, BoxLayout.Y_AXIS));
 
 		JPanel panel_9 = new JPanel();
