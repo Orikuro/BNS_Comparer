@@ -126,7 +126,7 @@ public class Main {
 
 		// new ThreadStarter(args, CPUS, results, price, ATK, MATK, COMBOSORT,
 		// items, NOINFO, nocsv);
-
+		System.console().readLine();
 	}
 
 }

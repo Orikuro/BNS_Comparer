@@ -101,7 +101,6 @@ public class CSVImport {
 			if (input.get(i).length() > 3) {
 				String csvline = input.get(i);
 				String[] content = csvline.split(";");
-				System.out.println(content.length);
 
 				switch (content.length) {
 				case 4:

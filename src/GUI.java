@@ -78,12 +78,20 @@ public class GUI extends JFrame {
 		String output ="";
 		String cpu = "";
 		String pre = "";
-		String suf = "";
+		String suf = " -sort crit";
 
+		String sets = " -sets \"";
+		
+		for (Object s : char_List.getSelectedValues()){
+			sets+=((SoulSet)s)+" ";
+		}
+		sets = sets.trim();
+		sets+="\"";
+		
 		if (cpu_List.getSelectedIndex() > 0) {
 			cpu = " -f " + cpu_List.getSelectedValue();
 		}
-		output += pre + suf + cpu;
+		output += sets+pre + suf + cpu;
 
 		if (noinfo_Check.isSelected()) {
 			output += " -noinfo";
@@ -227,12 +235,11 @@ public class GUI extends JFrame {
 		JPanel panel_23 = new JPanel();
 		panel_18.add(panel_23);
 		
-		JComboBox buff1Box = new JComboBox();
+		JComboBox buff1Box = new JComboBox(SoulSet.getSetsWithAll());
 		panel_23.add(buff1Box);
-		buff1Box.setModel(new DefaultComboBoxModel(new String[] {"ALL", "Sura", "Naksun", "Yeti", "Scorpio", "Labyrinth", "Bloodshade", "Endless Tower", "Mushin", "Moonwater", "Blackram"}));
-		
+
 		JComboBox buff1Combo = new JComboBox();
-		JComboBox buff2Box = new JComboBox();
+		JComboBox buff2Box = new JComboBox(SoulSet.getSetsWithoutFirst());
 		JComboBox buff2Combo = new JComboBox();
 		
 		panel_23.add(buff1Combo);
@@ -276,8 +283,7 @@ public class GUI extends JFrame {
 		panel_17.add(panel_20);
 		
 		buff2Box.setEnabled(false);
-		buff2Box.setModel(new DefaultComboBoxModel(new String[] {"Sura", "Naksun", "Yeti", "Scorpio", "Labyrinth", "Bloodshade", "Endless Tower", "Mushin", "Moonwater", "Blackram"}));
-		buff2Box.setSelectedIndex(1);
+		buff2Box.setSelectedIndex(0);
 		panel_20.add(buff2Box);
 		
 
