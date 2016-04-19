@@ -108,9 +108,6 @@ public class Main {
 		// Import Shields + Sets
 		SoulShields shields = CSVImport.importSoulShields();
 		CSVImport.importSoulSets();
-		for (SoulSet s : SoulSet.getAllSets()){
-			System.out.println(s);
-		}
 
 		// Filter by Set-Names
 		shields.filterName(SETS);

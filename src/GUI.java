@@ -33,6 +33,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import amain.Main;
+import inport.CSVImport;
+import modell.SoulSet;
 
 public class GUI extends JFrame {
 
@@ -57,6 +59,8 @@ public class GUI extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		CSVImport.importSoulSets();
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -179,18 +183,10 @@ public class GUI extends JFrame {
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Sets", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.add(panel_1);
 
-		char_List = new JList();
+		char_List = new JList(SoulSet.getAllSets());
 		panel_1.add(char_List);
 		char_List.setToolTipText("Sets");
-		char_List.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Sura", "Naksun", "Yeti", "Scorpio", "Labyrinth", "Bloodshade", "Endless Tower", "Mushin", "Moonwater", "Blackram"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
+
 		char_List.setSelectedIndex(0);
 		
 		JPanel panel_22 = new JPanel();
@@ -217,7 +213,7 @@ public class GUI extends JFrame {
 		FlowLayout flowLayout = (FlowLayout) panel_15.getLayout();
 		flowLayout.setVgap(0);
 		flowLayout.setHgap(0);
-		panel_15.setBorder(new TitledBorder(null, "Buff", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_15.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Buffs", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.add(panel_15);
 		
 		JPanel panel_19 = new JPanel();
@@ -331,6 +327,59 @@ public class GUI extends JFrame {
 				TitledBorder.TOP, null, null));
 		panel.add(panel_3);
 		panel_3.setLayout(new BoxLayout(panel_3, BoxLayout.Y_AXIS));
+				
+				JPanel panel_26 = new JPanel();
+				panel_3.add(panel_26);
+				
+						JPanel panel_6 = new JPanel();
+						panel_26.add(panel_6);
+						panel_6.setBorder(new TitledBorder(UIManager
+								.getBorder("TitledBorder.border"), "CPU", TitledBorder.LEADING,
+								TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+						
+								cpu_List = new JList();
+								panel_6.add(cpu_List);
+								cpu_List.setToolTipText("CPUs to use");
+								cpu_List.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+								cpu_List.setModel(new AbstractListModel() {
+									String[] values = new String[] { "ALL ", "1", "2", "3", "4" };
+
+									public int getSize() {
+										return values.length;
+									}
+
+									public Object getElementAt(int index) {
+										return values[index];
+									}
+								});
+								cpu_List.setSelectedIndex(0);
+								
+										JPanel panel_14 = new JPanel();
+										panel_26.add(panel_14);
+										panel_14.setLayout(new BoxLayout(panel_14, BoxLayout.Y_AXIS));
+										
+												JPanel panel_9 = new JPanel();
+												panel_14.add(panel_9);
+												panel_9.setBorder(new TitledBorder(UIManager
+														.getBorder("TitledBorder.border"), "Results",
+														TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0,
+																0, 0)));
+												
+														result_Text = new JTextField();
+														result_Text.setText("30");
+														panel_9.add(result_Text);
+														result_Text.setToolTipText("Amound of results. (Default = 30)");
+														result_Text.setColumns(5);
+														
+																noinfo_Check = new JCheckBox("noinfo");
+																panel_14.add(noinfo_Check);
+																noinfo_Check.setToolTipText("Dont write extra info");
+																noinfo_Check.setSelected(true);
+																
+																		nocsv_Check = new JCheckBox("nocsv");
+																		nocsv_Check.setToolTipText("Dont write extra info");
+																		nocsv_Check.setSelected(true);
+																		panel_14.add(nocsv_Check);
 		
 				JPanel panel_2 = new JPanel();
 				panel_3.add(panel_2);
@@ -396,59 +445,6 @@ public class GUI extends JFrame {
 																		JCheckBox chckbxNewCheckBox = new JCheckBox("crit only");
 																		chckbxNewCheckBox.setToolTipText("Only use ss with crit");
 																		panel_21.add(chckbxNewCheckBox);
-		
-		JPanel panel_26 = new JPanel();
-		panel_3.add(panel_26);
-
-		JPanel panel_6 = new JPanel();
-		panel_26.add(panel_6);
-		panel_6.setBorder(new TitledBorder(UIManager
-				.getBorder("TitledBorder.border"), "CPU", TitledBorder.LEADING,
-				TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
-
-		cpu_List = new JList();
-		panel_6.add(cpu_List);
-		cpu_List.setToolTipText("CPUs to use");
-		cpu_List.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		cpu_List.setModel(new AbstractListModel() {
-			String[] values = new String[] { "ALL ", "1", "2", "3", "4" };
-
-			public int getSize() {
-				return values.length;
-			}
-
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		cpu_List.setSelectedIndex(0);
-
-		JPanel panel_14 = new JPanel();
-		panel_26.add(panel_14);
-		panel_14.setLayout(new BoxLayout(panel_14, BoxLayout.Y_AXIS));
-
-		JPanel panel_9 = new JPanel();
-		panel_14.add(panel_9);
-		panel_9.setBorder(new TitledBorder(UIManager
-				.getBorder("TitledBorder.border"), "Results",
-				TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0,
-						0, 0)));
-
-		result_Text = new JTextField();
-		result_Text.setText("30");
-		panel_9.add(result_Text);
-		result_Text.setToolTipText("Amound of results. (Default = 30)");
-		result_Text.setColumns(5);
-
-		noinfo_Check = new JCheckBox("noinfo");
-		panel_14.add(noinfo_Check);
-		noinfo_Check.setToolTipText("Dont write extra info");
-		noinfo_Check.setSelected(true);
-
-		nocsv_Check = new JCheckBox("nocsv");
-		nocsv_Check.setToolTipText("Dont write extra info");
-		nocsv_Check.setSelected(true);
-		panel_14.add(nocsv_Check);
 
 		JLabel lblPic = new JLabel("");
 		lblPic.setHorizontalAlignment(SwingConstants.CENTER);
