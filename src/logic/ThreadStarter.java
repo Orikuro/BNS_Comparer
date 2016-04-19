@@ -30,7 +30,7 @@ public class ThreadStarter {
 				* shields.getS_4().size() * shields.getS_5().size() * shields.getS_6().size() * shields.getS_7().size()
 				* shields.getS_8().size();
 		
-		System.out.println(total + " Combinations");
+		System.out.println(df.format(total) + " Combinations");
 
 		long start = System.currentTimeMillis();
 		try {

@@ -26,6 +26,21 @@ public class SoulSet {
 		SETS.add(this);
 	}
 
+	public SoulSet(String name, String string2, String string3) {
+		super();
+		this.name = name;
+		buff_3 = string2;
+		buff_5 = string3;
+		SETS.add(this);
+	}
+	
+	public SoulSet(String name, String content) {
+		super();
+		this.name = name;
+		buff_3 = content;
+		SETS.add(this);
+	}
+	
 	public SoulSet(String name) {
 		super();
 		this.name = name;

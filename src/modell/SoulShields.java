@@ -239,7 +239,7 @@ public class SoulShields {
 		S_7.removeAll(S7);
 		S_8.removeAll(S8);
 		
-		System.out.println(count + " Sets removed due to filter (" + sETS + ")");
+		System.out.println(count + " Soulshields removed due to filter (" + sETS + ")");
 
 	}
 }
