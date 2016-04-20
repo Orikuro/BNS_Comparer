@@ -68,60 +68,70 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 
 		int i = 0;
 		int total, t1, t2, t3, t4, t5, t6, t7, t8;
-
+		int setcount = 0;
+		
 		for (SoulShield s1 : S_1) {
-			int first = 0;
+			int a = 0;
 			t1 = s1.getCrit();
 			if (s1.getSet().equals(Main.FIRST_SET)) {
-				first++;
+				a++;
 			}
 			for (SoulShield s2 : S_2) {
+				int b =0;
 				t2 = s2.getCrit();
 				if (s2.getSet().equals(Main.FIRST_SET)) {
-					first++;
+					b++;
 				}
 				for (SoulShield s3 : S_3) {
+					int cc=0;
 					t3 = s3.getCrit();
 					if (s3.getSet().equals(Main.FIRST_SET)) {
-						first++;
+						cc++;
 					}
 
 					for (SoulShield s4 : S_4) {
+						int d=0;
 						t4 = s4.getCrit();
 						if (s4.getSet().equals(Main.FIRST_SET)) {
-							first++;
+							d++;
 						}
 
 						for (SoulShield s5 : S_5) {
+							int e=0;
 							t5 = s5.getCrit();
 							if (s5.getSet().equals(Main.FIRST_SET)) {
-								first++;
+								e++;
 							}
 
 							for (SoulShield s6 : S_6) {
+								int f=0;
 								t6 = s6.getCrit();
 								if (s6.getSet().equals(Main.FIRST_SET)) {
-									first++;
+									f++;
 								}
 
 								for (SoulShield s7 : S_7) {
+									int g = 0;
 									t7 = s7.getCrit();
 									if (s7.getSet().equals(Main.FIRST_SET)) {
-										first++;
+										g++;
 									}
 
 									for (SoulShield s8 : S_8) {
+										int h = 0;
 										t8 = s8.getCrit();
 										if (s8.getSet().equals(Main.FIRST_SET)) {
-											first++;
+											h++;
 										}
 
+										setcount = a+b+cc+d+e+f+g+h;
 										total = t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8;
 
-										if ((first == 8) && total >= min) {
+										if ((setcount == Main.FIRST_COUNT) && total >= min) {
 											ComboSoul c = new ComboSoul(s1, s2, s3, s4, s5, s6, s7, s8);
 											combos.add(c);
-									//		System.out.println(first + " " + second);
+											// System.out.println(first + " " +
+											// second);
 											System.out.println(
 													s1.getSet().id + " " + s2.getSet().id + " " + s3.getSet().id);
 										}
