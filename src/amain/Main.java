@@ -125,7 +125,7 @@ public class Main {
 			return;
 		}
 
-		System.out.println(FIRST_SET);
+		System.out.println(FIRST_SET.id);
 		// Filter by Set-Names
 		shields.filterName(SETS);
 

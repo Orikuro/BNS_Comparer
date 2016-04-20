@@ -5,7 +5,7 @@ import java.util.Vector;
 public class SoulSet {
 
 	private static Vector<SoulSet> SETS = new Vector<>();
-	private int id;
+	public int id;
 	private static int COUNTER = 0;
 
 	@Override
@@ -46,7 +46,7 @@ public class SoulSet {
 		id = COUNTER++;
 	}
 	
-	public SoulSet(String name) {
+	private SoulSet(String name) {
 		super();
 		this.name = name;
 	}
