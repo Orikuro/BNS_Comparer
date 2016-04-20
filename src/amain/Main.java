@@ -15,10 +15,10 @@ public class Main {
 
 	public static Comparator<ComboSoul> COMBO_COMPARATOR = new CRIT_Combo_Comparator();
 	public static Comparator<SoulShield> SOUL_COMPARATOR = new CRIT_SoulShield_Comparator();
-	
+
 	public static SoulSet FIRST_SET;
 	public static SoulSet SECOND_SET;
-	
+
 	public static enum Sort {
 		crit, hp, def
 	};
@@ -33,15 +33,15 @@ public class Main {
 		switch (sort) {
 		case crit:
 			COMBO_COMPARATOR = new CRIT_Combo_Comparator();
-			
+
 			break;
 		case hp:
 			COMBO_COMPARATOR = new HP_Combo_Comparator();
-			
+
 			break;
 		case def:
 			COMBO_COMPARATOR = new DEF_Combo_Comparator();
-			
+
 			break;
 		default:
 			COMBO_COMPARATOR = new CRIT_Combo_Comparator();
@@ -51,13 +51,15 @@ public class Main {
 
 	// Buffs
 	@Option(name = "-acount", usage = "minimum crit the combo must have, default: None")
-	public int FIRST_COUNT = Integer.MAX_VALUE;
+	public static int FIRST_COUNT = Integer.MAX_VALUE;
 	@Option(name = "-bcount", usage = "minimum crit the combo must have, default: None")
-	public int SECOND_COUNT = Integer.MAX_VALUE;
+	public static int SECOND_COUNT = Integer.MAX_VALUE;
+
 	@Option(name = "-aset", usage = "minimum crit the combo must have, default: None")
 	private void setFirstBuff(String set) {
 		FIRST_SET = SoulSet.getSetByName(set.trim());
 	}
+
 	@Option(name = "-bset", usage = "minimum crit the combo must have, default: None")
 	private void setSecondBuff(String set) {
 		SECOND_SET = SoulSet.getSetByName(set.trim());
@@ -103,6 +105,10 @@ public class Main {
 	}
 
 	private void startMain(String[] args) throws Exception {
+		// Import Shields + Sets
+		CSVImport.importSoulSets();
+		SoulShields shields = CSVImport.importSoulShields();
+
 		CmdLineParser cmdLineParser = new CmdLineParser(this);
 
 		cmdLineParser.setUsageWidth(120);
@@ -119,22 +125,16 @@ public class Main {
 			return;
 		}
 
-		// Import Shields + Sets
-		CSVImport.importSoulSets();
-		SoulShields shields = CSVImport.importSoulShields();
-		
-
+		System.out.println(FIRST_SET);
 		// Filter by Set-Names
 		shields.filterName(SETS);
-		
+
 		// pre-sort ss by crit, def, hp
-		shields.sort(SOUL_COMPARATOR);	
-		
+		shields.sort(SOUL_COMPARATOR);
+
 		// enchant shields
 		String enchants = "900 crit";
 		shields.enchantAll(enchants);
-
-
 
 		// minimum stats
 		new ThreadStarter(args, shields);

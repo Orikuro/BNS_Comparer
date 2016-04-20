@@ -69,31 +69,111 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 		int i = 0;
 		int total, t1, t2, t3, t4, t5, t6, t7, t8;
 
-		int first = 0;
-		int second = 0;
-		
 		for (SoulShield s1 : S_1) {
+			int first = 0;
+			int second = 0;
 			t1 = s1.getCrit();
+			if (s1.getSet().equals(Main.FIRST_SET)) {
+				first++;
+			}
+			if (s1.getSet().equals(Main.SECOND_SET)) {
+				second++;
+			}
 			for (SoulShield s2 : S_2) {
 				t2 = s2.getCrit();
+				if (s2.getSet().equals(Main.FIRST_SET)) {
+					first++;
+				}
+				if (s2.getSet().equals(Main.SECOND_SET)) {
+					second++;
+				}
 				for (SoulShield s3 : S_3) {
 					t3 = s3.getCrit();
+					if (s3.getSet().equals(Main.FIRST_SET)) {
+						first++;
+					}
+					if (s3.getSet().equals(Main.SECOND_SET)) {
+						second++;
+					}
 					for (SoulShield s4 : S_4) {
 						t4 = s4.getCrit();
+						if (s4.getSet().equals(Main.FIRST_SET)) {
+							first++;
+						}
+						if (s4.getSet().equals(Main.SECOND_SET)) {
+							second++;
+						}
+						if (first > Main.FIRST_COUNT) {
+							first--;
+							continue;
+						}
+						if (second > Main.SECOND_COUNT) {
+							second--;
+							continue;
+						}
 						for (SoulShield s5 : S_5) {
 							t5 = s5.getCrit();
+							if (s5.getSet().equals(Main.FIRST_SET)) {
+								first++;
+							}
+							if (s5.getSet().equals(Main.SECOND_SET)) {
+								second++;
+							}
+							if (first > Main.FIRST_COUNT) {
+								first--;
+								continue;
+							}
+							if (second > Main.SECOND_COUNT) {
+								second--;
+								continue;
+							}
 							for (SoulShield s6 : S_6) {
 								t6 = s6.getCrit();
+								if (s6.getSet().equals(Main.FIRST_SET)) {
+									first++;
+								}
+								if (s6.getSet().equals(Main.SECOND_SET)) {
+									second++;
+								}
+								if (first > Main.FIRST_COUNT) {
+									first--;
+									continue;
+								}
+								if (second > Main.SECOND_COUNT) {
+									second--;
+									continue;
+								}
 								for (SoulShield s7 : S_7) {
 									t7 = s7.getCrit();
+									if (s7.getSet().equals(Main.FIRST_SET)) {
+										first++;
+									}
+									if (s7.getSet().equals(Main.SECOND_SET)) {
+										second++;
+									}
+									if (first > Main.FIRST_COUNT) {
+										first--;
+										continue;
+									}
+									if (second > Main.SECOND_COUNT) {
+										second--;
+										continue;
+									}
 									for (SoulShield s8 : S_8) {
 										t8 = s8.getCrit();
+										if (s8.getSet().equals(Main.FIRST_SET)) {
+											first++;
+										}
+										if (s8.getSet().equals(Main.SECOND_SET)) {
+											second++;
+										}
 
 										total = t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8;
 
-										if (total >= min) {
+										if (first == Main.FIRST_COUNT && total >= min) {
 											ComboSoul c = new ComboSoul(s1, s2, s3, s4, s5, s6, s7, s8);
 											combos.add(c);
+											System.out.println(first + " " + second);
 										}
 										i++;
 										if (i % 100000000 == 0) {
