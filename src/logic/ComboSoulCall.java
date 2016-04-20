@@ -69,6 +69,9 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 		int i = 0;
 		int total, t1, t2, t3, t4, t5, t6, t7, t8;
 
+		int first = 0;
+		int second = 0;
+		
 		for (SoulShield s1 : S_1) {
 			t1 = s1.getCrit();
 			for (SoulShield s2 : S_2) {

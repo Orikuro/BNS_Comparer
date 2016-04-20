@@ -16,6 +16,9 @@ public class Main {
 	public static Comparator<ComboSoul> COMBO_COMPARATOR = new CRIT_Combo_Comparator();
 	public static Comparator<SoulShield> SOUL_COMPARATOR = new CRIT_SoulShield_Comparator();
 	
+	public static SoulSet FIRST_SET;
+	public static SoulSet SECOND_SET;
+	
 	public static enum Sort {
 		crit, hp, def
 	};
@@ -47,7 +50,18 @@ public class Main {
 	}
 
 	// Buffs
-	// TODO: buffs
+	@Option(name = "-acount", usage = "minimum crit the combo must have, default: None")
+	public int FIRST_COUNT = Integer.MAX_VALUE;
+	@Option(name = "-bcount", usage = "minimum crit the combo must have, default: None")
+	public int SECOND_COUNT = Integer.MAX_VALUE;
+	@Option(name = "-aset", usage = "minimum crit the combo must have, default: None")
+	private void setFirstBuff(String set) {
+		FIRST_SET = SoulSet.getSetByName(set.trim());
+	}
+	@Option(name = "-bset", usage = "minimum crit the combo must have, default: None")
+	private void setSecondBuff(String set) {
+		SECOND_SET = SoulSet.getSetByName(set.trim());
+	}
 
 	// Enchants
 	@Option(name = "-cenchant", usage = "the number of results, default: 30")
@@ -106,8 +120,9 @@ public class Main {
 		}
 
 		// Import Shields + Sets
-		SoulShields shields = CSVImport.importSoulShields();
 		CSVImport.importSoulSets();
+		SoulShields shields = CSVImport.importSoulShields();
+		
 
 		// Filter by Set-Names
 		shields.filterName(SETS);
