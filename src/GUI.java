@@ -54,6 +54,10 @@ public class GUI extends JFrame {
 	private JTextField minmatk_Text;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JComboBox buff1Combo = new JComboBox();
+	private JComboBox buff2Box = new JComboBox(SoulSet.getAllSets());
+	private JComboBox buff1Box = new JComboBox(SoulSet.getAllSets());
+	private JComboBox buff2Combo = new JComboBox();
 
 	/**
 	 * Launch the application.
@@ -77,8 +81,8 @@ public class GUI extends JFrame {
 
 		String output = "";
 		String cpu = "";
-		String pre = "";
-		String suf = " -sort crit";
+
+		String sort = " -sort "+sort_List.getSelectedValue().toString();
 
 		String sets = " -sets \"";
 
@@ -91,7 +95,15 @@ public class GUI extends JFrame {
 		if (cpu_List.getSelectedIndex() > 0) {
 			cpu = " -f " + cpu_List.getSelectedValue();
 		}
-		output += sets + pre + suf + cpu;
+		output += sets +  sort + cpu;
+		
+		if (buff1Combo.getSelectedIndex() > 0){
+			output += " -aset "+buff1Box.getSelectedItem().toString();
+		}
+		if (buff2Combo.getSelectedIndex() > 0){
+			
+		}
+
 
 		if (noinfo_Check.isSelected()) {
 			output += " -noinfo";
@@ -238,10 +250,6 @@ public class GUI extends JFrame {
 		panel_18.add(panel_23);
 		JTextArea buff1Text = new JTextArea();
 		JTextArea buff2Text = new JTextArea();
-		JComboBox buff1Combo = new JComboBox();
-		JComboBox buff2Box = new JComboBox(SoulSet.getAllSets());
-		JComboBox buff1Box = new JComboBox(SoulSet.getAllSets());
-		JComboBox buff2Combo = new JComboBox();
 		buff1Box.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (buff1Combo.getSelectedIndex() == 1){
