@@ -51,9 +51,9 @@ public class Main {
 
 	// Buffs
 	@Option(name = "-acount", usage = "minimum crit the combo must have, default: None")
-	public static int FIRST_COUNT = Integer.MAX_VALUE;
+	public static int FIRST_COUNT = 0;
 	@Option(name = "-bcount", usage = "minimum crit the combo must have, default: None")
-	public static int SECOND_COUNT = Integer.MAX_VALUE;
+	public static int SECOND_COUNT = 0;
 
 	@Option(name = "-aset", usage = "minimum crit the combo must have, default: None")
 	private void setFirstBuff(String set) {
