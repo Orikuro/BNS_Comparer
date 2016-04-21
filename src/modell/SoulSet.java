@@ -68,9 +68,9 @@ public class SoulSet {
 		return "";
 	}
 
-	public static Vector<SoulSet> getSetsWithAll() {
+	public static Vector<SoulSet> getSetsWithNone() {
 		Vector<SoulSet> temp = new Vector<>();
-		temp.addElement(new SoulSet("ALL"));
+		temp.addElement(new SoulSet("None"));
 		temp.addAll(SETS);
 
 		return temp;

@@ -83,10 +83,10 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 					b++;
 				}
 				for (SoulShield s3 : S_3) {
-					int cc=0;
+					int c=0;
 					t3 = s3.getCrit();
 					if (s3.getSet().equals(Main.FIRST_SET)) {
-						cc++;
+						c++;
 					}
 
 					for (SoulShield s4 : S_4) {
@@ -124,12 +124,12 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 											h++;
 										}
 
-										setcount = a+b+cc+d+e+f+g+h;
+										setcount = a+b+c+d+e+f+g+h;
 										total = t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8;
 
 										if ((setcount == Main.FIRST_COUNT) && total >= min) {
-											ComboSoul c = new ComboSoul(s1, s2, s3, s4, s5, s6, s7, s8);
-											combos.add(c);
+											ComboSoul combo = new ComboSoul(s1, s2, s3, s4, s5, s6, s7, s8);
+											combos.add(combo);
 											// System.out.println(first + " " +
 											// second);
 											System.out.println(
