@@ -54,13 +54,17 @@ public class GUI extends JFrame {
 	private JTextField minmatk_Text;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JComboBox buff1Combo = new JComboBox();
+	private JComboBox buff2Box = new JComboBox(SoulSet.getAllSets());
+	private JComboBox buff1Box = new JComboBox(SoulSet.getAllSets());
+	private JComboBox buff2Combo = new JComboBox();
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		CSVImport.importSoulSets();
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -75,23 +79,31 @@ public class GUI extends JFrame {
 
 	private void calc() {
 
-		String output ="";
+		String output = "";
 		String cpu = "";
-		String pre = "";
-		String suf = " -sort crit";
+
+		String sort = " -sort "+sort_List.getSelectedValue().toString();
 
 		String sets = " -sets \"";
-		
-		for (Object s : char_List.getSelectedValues()){
-			sets+=((SoulSet)s)+" ";
+
+		for (Object s : char_List.getSelectedValues()) {
+			sets += ((SoulSet) s) + " ";
 		}
 		sets = sets.trim();
-		sets+="\"";
-		
+		sets += "\"";
+
 		if (cpu_List.getSelectedIndex() > 0) {
 			cpu = " -f " + cpu_List.getSelectedValue();
 		}
-		output += sets+pre + suf + cpu;
+		output += sets +  sort + cpu;
+		
+		if (buff1Combo.getSelectedIndex() > 0){
+			output += " -aset "+buff1Box.getSelectedItem().toString();
+		}
+		if (buff2Combo.getSelectedIndex() > 0){
+			
+		}
+
 
 		if (noinfo_Check.isSelected()) {
 			output += " -noinfo";
@@ -117,17 +129,15 @@ public class GUI extends JFrame {
 		String[] args = output.split(" ");
 
 		try {
-			String x = "cmd.exe /c start java -jar BNS_Comparer.jar "
-					+ output;
+			String x = "cmd.exe /c start java -jar BNS_Comparer.jar " + output;
 			if (System.getProperty("os.name").toLowerCase().contains("windows")) {
 				System.out.println(x);
-				Process p = Runtime.getRuntime().exec(x, null,
-						new File(System.getProperty("user.dir")));
+				Process p = Runtime.getRuntime().exec(x, null, new File(System.getProperty("user.dir")));
 				p.waitFor();
 			} else {
 				JOptionPane.showMessageDialog(new JFrame(),
-						"Error. Other OS other than Windows not supported yet.\nUse \n"
-								+ x + "\nto run the programm via console.");
+						"Error. Other OS other than Windows not supported yet.\nUse \n" + x
+								+ "\nto run the programm via console.");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -188,7 +198,8 @@ public class GUI extends JFrame {
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Sets", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Sets", TitledBorder.LEADING,
+				TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.add(panel_1);
 
 		char_List = new JList(SoulSet.getAllSets());
@@ -196,268 +207,307 @@ public class GUI extends JFrame {
 		char_List.setToolTipText("Sets");
 
 		char_List.setSelectedIndex(0);
-		
+
 		JPanel panel_22 = new JPanel();
 		panel_22.setAlignmentX(0.0f);
 		panel_22.setBorder(new TitledBorder(null, "Sort by", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.add(panel_22);
-		
-				sort_List = new JList();
-				panel_22.add(sort_List);
-				sort_List.setToolTipText("Sort by");
-				sort_List.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-				sort_List.setModel(new AbstractListModel() {
-					String[] values = new String[] {"crit", "hp", "def"};
-					public int getSize() {
-						return values.length;
-					}
-					public Object getElementAt(int index) {
-						return values[index];
-					}
-				});
-				sort_List.setSelectedIndex(0);
-		
+
+		sort_List = new JList();
+		panel_22.add(sort_List);
+		sort_List.setToolTipText("Sort by");
+		sort_List.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		sort_List.setModel(new AbstractListModel() {
+			String[] values = new String[] { "crit", "hp", "def" };
+
+			public int getSize() {
+				return values.length;
+			}
+
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		sort_List.setSelectedIndex(0);
+
 		JPanel panel_15 = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel_15.getLayout();
 		flowLayout.setVgap(0);
 		flowLayout.setHgap(0);
-		panel_15.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Buffs", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_15.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Buffs", TitledBorder.LEADING,
+				TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.add(panel_15);
-		
+
 		JPanel panel_19 = new JPanel();
 		panel_15.add(panel_19);
 		panel_19.setLayout(new BoxLayout(panel_19, BoxLayout.Y_AXIS));
-		
+
 		JPanel panel_18 = new JPanel();
 		panel_19.add(panel_18);
 		panel_18.setLayout(new BoxLayout(panel_18, BoxLayout.Y_AXIS));
-		
+
 		JPanel panel_23 = new JPanel();
 		panel_18.add(panel_23);
-		
-		JComboBox buff1Box = new JComboBox(SoulSet.getSetsWithAll());
+		JTextArea buff1Text = new JTextArea();
+		JTextArea buff2Text = new JTextArea();
+		buff1Box.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (buff1Combo.getSelectedIndex() == 1){
+					buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(3));
+				}
+				if (buff1Combo.getSelectedIndex() == 2){
+					buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(5));
+				}
+				if (buff1Combo.getSelectedIndex() == 3){
+					buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(8));
+				}
+			}
+		});
 		panel_23.add(buff1Box);
 
-		JComboBox buff1Combo = new JComboBox();
-		JComboBox buff2Box = new JComboBox(SoulSet.getSetsWithoutFirst());
-		JComboBox buff2Combo = new JComboBox();
-		
+		buff2Box.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (buff2Combo.getSelectedIndex() == 1){
+					buff2Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(3));
+				}
+				if (buff2Combo.getSelectedIndex() == 2){
+					buff2Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(5));
+				}
+				if (buff2Combo.getSelectedIndex() == 3){
+					buff2Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(8));
+				}
+			}
+		});
+
+		buff2Combo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (buff2Combo.getSelectedIndex() == 1){
+					buff2Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(3));
+				}
+				if (buff2Combo.getSelectedIndex() == 2){
+					buff2Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(5));
+				}
+				if (buff2Combo.getSelectedIndex() == 3){
+					buff2Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(8));
+				}
+			}
+		});
+
 		panel_23.add(buff1Combo);
 		buff1Combo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (buff1Combo.getSelectedIndex() == 1 || buff1Combo.getSelectedIndex() == 2){
+				if (buff1Combo.getSelectedIndex() == 1 || buff1Combo.getSelectedIndex() == 2) {
 					buff2Box.setEnabled(true);
 					buff2Combo.setEnabled(true);
-					
-				}
-				else{
+
+				} else {
 					buff2Box.setEnabled(false);
 					buff2Combo.setEnabled(false);
+				}
+				if (buff1Combo.getSelectedIndex() == 1){
+					buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(3));
+				}
+				if (buff1Combo.getSelectedIndex() == 2){
+					buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(5));
+				}
+				if (buff1Combo.getSelectedIndex() == 3){
+					buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(8));
 				}
 			}
 		});
 		buff1Combo.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		buff1Combo.setModel(new DefaultComboBoxModel(new String[] {"ALL", "3", "5", "8"}));
-		
+		buff1Combo.setModel(new DefaultComboBoxModel(new String[] {"None", "3", "5", "8"}));
+
 		JPanel panel_24 = new JPanel();
 		FlowLayout flowLayout_1 = (FlowLayout) panel_24.getLayout();
 		flowLayout_1.setAlignment(FlowLayout.LEFT);
 		flowLayout_1.setVgap(0);
 		flowLayout_1.setHgap(0);
 		panel_18.add(panel_24);
-		
-		JTextArea txtrTestTestTest = new JTextArea();
-		txtrTestTestTest.setWrapStyleWord(true);
-		txtrTestTestTest.setLineWrap(true);
-		txtrTestTestTest.setTabSize(10);
-		txtrTestTestTest.setEditable(false);
-		txtrTestTestTest.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		txtrTestTestTest.setText("xxx");
-		panel_24.add(txtrTestTestTest);
-		
+
+
+		buff1Text.setWrapStyleWord(true);
+		buff1Text.setTabSize(10);
+		buff1Text.setEditable(false);
+		buff1Text.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		buff1Text.setText("xxx");
+		panel_24.add(buff1Text);
+
 		JPanel panel_17 = new JPanel();
 		panel_19.add(panel_17);
 		panel_17.setLayout(new BoxLayout(panel_17, BoxLayout.Y_AXIS));
-		
+
 		JPanel panel_20 = new JPanel();
 		panel_17.add(panel_20);
-		
-		buff2Box.setEnabled(false);
-		buff2Box.setSelectedIndex(0);
+		buff2Box.setSelectedIndex(1);
 		panel_20.add(buff2Box);
-		
-
-		buff2Combo.setEnabled(false);
 		buff2Combo.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		buff2Combo.setModel(new DefaultComboBoxModel(new String[] {"3", "5"}));
+		buff2Combo.setModel(new DefaultComboBoxModel(new String[] {"None", "3", "5"}));
 		panel_20.add(buff2Combo);
-		
+
 		JPanel panel_25 = new JPanel();
 		FlowLayout flowLayout_2 = (FlowLayout) panel_25.getLayout();
 		flowLayout_2.setAlignment(FlowLayout.LEFT);
 		flowLayout_2.setVgap(0);
 		flowLayout_2.setHgap(0);
 		panel_17.add(panel_25);
-		
-		JTextArea txtrYyy = new JTextArea();
-		txtrYyy.setWrapStyleWord(true);
-		txtrYyy.setText("yyy");
-		txtrYyy.setTabSize(10);
-		txtrYyy.setLineWrap(true);
-		txtrYyy.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		txtrYyy.setEditable(false);
-		panel_25.add(txtrYyy);
-		
+
+
+		buff2Text.setWrapStyleWord(true);
+		buff2Text.setText("yyy");
+		buff2Text.setTabSize(10);
+		buff2Text.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		buff2Text.setEditable(false);
+		panel_25.add(buff2Text);
+
 		JPanel panel_4 = new JPanel();
 		panel.add(panel_4);
 		panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.Y_AXIS));
-		
+
 		JPanel panel_13 = new JPanel();
 		panel_13.setBorder(new TitledBorder(null, "Enchants", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_4.add(panel_13);
-		
+
 		JLabel lblCrit = new JLabel("Crit");
 		panel_13.add(lblCrit);
-		
+
 		JCheckBox chckbxMax = new JCheckBox("max");
+		chckbxMax.setEnabled(false);
 		chckbxMax.setSelected(true);
 		panel_13.add(chckbxMax);
-		
+
 		JSpinner spinner = new JSpinner();
 		spinner.setEnabled(false);
 		spinner.setModel(new SpinnerNumberModel(0, 0, 9999, 1));
 		panel_13.add(spinner);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(null, "Other", TitledBorder.LEADING,
-				TitledBorder.TOP, null, null));
+		panel_3.setBorder(new TitledBorder(null, "Other", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.add(panel_3);
 		panel_3.setLayout(new BoxLayout(panel_3, BoxLayout.Y_AXIS));
-				
-				JPanel panel_26 = new JPanel();
-				panel_3.add(panel_26);
-				
-						JPanel panel_6 = new JPanel();
-						panel_26.add(panel_6);
-						panel_6.setBorder(new TitledBorder(UIManager
-								.getBorder("TitledBorder.border"), "CPU", TitledBorder.LEADING,
-								TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
-						
-								cpu_List = new JList();
-								panel_6.add(cpu_List);
-								cpu_List.setToolTipText("CPUs to use");
-								cpu_List.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-								cpu_List.setModel(new AbstractListModel() {
-									String[] values = new String[] { "ALL ", "1", "2", "3", "4" };
 
-									public int getSize() {
-										return values.length;
-									}
+		JPanel panel_26 = new JPanel();
+		panel_3.add(panel_26);
 
-									public Object getElementAt(int index) {
-										return values[index];
-									}
-								});
-								cpu_List.setSelectedIndex(0);
-								
-										JPanel panel_14 = new JPanel();
-										panel_26.add(panel_14);
-										panel_14.setLayout(new BoxLayout(panel_14, BoxLayout.Y_AXIS));
-										
-												JPanel panel_9 = new JPanel();
-												panel_14.add(panel_9);
-												panel_9.setBorder(new TitledBorder(UIManager
-														.getBorder("TitledBorder.border"), "Results",
-														TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0,
-																0, 0)));
-												
-														result_Text = new JTextField();
-														result_Text.setText("30");
-														panel_9.add(result_Text);
-														result_Text.setToolTipText("Amound of results. (Default = 30)");
-														result_Text.setColumns(5);
-														
-																noinfo_Check = new JCheckBox("noinfo");
-																panel_14.add(noinfo_Check);
-																noinfo_Check.setToolTipText("Dont write extra info");
-																noinfo_Check.setSelected(true);
-																
-																		nocsv_Check = new JCheckBox("nocsv");
-																		nocsv_Check.setToolTipText("Dont write extra info");
-																		nocsv_Check.setSelected(true);
-																		panel_14.add(nocsv_Check);
-		
-				JPanel panel_2 = new JPanel();
-				panel_3.add(panel_2);
-				panel_2.setBorder(new TitledBorder(null, "Restrictions",
-						TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				
-						JPanel panel_12 = new JPanel();
-						panel_2.add(panel_12);
-						panel_12.setLayout(new BoxLayout(panel_12, BoxLayout.Y_AXIS));
-						
-								JPanel panel_10 = new JPanel();
-								panel_12.add(panel_10);
-								panel_10.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min crit", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
-								
-										minatk_Text = new JTextField();
-										minatk_Text.setToolTipText("Minimum atk the sets must have");
-										panel_10.add(minatk_Text);
-										minatk_Text.setColumns(5);
-										
-												JPanel panel_16 = new JPanel();
-												panel_16.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min accu", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
-												panel_12.add(panel_16);
-												
-														minmatk_Text = new JTextField();
-														minmatk_Text.setToolTipText("Minimum matk the sets must have");
-														minmatk_Text.setColumns(5);
-														panel_16.add(minmatk_Text);
-														
-																JPanel panel_11 = new JPanel();
-																panel_12.add(panel_11);
-																panel_11.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min pierce", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
-																
-																		price_Text = new JTextField();
-																		price_Text.setToolTipText("Maximum price (10 = 10million)");
-																		price_Text.setColumns(5);
-																		panel_11.add(price_Text);
-																		
-																		JPanel panel_5 = new JPanel();
-																		panel_2.add(panel_5);
-																		panel_5.setLayout(new BoxLayout(panel_5, BoxLayout.Y_AXIS));
-																		
-																		JPanel panel_7 = new JPanel();
-																		panel_7.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min hp", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
-																		panel_5.add(panel_7);
-																		
-																		textField = new JTextField();
-																		textField.setToolTipText("Minimum atk the sets must have");
-																		textField.setColumns(5);
-																		panel_7.add(textField);
-																		
-																		JPanel panel_8 = new JPanel();
-																		panel_8.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min def", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
-																		panel_5.add(panel_8);
-																		
-																		textField_1 = new JTextField();
-																		textField_1.setToolTipText("Minimum matk the sets must have");
-																		textField_1.setColumns(5);
-																		panel_8.add(textField_1);
-																		
-																		JPanel panel_21 = new JPanel();
-																		panel_5.add(panel_21);
-																		
-																		JCheckBox chckbxNewCheckBox = new JCheckBox("crit only");
-																		chckbxNewCheckBox.setToolTipText("Only use ss with crit");
-																		panel_21.add(chckbxNewCheckBox);
+		JPanel panel_6 = new JPanel();
+		panel_26.add(panel_6);
+		panel_6.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "CPU", TitledBorder.LEADING,
+				TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+
+		cpu_List = new JList();
+		panel_6.add(cpu_List);
+		cpu_List.setToolTipText("CPUs to use");
+		cpu_List.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		cpu_List.setModel(new AbstractListModel() {
+			String[] values = new String[] { "ALL ", "1", "2", "3", "4" };
+
+			public int getSize() {
+				return values.length;
+			}
+
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		cpu_List.setSelectedIndex(0);
+
+		JPanel panel_14 = new JPanel();
+		panel_26.add(panel_14);
+		panel_14.setLayout(new BoxLayout(panel_14, BoxLayout.Y_AXIS));
+
+		JPanel panel_9 = new JPanel();
+		panel_14.add(panel_9);
+		panel_9.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Results", TitledBorder.LEADING,
+				TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+
+		result_Text = new JTextField();
+		result_Text.setText("30");
+		panel_9.add(result_Text);
+		result_Text.setToolTipText("Amound of results. (Default = 30)");
+		result_Text.setColumns(5);
+
+		noinfo_Check = new JCheckBox("noinfo");
+		panel_14.add(noinfo_Check);
+		noinfo_Check.setToolTipText("Dont write extra info");
+		noinfo_Check.setSelected(true);
+
+		nocsv_Check = new JCheckBox("nocsv");
+		nocsv_Check.setToolTipText("Dont write extra info");
+		nocsv_Check.setSelected(true);
+		panel_14.add(nocsv_Check);
+
+		JPanel panel_2 = new JPanel();
+		panel_3.add(panel_2);
+		panel_2.setBorder(new TitledBorder(null, "Restrictions", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
+		JPanel panel_12 = new JPanel();
+		panel_2.add(panel_12);
+		panel_12.setLayout(new BoxLayout(panel_12, BoxLayout.Y_AXIS));
+
+		JPanel panel_10 = new JPanel();
+		panel_12.add(panel_10);
+		panel_10.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min crit",
+				TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+
+		minatk_Text = new JTextField();
+		minatk_Text.setToolTipText("Minimum atk the sets must have");
+		panel_10.add(minatk_Text);
+		minatk_Text.setColumns(5);
+
+		JPanel panel_16 = new JPanel();
+		panel_16.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min accu",
+				TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+		panel_12.add(panel_16);
+
+		minmatk_Text = new JTextField();
+		minmatk_Text.setToolTipText("Minimum matk the sets must have");
+		minmatk_Text.setColumns(5);
+		panel_16.add(minmatk_Text);
+
+		JPanel panel_11 = new JPanel();
+		panel_12.add(panel_11);
+		panel_11.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min pierce",
+				TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+
+		price_Text = new JTextField();
+		price_Text.setToolTipText("Maximum price (10 = 10million)");
+		price_Text.setColumns(5);
+		panel_11.add(price_Text);
+
+		JPanel panel_5 = new JPanel();
+		panel_2.add(panel_5);
+		panel_5.setLayout(new BoxLayout(panel_5, BoxLayout.Y_AXIS));
+
+		JPanel panel_7 = new JPanel();
+		panel_7.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min hp", TitledBorder.LEADING,
+				TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+		panel_5.add(panel_7);
+
+		textField = new JTextField();
+		textField.setToolTipText("Minimum atk the sets must have");
+		textField.setColumns(5);
+		panel_7.add(textField);
+
+		JPanel panel_8 = new JPanel();
+		panel_8.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min def", TitledBorder.LEADING,
+				TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+		panel_5.add(panel_8);
+
+		textField_1 = new JTextField();
+		textField_1.setToolTipText("Minimum matk the sets must have");
+		textField_1.setColumns(5);
+		panel_8.add(textField_1);
+
+		JPanel panel_21 = new JPanel();
+		panel_5.add(panel_21);
+
+		JCheckBox chckbxNewCheckBox = new JCheckBox("crit only");
+		chckbxNewCheckBox.setToolTipText("Only use ss with crit");
+		panel_21.add(chckbxNewCheckBox);
 
 		JLabel lblPic = new JLabel("");
 		lblPic.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPic.setIcon(new ImageIcon(
-				GUI.class
-						.getResource("/covergirls/covergirl"
-								+ getCovergirl() + ".jpg")));
+		lblPic.setIcon(new ImageIcon(GUI.class.getResource("/covergirls/covergirl" + getCovergirl() + ".jpg")));
 		splitPane.setLeftComponent(lblPic);
 	}
 }

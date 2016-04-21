@@ -16,7 +16,7 @@ public class SoulShield {
 	private int critdef = 0;
 
 	public SoulShield(String name, String pos, String max) {
-		set = new SoulSet(name.trim());
+		set = SoulSet.getSetByName(name.trim());
 		position = new Integer(pos.trim());
 		maxenchant = new Integer(max.trim());
 
