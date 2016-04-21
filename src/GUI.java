@@ -98,10 +98,10 @@ public class GUI extends JFrame {
 		output += sets +  sort + cpu;
 		
 		if (buff1Combo.getSelectedIndex() > 0){
-			output += " -aset "+buff1Box.getSelectedItem().toString();
+			output += " -aset "+buff1Box.getSelectedItem().toString() + " -acount "+buff1Combo.getSelectedItem();
 		}
-		if (buff2Combo.getSelectedIndex() > 0){
-			
+		if (buff2Box.isEnabled() && buff2Combo.getSelectedIndex() > 0){
+			output += " -bset "+buff2Box.getSelectedItem().toString() + " -bcount "+buff2Combo.getSelectedItem();
 		}
 
 
@@ -263,60 +263,46 @@ public class GUI extends JFrame {
 				}
 			}
 		});
+		
+				panel_23.add(buff1Combo);
+				buff1Combo.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						if (buff1Combo.getSelectedIndex() == 1 || buff1Combo.getSelectedIndex() == 2) {
+							buff2Box.setEnabled(true);
+							buff2Combo.setEnabled(true);
+
+						} else {
+							buff2Box.setEnabled(false);
+							buff2Combo.setEnabled(false);
+						}
+						if (buff1Combo.getSelectedIndex() == 1){
+							buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(3));
+						}
+						if (buff1Combo.getSelectedIndex() == 2){
+							buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(5));
+						}
+						if (buff1Combo.getSelectedIndex() == 3){
+							buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(8));
+						}
+					}
+				});
+				buff1Combo.setFont(new Font("Tahoma", Font.PLAIN, 8));
+				buff1Combo.setModel(new DefaultComboBoxModel(new String[] {"None", "3", "5", "8"}));
 		panel_23.add(buff1Box);
 
 		buff2Box.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (buff2Combo.getSelectedIndex() == 1){
-					buff2Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(3));
+					buff2Text.setText(((SoulSet) buff2Box.getSelectedItem()).getBuff(3));
 				}
 				if (buff2Combo.getSelectedIndex() == 2){
-					buff2Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(5));
+					buff2Text.setText(((SoulSet) buff2Box.getSelectedItem()).getBuff(5));
 				}
 				if (buff2Combo.getSelectedIndex() == 3){
-					buff2Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(8));
+					buff2Text.setText(((SoulSet) buff2Box.getSelectedItem()).getBuff(8));
 				}
 			}
 		});
-
-		buff2Combo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (buff2Combo.getSelectedIndex() == 1){
-					buff2Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(3));
-				}
-				if (buff2Combo.getSelectedIndex() == 2){
-					buff2Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(5));
-				}
-				if (buff2Combo.getSelectedIndex() == 3){
-					buff2Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(8));
-				}
-			}
-		});
-
-		panel_23.add(buff1Combo);
-		buff1Combo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if (buff1Combo.getSelectedIndex() == 1 || buff1Combo.getSelectedIndex() == 2) {
-					buff2Box.setEnabled(true);
-					buff2Combo.setEnabled(true);
-
-				} else {
-					buff2Box.setEnabled(false);
-					buff2Combo.setEnabled(false);
-				}
-				if (buff1Combo.getSelectedIndex() == 1){
-					buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(3));
-				}
-				if (buff1Combo.getSelectedIndex() == 2){
-					buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(5));
-				}
-				if (buff1Combo.getSelectedIndex() == 3){
-					buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(8));
-				}
-			}
-		});
-		buff1Combo.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		buff1Combo.setModel(new DefaultComboBoxModel(new String[] {"None", "3", "5", "8"}));
 
 		JPanel panel_24 = new JPanel();
 		FlowLayout flowLayout_1 = (FlowLayout) panel_24.getLayout();
@@ -339,11 +325,25 @@ public class GUI extends JFrame {
 
 		JPanel panel_20 = new JPanel();
 		panel_17.add(panel_20);
+		
+				buff2Combo.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if (buff2Combo.getSelectedIndex() == 1){
+							buff2Text.setText(((SoulSet) buff2Box.getSelectedItem()).getBuff(3));
+						}
+						if (buff2Combo.getSelectedIndex() == 2){
+							buff2Text.setText(((SoulSet) buff2Box.getSelectedItem()).getBuff(5));
+						}
+						if (buff2Combo.getSelectedIndex() == 3){
+							buff2Text.setText(((SoulSet) buff2Box.getSelectedItem()).getBuff(8));
+						}
+					}
+				});
+				buff2Combo.setFont(new Font("Tahoma", Font.PLAIN, 8));
+				buff2Combo.setModel(new DefaultComboBoxModel(new String[] {"None", "3", "5"}));
+				panel_20.add(buff2Combo);
 		buff2Box.setSelectedIndex(1);
 		panel_20.add(buff2Box);
-		buff2Combo.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		buff2Combo.setModel(new DefaultComboBoxModel(new String[] {"None", "3", "5"}));
-		panel_20.add(buff2Combo);
 
 		JPanel panel_25 = new JPanel();
 		FlowLayout flowLayout_2 = (FlowLayout) panel_25.getLayout();
