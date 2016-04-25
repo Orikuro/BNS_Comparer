@@ -1,6 +1,8 @@
 package modell;
 
 public class ComboSoul {
+	
+	public static final String HEADER ="";
 
 	private SoulShield S_1;
 	private SoulShield S_2;
@@ -35,11 +37,16 @@ public class ComboSoul {
 		+ S_7.getDef() + S_8.getDef();
 	}
 
+
+
 	@Override
 	public String toString() {
-		return crit+";"+def+";"+"[S_1=" + S_1 + ", S_2=" + S_2 + ", S_3=" + S_3 + ", S_4=" + S_4 + ", S_5=" + S_5 + ", S_6="
-				+ S_6 + ", S_7=" + S_7 + ", S_8=" + S_8 + "]";
+		return String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;", crit,
+				hp, def, S_1.getSet().getName()+" 1", S_2.getSet().getName()+" 2", S_3.getSet().getName()+" 3", S_4.getSet().getName()+" 4",
+				S_5.getSet().getName()+" 5", S_6.getSet().getName()+" 6", S_7.getSet().getName()+" 7", S_8.getSet().getName()+" 8");
 	}
+
+
 
 	public int getCrit() {
 		return crit;
