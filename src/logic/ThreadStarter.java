@@ -1,5 +1,9 @@
 package logic;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,12 +28,17 @@ public class ThreadStarter {
 
 	private void start(SoulShields shields) {
 		List<ComboSoul> combs = new ArrayList<ComboSoul>();
-		int results = 30;
+		
+		int results = 10;
+		
+		if (!Main.NOCSV){
+			results = Main.RESULTS;
+		}
 
-		long total = 1l*shields.getS_1().size() * shields.getS_2().size() * shields.getS_3().size()
+		long total = 1l * shields.getS_1().size() * shields.getS_2().size() * shields.getS_3().size()
 				* shields.getS_4().size() * shields.getS_5().size() * shields.getS_6().size() * shields.getS_7().size()
 				* shields.getS_8().size();
-		
+
 		System.out.println(df.format(total) + " Combinations");
 
 		long start = System.currentTimeMillis();
@@ -89,9 +98,43 @@ public class ThreadStarter {
 		}
 
 		System.out.println(ComboSoul.HEADER);
-		for (int i = 0; i < 3; i++) {
-			System.out.println(i+";"+combs.get(i).toStringConsole());
+		for (int i = 0; i < 10; i++) {
+			System.out.println(i + ";" + combs.get(i).toStringConsole());
+		}
+
+		if (!Main.NOCSV) {
+			writeResults(combs, "a");
 		}
 	}
 
+	private void writeResults(List<ComboSoul> combs, String infos) {
+		File out = new File("_out" + File.separator);
+		out.mkdirs();
+		if (combs == null || combs.size() < 1)
+			return;
+		try {
+			long time = System.currentTimeMillis();
+			BufferedWriter bw = new BufferedWriter(
+					new OutputStreamWriter(new FileOutputStream("_out" + File.separator + time + ".csv"), "UTF-8"));
+			bw.write(ComboSoul.HEADER);
+			bw.newLine();
+			for (int i = 0; i < combs.size(); i++) {
+
+				bw.write(i + ";" + combs.get(i));
+				bw.newLine();
+			}
+			bw.close();
+
+			if (!Main.NOINFO) {
+				BufferedWriter bufferedWriter = new BufferedWriter(
+						new OutputStreamWriter(new FileOutputStream("_out" + File.separator + time + ".txt"), "UTF-8"));
+				bufferedWriter.write(infos);
+				bufferedWriter.close();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 }

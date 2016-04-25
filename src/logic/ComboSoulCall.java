@@ -180,7 +180,6 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 												min = combos.get(results - 1).getCrit();
 											}
 										}
-
 									}
 								}
 							}
@@ -193,7 +192,6 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 
 		System.out.print("x");
 		return combos;
-
 	}
 
 	private List<ComboSoul> callDef() throws Exception {

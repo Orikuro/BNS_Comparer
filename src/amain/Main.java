@@ -17,7 +17,7 @@ public class Main {
 	public static Comparator<SoulShield> SOUL_COMPARATOR = new CRIT_SoulShield_Comparator();
 
 	public static SoulSet FIRST_SET = new SoulSet("Leer");
-	public static SoulSet SECOND_SET= new SoulSet("Leer");
+	public static SoulSet SECOND_SET = new SoulSet("Leer");
 
 	public static enum Sort {
 		crit, hp, def
@@ -98,10 +98,10 @@ public class Main {
 		System.out.println(VERSION);
 
 		if (args == null || args.length < 1) {
-			// GUI.main(args);
+			GUI.main(args);
+		} else {
+			new Main().startMain(args);
 		}
-
-		new Main().startMain(args);
 	}
 
 	private void startMain(String[] args) throws Exception {

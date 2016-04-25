@@ -1,3 +1,4 @@
+package amain;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -32,7 +33,6 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import amain.Main;
 import inport.CSVImport;
 import modell.SoulSet;
 
