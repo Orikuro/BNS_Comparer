@@ -16,8 +16,8 @@ public class Main {
 	public static Comparator<ComboSoul> COMBO_COMPARATOR = new CRIT_Combo_Comparator();
 	public static Comparator<SoulShield> SOUL_COMPARATOR = new CRIT_SoulShield_Comparator();
 
-	public static SoulSet FIRST_SET;
-	public static SoulSet SECOND_SET;
+	public static SoulSet FIRST_SET = new SoulSet("Leer");
+	public static SoulSet SECOND_SET= new SoulSet("Leer");
 
 	public static enum Sort {
 		crit, hp, def

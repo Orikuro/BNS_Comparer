@@ -46,7 +46,7 @@ public class SoulSet {
 		id = COUNTER++;
 	}
 	
-	private SoulSet(String name) {
+	public SoulSet(String name) {
 		super();
 		this.name = name;
 	}
