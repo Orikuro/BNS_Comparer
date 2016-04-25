@@ -46,7 +46,7 @@ public class ThreadStarter {
 			// 1/4 Loadbalancing - Forking
 			List<Callable<List<ComboSoul>>> tasks = new ArrayList<>();
 			for (int i = 0; i < shields.getS_1().size(); i++) {
-				Callable<List<ComboSoul>> c = new ComboSoulCall(shields.getS_1().get(i), shields.getS_2(),
+				Callable<List<ComboSoul>> c = new ComboSoulCall(results, shields.getS_1().get(i), shields.getS_2(),
 						shields.getS_3(), shields.getS_4(), shields.getS_5(), shields.getS_6(), shields.getS_7(),
 						shields.getS_8());
 				tasks.add(c);

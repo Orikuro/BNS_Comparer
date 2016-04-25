@@ -27,7 +27,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 
 	private List<ComboSoul> combos = new ArrayList<>();
 
-	public ComboSoulCall(SoulShield s_1, List<SoulShield> s_2, List<SoulShield> s_3, List<SoulShield> s_4,
+	public ComboSoulCall(int res, SoulShield s_1, List<SoulShield> s_2, List<SoulShield> s_3, List<SoulShield> s_4,
 			List<SoulShield> s_5, List<SoulShield> s_6, List<SoulShield> s_7, List<SoulShield> s_8) {
 		super();
 		S_1.add(s_1);
@@ -38,6 +38,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 		S_6 = s_6;
 		S_7 = s_7;
 		S_8 = s_8;
+		results = res;
 		thresh = results * 2;
 	}
 
@@ -157,7 +158,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 											h++;
 										}
 										if (second && s8.getSet().equals(Main.SECOND_SET)) {
-											h++;
+											hh++;
 										}
 
 										acount = a + b + c + d + e + f + g + h;

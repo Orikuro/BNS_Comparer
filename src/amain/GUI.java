@@ -214,6 +214,7 @@ public class GUI extends JFrame {
 		panel.add(panel_22);
 
 		sort_List = new JList();
+		sort_List.setEnabled(false);
 		panel_22.add(sort_List);
 		sort_List.setToolTipText("Sort by");
 		sort_List.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -450,6 +451,7 @@ public class GUI extends JFrame {
 				TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 
 		minatk_Text = new JTextField();
+		minatk_Text.setEnabled(false);
 		minatk_Text.setToolTipText("Minimum atk the sets must have");
 		panel_10.add(minatk_Text);
 		minatk_Text.setColumns(5);
@@ -460,6 +462,7 @@ public class GUI extends JFrame {
 		panel_12.add(panel_16);
 
 		minmatk_Text = new JTextField();
+		minmatk_Text.setEnabled(false);
 		minmatk_Text.setToolTipText("Minimum matk the sets must have");
 		minmatk_Text.setColumns(5);
 		panel_16.add(minmatk_Text);
@@ -470,6 +473,7 @@ public class GUI extends JFrame {
 				TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 
 		price_Text = new JTextField();
+		price_Text.setEnabled(false);
 		price_Text.setToolTipText("Maximum price (10 = 10million)");
 		price_Text.setColumns(5);
 		panel_11.add(price_Text);
@@ -484,6 +488,7 @@ public class GUI extends JFrame {
 		panel_5.add(panel_7);
 
 		textField = new JTextField();
+		textField.setEnabled(false);
 		textField.setToolTipText("Minimum atk the sets must have");
 		textField.setColumns(5);
 		panel_7.add(textField);
@@ -494,6 +499,7 @@ public class GUI extends JFrame {
 		panel_5.add(panel_8);
 
 		textField_1 = new JTextField();
+		textField_1.setEnabled(false);
 		textField_1.setToolTipText("Minimum matk the sets must have");
 		textField_1.setColumns(5);
 		panel_8.add(textField_1);
