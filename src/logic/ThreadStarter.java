@@ -53,7 +53,7 @@ public class ThreadStarter {
 			}
 
 			// 2/4 Running
-			ExecutorService executor = Executors.newFixedThreadPool(8);
+			ExecutorService executor = Executors.newFixedThreadPool(Main.CPUS);
 			List<Future<List<ComboSoul>>> f_ComboSouls = executor.invokeAll(tasks);
 
 			// 3/4 Joining Results
