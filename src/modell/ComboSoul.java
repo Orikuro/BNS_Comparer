@@ -4,8 +4,8 @@ import amain.Main;
 
 public class ComboSoul {
 
-	public static final String HEADER = "id;crit;hp;def;accu;eva;block;S1;S2;S3;S4;S5;S6;S7;S8;Buff1;Buff2;S1Full;S2Full;S3Full;S4Full;S5Full;S6Full;S7Full;S8Full;";
-	public static final String HEADER_CONSOLE = "id;crit;hp;def;accu;eva;block;S1;S2;S3;S4;S5;S6;S7;S8;Buff1;Buff2;";
+	public static final String HEADER = "id;crit;accu;hp;def;eva;block;S1;S2;S3;S4;S5;S6;S7;S8;Buff1;Buff2;S1Full;S2Full;S3Full;S4Full;S5Full;S6Full;S7Full;S8Full;";
+	public static final String HEADER_CONSOLE = "id;crit;accu;hp;def;eva;block;S1;S2;S3;S4;S5;S6;S7;S8;Buff1;Buff2;";
 
 	private SoulShield S_1;
 	private SoulShield S_2;
@@ -51,7 +51,7 @@ public class ComboSoul {
 	}
 
 	public String toStringConsole() {
-		return String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;", crit, hp, def, accu, eva, block,
+		return String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;", crit, accu, hp, def, eva, block,
 				S_1.getSet().getName() + " 1", S_2.getSet().getName() + " 2", S_3.getSet().getName() + " 3",
 				S_4.getSet().getName() + " 4", S_5.getSet().getName() + " 5", S_6.getSet().getName() + " 6",
 				S_7.getSet().getName() + " 7", S_8.getSet().getName() + " 8", Main.FIRST_SET.getBuff(Main.FIRST_COUNT),
@@ -60,7 +60,7 @@ public class ComboSoul {
 
 	@Override
 	public String toString() {
-		return String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;", crit, hp, def, accu, eva, block,
+		return String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;", crit, accu, hp, def, eva, block,
 				S_1.getSet().getName() + " 1", S_2.getSet().getName() + " 2", S_3.getSet().getName() + " 3",
 				S_4.getSet().getName() + " 4", S_5.getSet().getName() + " 5", S_6.getSet().getName() + " 6",
 				S_7.getSet().getName() + " 7", S_8.getSet().getName() + " 8", Main.FIRST_SET.getBuff(Main.FIRST_COUNT),
