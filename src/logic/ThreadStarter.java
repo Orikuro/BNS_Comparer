@@ -88,8 +88,9 @@ public class ThreadStarter {
 			return;
 		}
 
+		System.out.println(ComboSoul.HEADER);
 		for (int i = 0; i < 3; i++) {
-			System.out.println(combs.get(i));
+			System.out.println(i+";"+combs.get(i).toStringConsole());
 		}
 	}
 
