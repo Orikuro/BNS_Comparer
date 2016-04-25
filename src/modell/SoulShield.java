@@ -206,35 +206,36 @@ public class SoulShield {
 		StringBuilder builder = new StringBuilder();
 
 		builder.append(set);
-		builder.append(" = ");
+		builder.append(" ");
 		builder.append(position);
-		builder.append(", hp=");
+		builder.append(" ");
 		builder.append(hp);
+		builder.append(" hp ");
 		if (accuracy > 0) {
-			builder.append(", accuracy=");
 			builder.append(accuracy);
+			builder.append(" accu ");
 		}
 		if (crit > 0) {
-			builder.append(", crit=");
 			builder.append(crit);
+			builder.append(" crit ");
 		}
 		if (def > 0) {
-			builder.append(", def=");
 			builder.append(def);
+			builder.append(" def ");
 		}
 		if (block > 0) {
-			builder.append(", block=");
 			builder.append(block);
+			builder.append(" block ");
 		}
 		if (evasion > 0) {
-			builder.append(", evasion=");
 			builder.append(evasion);
+			builder.append(" eva ");
 		}
 		if (critdef > 0) {
-			builder.append(", critdef=");
 			builder.append(critdef);
+			builder.append(" critdef ");
 		}
-		return builder.toString();
+		return builder.toString().trim();
 	}
 
 }
