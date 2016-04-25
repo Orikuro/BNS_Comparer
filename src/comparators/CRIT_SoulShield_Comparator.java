@@ -11,7 +11,7 @@ public class CRIT_SoulShield_Comparator implements Comparator<SoulShield> {
 		Integer a_crit = o1.getCrit();
 		Integer b_crit = o2.getCrit();
 
-		if (a_crit == b_crit){
+		if (a_crit.intValue() == b_crit.intValue()){
 			a_crit = o1.calcTotalAttributeBonus();
 			b_crit = o2.calcTotalAttributeBonus();
 		}

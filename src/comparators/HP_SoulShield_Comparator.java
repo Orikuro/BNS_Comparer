@@ -11,9 +11,9 @@ public class HP_SoulShield_Comparator implements Comparator<SoulShield> {
 		Integer a_crit = o1.getHp();
 		Integer b_crit = o2.getHp();
 
-		if (a_crit == b_crit){
-			a_crit = o1.calcTotalAttributeBonus();
-			b_crit = o2.calcTotalAttributeBonus();
+		if (a_crit.intValue() == b_crit.intValue()){
+			a_crit = o1.getAccuracy();
+			b_crit = o2.getAccuracy();
 		}
 
 		return b_crit.compareTo(a_crit);

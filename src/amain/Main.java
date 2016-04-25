@@ -66,8 +66,8 @@ public class Main {
 	}
 
 	// Enchants
-	@Option(name = "-cenchant", usage = "the number of results, default: 30")
-	public static int CRIT_ENCHANT = 30;
+	@Option(name = "-cenchant", usage = "the number of results, default: 0")
+	public static int CRIT_ENCHANT = 0;
 
 	// Restrictions
 	@Option(name = "-crit", usage = "minimum crit the combo must have, default: None")
@@ -84,8 +84,8 @@ public class Main {
 	public static boolean CRITONLY = false;
 
 	// Output
-	@Option(name = "-results", aliases = { "-r" }, usage = "the number of results, default: 30")
-	public static int RESULTS = 30;
+	@Option(name = "-results", aliases = { "-r" }, usage = "the number of results, default: 10")
+	public static int RESULTS = 10;
 	@Option(name = "-force", aliases = { "-f", "-cpus" }, usage = "force number of cpus, default: Systems Maximum")
 	public static int CPUS = Runtime.getRuntime().availableProcessors();
 	@Option(name = "-noinfo", aliases = {

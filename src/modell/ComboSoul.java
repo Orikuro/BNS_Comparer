@@ -79,4 +79,8 @@ public class ComboSoul {
 		return hp;
 	}
 
+	public int getAccu() {
+		return accu;
+	}
+
 }

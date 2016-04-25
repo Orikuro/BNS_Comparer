@@ -422,7 +422,7 @@ public class GUI extends JFrame {
 				TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 
 		result_Text = new JTextField();
-		result_Text.setText("30");
+		result_Text.setText("10");
 		panel_9.add(result_Text);
 		result_Text.setToolTipText("Amound of results. (Default = 30)");
 		result_Text.setColumns(5);
