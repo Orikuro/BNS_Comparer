@@ -127,6 +127,10 @@ public class Main {
 
 		// Filter by Set-Names
 		shields.filterName(SETS);
+		
+		if (CRITONLY){
+			shields.filterCrit();
+		}
 
 		// pre-sort ss by crit, def, hp
 		shields.sort(SOUL_COMPARATOR);

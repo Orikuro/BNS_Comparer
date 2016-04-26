@@ -240,6 +240,86 @@ public class SoulShields {
 		S_8.removeAll(S8);
 		
 		System.out.println(count + " Soulshields removed due to filter (" + sETS + ")");
+	}
+	
+	public void filterCrit() {
+		String setname;
+		int count = 0;
+		List<SoulShield> S1 = new ArrayList<>();
+		List<SoulShield> S2 = new ArrayList<>();
+		List<SoulShield> S3 = new ArrayList<>();
+		List<SoulShield> S4 = new ArrayList<>();
+		List<SoulShield> S5 = new ArrayList<>();
+		List<SoulShield> S6 = new ArrayList<>();
+		List<SoulShield> S7 = new ArrayList<>();
+		List<SoulShield> S8 = new ArrayList<>();
 
+		for (SoulShield s : S_1) {
+			setname = s.getSet().getName();
+			if (s.getCrit()<=0) {
+				S1.add(s);
+				count++;
+			}
+		}
+		for (SoulShield s : S_2) {
+			setname = s.getSet().getName();
+			if (s.getCrit()<=0) {
+				S2.add(s);
+				count++;
+			}
+		}
+		for (SoulShield s : S_3) {
+			setname = s.getSet().getName();
+			if (s.getCrit()<=0) {
+				S3.add(s);
+				count++;
+			}
+		}
+		for (SoulShield s : S_4) {
+			setname = s.getSet().getName();
+			if (s.getCrit()<=0) {
+				S4.add(s);
+				count++;
+			}
+		}
+		for (SoulShield s : S_5) {
+			setname = s.getSet().getName();
+			if (s.getCrit()<=0) {
+				S5.add(s);
+				count++;
+			}
+		}
+		for (SoulShield s : S_6) {
+			setname = s.getSet().getName();
+			if (s.getCrit()<=0) {
+				S6.add(s);
+				count++;
+			}
+		}
+		for (SoulShield s : S_7) {
+			setname = s.getSet().getName();
+			if (s.getCrit()<=0) {
+				S7.add(s);
+				count++;
+			}
+		}
+		for (SoulShield s : S_8) {
+			setname = s.getSet().getName();
+			if (s.getCrit()<=0) {
+				S8.add(s);
+				count++;
+			}
+		}
+		
+		S_1.removeAll(S1);
+		S_2.removeAll(S2);
+		S_3.removeAll(S3);
+		S_4.removeAll(S4);
+		S_5.removeAll(S5);
+		S_6.removeAll(S6);
+		S_7.removeAll(S7);
+		S_8.removeAll(S8);
+		
+		System.out.println(count + " Soulshields removed due to no crit ;_;" );
 	}
 }

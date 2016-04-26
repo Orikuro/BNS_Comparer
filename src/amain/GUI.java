@@ -58,7 +58,7 @@ public class GUI extends JFrame {
 	private JComboBox buff2Box = new JComboBox(SoulSet.getAllSets());
 	private JComboBox buff1Box = new JComboBox(SoulSet.getAllSets());
 	private JComboBox buff2Combo = new JComboBox();
-
+	private JCheckBox critCheck = new JCheckBox("crit only");
 	/**
 	 * Launch the application.
 	 */
@@ -110,6 +110,10 @@ public class GUI extends JFrame {
 		}
 		if (nocsv_Check.isSelected()) {
 			output += " -nocsv";
+		}
+		
+		if (critCheck.isSelected()){
+			output += " -critonly ";
 		}
 
 		if (minatk_Text.getText().length() > 0) {
@@ -507,9 +511,9 @@ public class GUI extends JFrame {
 		JPanel panel_21 = new JPanel();
 		panel_5.add(panel_21);
 
-		JCheckBox chckbxNewCheckBox = new JCheckBox("crit only");
-		chckbxNewCheckBox.setToolTipText("Only use ss with crit");
-		panel_21.add(chckbxNewCheckBox);
+
+		critCheck.setToolTipText("Only use ss with crit");
+		panel_21.add(critCheck);
 
 		JLabel lblPic = new JLabel("");
 		lblPic.setHorizontalAlignment(SwingConstants.CENTER);
