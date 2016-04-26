@@ -98,8 +98,12 @@ public class ThreadStarter {
 		}
 
 		System.out.println(ComboSoul.HEADER);
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < combs.size(); i++) {
 			System.out.println(i + ";" + combs.get(i).toStringConsole());
+			if (i >= 10) {
+				System.out.println("[...]");
+				break;
+			}
 		}
 
 		if (!Main.NOCSV) {
