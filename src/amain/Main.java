@@ -71,15 +71,13 @@ public class Main {
 
 	// Restrictions
 	@Option(name = "-crit", usage = "minimum crit the combo must have, default: None")
-	public int CRIT = Integer.MIN_VALUE;
+	public static int CRIT = Integer.MIN_VALUE;
 	@Option(name = "-hp", usage = "minimum hp the combo must have, default: None")
 	public static int HP = Integer.MIN_VALUE;
 	@Option(name = "-def", usage = "minimum def the combo must have, default: None")
 	public static int DEF = Integer.MIN_VALUE;
 	@Option(name = "-accu", usage = "minimum accu the combo must have, default: None")
 	public static int ACCU = Integer.MIN_VALUE;
-	@Option(name = "-pierce", usage = "minimum pierce the combo must have, default: None")
-	public static int PIERCE = Integer.MIN_VALUE;
 	@Option(name = "-critonly", usage = "dont write .csv files (usefull for gui comparing with open consoles)")
 	public static boolean CRITONLY = false;
 

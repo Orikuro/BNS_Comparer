@@ -6,6 +6,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import org.kohsuke.args4j.Option;
+
 import amain.Main;
 import comparators.*;
 import modell.ComboSoul;
@@ -168,7 +170,9 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 										if (((acount == Main.FIRST_COUNT || !first)
 												&& (bcount == Main.SECOND_COUNT || !second)) && total >= min) {
 											ComboSoul combo = new ComboSoul(s1, s2, s3, s4, s5, s6, s7, s8);
-											combos.add(combo);
+											if (satisfyRestrictions(combo)){
+												combos.add(combo);
+											}
 										}
 										i++;
 										if (i % 100000000 == 0) {
@@ -193,6 +197,29 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 
 		System.out.print("x");
 		return combos;
+	}
+
+	private boolean satisfyRestrictions(ComboSoul combo) {
+		
+		if(combo.getCrit() < Main.CRIT){
+			return false;
+		}
+		
+
+//		@Option(name = "-crit", usage = "minimum crit the combo must have, default: None")
+//		public int CRIT = Integer.MIN_VALUE;
+//		@Option(name = "-hp", usage = "minimum hp the combo must have, default: None")
+//		public static int HP = Integer.MIN_VALUE;
+//		@Option(name = "-def", usage = "minimum def the combo must have, default: None")
+//		public static int DEF = Integer.MIN_VALUE;
+//		@Option(name = "-accu", usage = "minimum accu the combo must have, default: None")
+//		public static int ACCU = Integer.MIN_VALUE;
+//		@Option(name = "-pierce", usage = "minimum pierce the combo must have, default: None")
+//		public static int PIERCE = Integer.MIN_VALUE;
+//		@Option(name = "-critonly", usage = "dont write .csv files (usefull for gui comparing with open consoles)")
+//		
+		
+		return false;
 	}
 
 	private List<ComboSoul> callDef() throws Exception {

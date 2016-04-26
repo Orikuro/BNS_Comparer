@@ -45,7 +45,6 @@ public class GUI extends JFrame {
 
 	private JTextField minatk_Text;
 	private JTextField result_Text;
-	private JTextField price_Text;
 	private JList char_List;
 	private JList sort_List;
 	private JList cpu_List;
@@ -121,9 +120,6 @@ public class GUI extends JFrame {
 		}
 		if (minmatk_Text.getText().length() > 0) {
 			output += " -matk " + minmatk_Text.getText().trim();
-		}
-		if (price_Text.getText().length() > 0) {
-			output += " -price " + price_Text.getText().trim();
 		}
 		if (result_Text.getText().length() > 0) {
 			output += " -r " + result_Text.getText().trim();
@@ -470,17 +466,6 @@ public class GUI extends JFrame {
 		minmatk_Text.setToolTipText("Minimum matk the sets must have");
 		minmatk_Text.setColumns(5);
 		panel_16.add(minmatk_Text);
-
-		JPanel panel_11 = new JPanel();
-		panel_12.add(panel_11);
-		panel_11.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min pierce",
-				TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
-
-		price_Text = new JTextField();
-		price_Text.setEnabled(false);
-		price_Text.setToolTipText("Maximum price (10 = 10million)");
-		price_Text.setColumns(5);
-		panel_11.add(price_Text);
 
 		JPanel panel_5 = new JPanel();
 		panel_2.add(panel_5);
