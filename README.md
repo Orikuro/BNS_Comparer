@@ -1,2 +1,2 @@
 # BNS_Comparer
-Blade and Soul Character Comparer
+Blade and Soul Soul Shield Comparer
