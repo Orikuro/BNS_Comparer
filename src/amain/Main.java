@@ -28,7 +28,7 @@ public class Main {
 	public static String SETS = "";
 
 	// sort
-	@Option(name = "-sort", required = true, usage = "minimum crit the combo must have, default: None")
+	@Option(name = "-sort", required = true, usage = "sort to use, allowed: crit, hp, def")
 	private void setComparator(Sort sort) {
 		switch (sort) {
 		case crit:
@@ -50,24 +50,19 @@ public class Main {
 	}
 
 	// Buffs
-	@Option(name = "-acount", usage = "minimum crit the combo must have, default: None")
+	@Option(name = "-acount", usage = "buffset1 count, default: 0")
 	public static int FIRST_COUNT = 0;
-	@Option(name = "-bcount", usage = "minimum crit the combo must have, default: None")
+	@Option(name = "-bcount", usage = "buffset2 count, default: 0")
 	public static int SECOND_COUNT = 0;
 
-	@Option(name = "-aset", usage = "minimum crit the combo must have, default: None")
+	@Option(name = "-aset", usage = "buffset1, default: None")
 	private void setFirstBuff(String set) {
 		FIRST_SET = SoulSet.getSetByName(set.trim());
 	}
-
-	@Option(name = "-bset", usage = "minimum crit the combo must have, default: None")
+	@Option(name = "-bset", usage = "buffset2, default: None")
 	private void setSecondBuff(String set) {
 		SECOND_SET = SoulSet.getSetByName(set.trim());
 	}
-
-	// Enchants
-	@Option(name = "-cenchant", usage = "the number of results, default: 0")
-	public static int CRIT_ENCHANT = 0;
 
 	// Restrictions
 	@Option(name = "-crit", usage = "minimum crit the combo must have, default: None")
@@ -79,7 +74,7 @@ public class Main {
 	@Option(name = "-accu", usage = "minimum accu the combo must have, default: None")
 	public static int ACCU = Integer.MIN_VALUE;
 	
-	@Option(name = "-critonly", usage = "dont write .csv files (usefull for gui comparing with open consoles)")
+	@Option(name = "-critonly", usage = "only use shields with crit, default: false")
 	public static boolean CRITONLY = false;
 
 	// Output
@@ -135,7 +130,7 @@ public class Main {
 		shields.sort(SOUL_COMPARATOR);
 
 		// enchant shields
-		String enchants = "900 crit";
+		String enchants = "9999 crit";
 		shields.enchantAll(enchants);
 
 		// minimum stats
