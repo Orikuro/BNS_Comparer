@@ -11,7 +11,7 @@ import logic.ThreadStarter;
 import modell.*;
 
 public class Main {
-	public static final String VERSION = "0.8 - 26.04.16 - by Orikuro";
+	public static final String VERSION = "0.9 - 26.04.16 - by Orikuro";
 
 	public static Comparator<ComboSoul> COMBO_COMPARATOR = new CRIT_Combo_Comparator();
 	public static Comparator<SoulShield> SOUL_COMPARATOR = new CRIT_SoulShield_Comparator();
@@ -78,6 +78,7 @@ public class Main {
 	public static int DEF = Integer.MIN_VALUE;
 	@Option(name = "-accu", usage = "minimum accu the combo must have, default: None")
 	public static int ACCU = Integer.MIN_VALUE;
+	
 	@Option(name = "-critonly", usage = "dont write .csv files (usefull for gui comparing with open consoles)")
 	public static boolean CRITONLY = false;
 

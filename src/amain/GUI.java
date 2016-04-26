@@ -43,16 +43,16 @@ public class GUI extends JFrame {
 	private final static String VERSION = Main.VERSION;
 	private final int bitchcount = 3;
 
-	private JTextField minatk_Text;
+	private JTextField mincrit_Text;
 	private JTextField result_Text;
 	private JList char_List;
 	private JList sort_List;
 	private JList cpu_List;
 	private JCheckBox noinfo_Check;
 	private JCheckBox nocsv_Check;
-	private JTextField minmatk_Text;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField minaccu_Text;
+	private JTextField minhp_Text;
+	private JTextField mindef_Text;
 	private JComboBox buff1Combo = new JComboBox();
 	private JComboBox buff2Box = new JComboBox(SoulSet.getAllSets());
 	private JComboBox buff1Box = new JComboBox(SoulSet.getAllSets());
@@ -115,12 +115,19 @@ public class GUI extends JFrame {
 			output += " -critonly ";
 		}
 
-		if (minatk_Text.getText().length() > 0) {
-			output += " -atk " + minatk_Text.getText().trim();
+		if (mincrit_Text.getText().length() > 0) {
+			output += " -crit " + mincrit_Text.getText().trim();
 		}
-		if (minmatk_Text.getText().length() > 0) {
-			output += " -matk " + minmatk_Text.getText().trim();
+		if (minaccu_Text.getText().length() > 0) {
+			output += " -accu " + minaccu_Text.getText().trim();
 		}
+		if (minhp_Text.getText().length() > 0) {
+			output += " -hp " + minaccu_Text.getText().trim();
+		}
+		if (mindef_Text.getText().length() > 0) {
+			output += " -def " + minaccu_Text.getText().trim();
+		}
+
 		if (result_Text.getText().length() > 0) {
 			output += " -r " + result_Text.getText().trim();
 		}
@@ -428,6 +435,7 @@ public class GUI extends JFrame {
 		result_Text.setColumns(5);
 
 		noinfo_Check = new JCheckBox("noinfo");
+		noinfo_Check.setEnabled(false);
 		panel_14.add(noinfo_Check);
 		noinfo_Check.setToolTipText("Dont write extra info");
 		noinfo_Check.setSelected(true);
@@ -450,22 +458,20 @@ public class GUI extends JFrame {
 		panel_10.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min crit",
 				TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 
-		minatk_Text = new JTextField();
-		minatk_Text.setEnabled(false);
-		minatk_Text.setToolTipText("Minimum atk the sets must have");
-		panel_10.add(minatk_Text);
-		minatk_Text.setColumns(5);
+		mincrit_Text = new JTextField();
+		mincrit_Text.setToolTipText("Minimum atk the sets must have");
+		panel_10.add(mincrit_Text);
+		mincrit_Text.setColumns(5);
 
 		JPanel panel_16 = new JPanel();
 		panel_16.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min accu",
 				TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 		panel_12.add(panel_16);
 
-		minmatk_Text = new JTextField();
-		minmatk_Text.setEnabled(false);
-		minmatk_Text.setToolTipText("Minimum matk the sets must have");
-		minmatk_Text.setColumns(5);
-		panel_16.add(minmatk_Text);
+		minaccu_Text = new JTextField();
+		minaccu_Text.setToolTipText("Minimum matk the sets must have");
+		minaccu_Text.setColumns(5);
+		panel_16.add(minaccu_Text);
 
 		JPanel panel_5 = new JPanel();
 		panel_2.add(panel_5);
@@ -476,22 +482,20 @@ public class GUI extends JFrame {
 				TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 		panel_5.add(panel_7);
 
-		textField = new JTextField();
-		textField.setEnabled(false);
-		textField.setToolTipText("Minimum atk the sets must have");
-		textField.setColumns(5);
-		panel_7.add(textField);
+		minhp_Text = new JTextField();
+		minhp_Text.setToolTipText("Minimum atk the sets must have");
+		minhp_Text.setColumns(5);
+		panel_7.add(minhp_Text);
 
 		JPanel panel_8 = new JPanel();
 		panel_8.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min def", TitledBorder.LEADING,
 				TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 		panel_5.add(panel_8);
 
-		textField_1 = new JTextField();
-		textField_1.setEnabled(false);
-		textField_1.setToolTipText("Minimum matk the sets must have");
-		textField_1.setColumns(5);
-		panel_8.add(textField_1);
+		mindef_Text = new JTextField();
+		mindef_Text.setToolTipText("Minimum matk the sets must have");
+		mindef_Text.setColumns(5);
+		panel_8.add(mindef_Text);
 
 		JPanel panel_21 = new JPanel();
 		panel_5.add(panel_21);
