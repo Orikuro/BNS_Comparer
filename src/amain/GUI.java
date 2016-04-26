@@ -1,4 +1,5 @@
 package amain;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -58,6 +59,9 @@ public class GUI extends JFrame {
 	private JComboBox buff1Box = new JComboBox(SoulSet.getAllSets());
 	private JComboBox buff2Combo = new JComboBox();
 	private JCheckBox critCheck = new JCheckBox("crit only");
+	private JCheckBox ecrit_max_Check = new JCheckBox("max");
+	private JSpinner ecrit_max_Spinner = new JSpinner();
+
 	/**
 	 * Launch the application.
 	 */
@@ -81,7 +85,7 @@ public class GUI extends JFrame {
 		String output = "";
 		String cpu = "";
 
-		String sort = " -sort "+sort_List.getSelectedValue().toString();
+		String sort = " -sort " + sort_List.getSelectedValue().toString();
 
 		String sets = " -sets \"";
 
@@ -94,15 +98,14 @@ public class GUI extends JFrame {
 		if (cpu_List.getSelectedIndex() > 0) {
 			cpu = " -f " + cpu_List.getSelectedValue();
 		}
-		output += sets +  sort + cpu;
-		
-		if (buff1Combo.getSelectedIndex() > 0){
-			output += " -aset "+buff1Box.getSelectedItem().toString() + " -acount "+buff1Combo.getSelectedItem();
-		}
-		if (buff2Box.isEnabled() && buff2Combo.getSelectedIndex() > 0){
-			output += " -bset "+buff2Box.getSelectedItem().toString() + " -bcount "+buff2Combo.getSelectedItem();
-		}
+		output += sets + sort + cpu;
 
+		if (buff1Combo.getSelectedIndex() > 0) {
+			output += " -aset " + buff1Box.getSelectedItem().toString() + " -acount " + buff1Combo.getSelectedItem();
+		}
+		if (buff2Box.isEnabled() && buff2Combo.getSelectedIndex() > 0) {
+			output += " -bset " + buff2Box.getSelectedItem().toString() + " -bcount " + buff2Combo.getSelectedItem();
+		}
 
 		if (noinfo_Check.isSelected()) {
 			output += " -noinfo";
@@ -110,8 +113,8 @@ public class GUI extends JFrame {
 		if (nocsv_Check.isSelected()) {
 			output += " -nocsv";
 		}
-		
-		if (critCheck.isSelected()){
+
+		if (critCheck.isSelected()) {
 			output += " -critonly ";
 		}
 
@@ -130,6 +133,14 @@ public class GUI extends JFrame {
 
 		if (result_Text.getText().length() > 0) {
 			output += " -r " + result_Text.getText().trim();
+		}
+
+		if (ecrit_max_Check.isSelected()) {
+			output += " -ecrit \"9999 crit\" ";
+		} else {
+			if ((int) ecrit_max_Spinner.getValue() > 0) {
+				output += " -ecrit \"" + ecrit_max_Spinner.getValue() + " crit\" ";
+			}
 		}
 
 		System.out.println(output);
@@ -260,53 +271,53 @@ public class GUI extends JFrame {
 		JTextArea buff2Text = new JTextArea();
 		buff1Box.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (buff1Combo.getSelectedIndex() == 1){
+				if (buff1Combo.getSelectedIndex() == 1) {
 					buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(3));
 				}
-				if (buff1Combo.getSelectedIndex() == 2){
+				if (buff1Combo.getSelectedIndex() == 2) {
 					buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(5));
 				}
-				if (buff1Combo.getSelectedIndex() == 3){
+				if (buff1Combo.getSelectedIndex() == 3) {
 					buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(8));
 				}
 			}
 		});
-		
-				panel_23.add(buff1Combo);
-				buff1Combo.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						if (buff1Combo.getSelectedIndex() == 1 || buff1Combo.getSelectedIndex() == 2) {
-							buff2Box.setEnabled(true);
-							buff2Combo.setEnabled(true);
 
-						} else {
-							buff2Box.setEnabled(false);
-							buff2Combo.setEnabled(false);
-						}
-						if (buff1Combo.getSelectedIndex() == 1){
-							buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(3));
-						}
-						if (buff1Combo.getSelectedIndex() == 2){
-							buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(5));
-						}
-						if (buff1Combo.getSelectedIndex() == 3){
-							buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(8));
-						}
-					}
-				});
-				buff1Combo.setFont(new Font("Tahoma", Font.PLAIN, 8));
-				buff1Combo.setModel(new DefaultComboBoxModel(new String[] {"None", "3", "5", "8"}));
+		panel_23.add(buff1Combo);
+		buff1Combo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (buff1Combo.getSelectedIndex() == 1 || buff1Combo.getSelectedIndex() == 2) {
+					buff2Box.setEnabled(true);
+					buff2Combo.setEnabled(true);
+
+				} else {
+					buff2Box.setEnabled(false);
+					buff2Combo.setEnabled(false);
+				}
+				if (buff1Combo.getSelectedIndex() == 1) {
+					buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(3));
+				}
+				if (buff1Combo.getSelectedIndex() == 2) {
+					buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(5));
+				}
+				if (buff1Combo.getSelectedIndex() == 3) {
+					buff1Text.setText(((SoulSet) buff1Box.getSelectedItem()).getBuff(8));
+				}
+			}
+		});
+		buff1Combo.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		buff1Combo.setModel(new DefaultComboBoxModel(new String[] { "None", "3", "5", "8" }));
 		panel_23.add(buff1Box);
 
 		buff2Box.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (buff2Combo.getSelectedIndex() == 1){
+				if (buff2Combo.getSelectedIndex() == 1) {
 					buff2Text.setText(((SoulSet) buff2Box.getSelectedItem()).getBuff(3));
 				}
-				if (buff2Combo.getSelectedIndex() == 2){
+				if (buff2Combo.getSelectedIndex() == 2) {
 					buff2Text.setText(((SoulSet) buff2Box.getSelectedItem()).getBuff(5));
 				}
-				if (buff2Combo.getSelectedIndex() == 3){
+				if (buff2Combo.getSelectedIndex() == 3) {
 					buff2Text.setText(((SoulSet) buff2Box.getSelectedItem()).getBuff(8));
 				}
 			}
@@ -318,7 +329,6 @@ public class GUI extends JFrame {
 		flowLayout_1.setVgap(0);
 		flowLayout_1.setHgap(0);
 		panel_18.add(panel_24);
-
 
 		buff1Text.setWrapStyleWord(true);
 		buff1Text.setTabSize(10);
@@ -333,23 +343,23 @@ public class GUI extends JFrame {
 
 		JPanel panel_20 = new JPanel();
 		panel_17.add(panel_20);
-		
-				buff2Combo.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						if (buff2Combo.getSelectedIndex() == 1){
-							buff2Text.setText(((SoulSet) buff2Box.getSelectedItem()).getBuff(3));
-						}
-						if (buff2Combo.getSelectedIndex() == 2){
-							buff2Text.setText(((SoulSet) buff2Box.getSelectedItem()).getBuff(5));
-						}
-						if (buff2Combo.getSelectedIndex() == 3){
-							buff2Text.setText(((SoulSet) buff2Box.getSelectedItem()).getBuff(8));
-						}
-					}
-				});
-				buff2Combo.setFont(new Font("Tahoma", Font.PLAIN, 8));
-				buff2Combo.setModel(new DefaultComboBoxModel(new String[] {"None", "3", "5"}));
-				panel_20.add(buff2Combo);
+
+		buff2Combo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (buff2Combo.getSelectedIndex() == 1) {
+					buff2Text.setText(((SoulSet) buff2Box.getSelectedItem()).getBuff(3));
+				}
+				if (buff2Combo.getSelectedIndex() == 2) {
+					buff2Text.setText(((SoulSet) buff2Box.getSelectedItem()).getBuff(5));
+				}
+				if (buff2Combo.getSelectedIndex() == 3) {
+					buff2Text.setText(((SoulSet) buff2Box.getSelectedItem()).getBuff(8));
+				}
+			}
+		});
+		buff2Combo.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		buff2Combo.setModel(new DefaultComboBoxModel(new String[] { "None", "3", "5" }));
+		panel_20.add(buff2Combo);
 		buff2Box.setSelectedIndex(1);
 		panel_20.add(buff2Box);
 
@@ -359,7 +369,6 @@ public class GUI extends JFrame {
 		flowLayout_2.setVgap(0);
 		flowLayout_2.setHgap(0);
 		panel_17.add(panel_25);
-
 
 		buff2Text.setWrapStyleWord(true);
 		buff2Text.setText("yyy");
@@ -379,15 +388,11 @@ public class GUI extends JFrame {
 		JLabel lblCrit = new JLabel("Crit");
 		panel_13.add(lblCrit);
 
-		JCheckBox chckbxMax = new JCheckBox("max");
-		chckbxMax.setEnabled(false);
-		chckbxMax.setSelected(true);
-		panel_13.add(chckbxMax);
+		ecrit_max_Check.setSelected(true);
+		panel_13.add(ecrit_max_Check);
 
-		JSpinner spinner = new JSpinner();
-		spinner.setEnabled(false);
-		spinner.setModel(new SpinnerNumberModel(0, 0, 9999, 1));
-		panel_13.add(spinner);
+		ecrit_max_Spinner.setModel(new SpinnerNumberModel(0, 0, 9999, 10));
+		panel_13.add(ecrit_max_Spinner);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new TitledBorder(null, "Other", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -499,7 +504,6 @@ public class GUI extends JFrame {
 
 		JPanel panel_21 = new JPanel();
 		panel_5.add(panel_21);
-
 
 		critCheck.setToolTipText("Only use ss with crit");
 		panel_21.add(critCheck);

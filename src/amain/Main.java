@@ -1,5 +1,7 @@
 package amain;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 
 import org.kohsuke.args4j.CmdLineParser;
@@ -11,7 +13,7 @@ import logic.ThreadStarter;
 import modell.*;
 
 public class Main {
-	public static final String VERSION = "0.9 - 26.04.16 - by Orikuro";
+	public static final String VERSION = "1.0 - 26.04.16 - by Orikuro";
 
 	public static Comparator<ComboSoul> COMBO_COMPARATOR = new CRIT_Combo_Comparator();
 	public static Comparator<SoulShield> SOUL_COMPARATOR = new CRIT_SoulShield_Comparator();
@@ -49,6 +51,10 @@ public class Main {
 		}
 	}
 
+	// enchants
+	@Option(name = "-ecrit", usage = "crit to enchant, default: none")
+	public static String CRIT_ENCHANT = "";
+
 	// Buffs
 	@Option(name = "-acount", usage = "buffset1 count, default: 0")
 	public static int FIRST_COUNT = 0;
@@ -59,6 +65,7 @@ public class Main {
 	private void setFirstBuff(String set) {
 		FIRST_SET = SoulSet.getSetByName(set.trim());
 	}
+
 	@Option(name = "-bset", usage = "buffset2, default: None")
 	private void setSecondBuff(String set) {
 		SECOND_SET = SoulSet.getSetByName(set.trim());
@@ -73,7 +80,7 @@ public class Main {
 	public static int DEF = Integer.MIN_VALUE;
 	@Option(name = "-accu", usage = "minimum accu the combo must have, default: None")
 	public static int ACCU = Integer.MIN_VALUE;
-	
+
 	@Option(name = "-critonly", usage = "only use shields with crit, default: false")
 	public static boolean CRITONLY = false;
 
@@ -90,6 +97,8 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		System.out.println(VERSION);
+		System.out.println(Arrays.toString(args).replace(",", "").replace("[", "")
+				.replace("]", ""));
 
 		if (args == null || args.length < 1) {
 			GUI.main(args);
@@ -121,8 +130,8 @@ public class Main {
 
 		// Filter by Set-Names
 		shields.filterName(SETS);
-		
-		if (CRITONLY){
+
+		if (CRITONLY) {
 			shields.filterCrit();
 		}
 
@@ -130,8 +139,9 @@ public class Main {
 		shields.sort(SOUL_COMPARATOR);
 
 		// enchant shields
-		String enchants = "9999 crit";
-		shields.enchantAll(enchants);
+		if (CRIT_ENCHANT.length() > 0) {
+			shields.enchantAll(CRIT_ENCHANT);
+		}
 
 		// minimum stats
 		new ThreadStarter(args, shields);
