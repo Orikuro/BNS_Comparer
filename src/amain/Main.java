@@ -22,7 +22,7 @@ public class Main {
 	public static SoulSet SECOND_SET = new SoulSet("Leer");
 
 	public static enum Sort {
-		crit, hp, def
+		crit, hp, def, cdef
 	};
 
 	// Main-Infos
@@ -35,18 +35,23 @@ public class Main {
 		switch (sort) {
 		case crit:
 			COMBO_COMPARATOR = new CRIT_Combo_Comparator();
-
+			SOUL_COMPARATOR = new CRIT_SoulShield_Comparator();
 			break;
 		case hp:
 			COMBO_COMPARATOR = new HP_Combo_Comparator();
-
+			SOUL_COMPARATOR = new HP_SoulShield_Comparator();
 			break;
 		case def:
 			COMBO_COMPARATOR = new DEF_Combo_Comparator();
-
+			SOUL_COMPARATOR = new DEF_SoulShield_Comparator();
+			break;
+		case cdef:
+			COMBO_COMPARATOR = new CRITDEF_Combo_Comparator();
+			SOUL_COMPARATOR = new CRITDEF_SoulShield_Comparator();
 			break;
 		default:
 			COMBO_COMPARATOR = new CRIT_Combo_Comparator();
+			SOUL_COMPARATOR = new CRIT_SoulShield_Comparator();
 			break;
 		}
 	}
