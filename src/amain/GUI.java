@@ -61,6 +61,7 @@ public class GUI extends JFrame {
 	private JCheckBox critCheck = new JCheckBox("crit only");
 	private JCheckBox ecrit_max_Check = new JCheckBox("max");
 	private JSpinner ecrit_max_Spinner = new JSpinner();
+	private JTextField mincdef_Text;
 
 	/**
 	 * Launch the application.
@@ -381,9 +382,11 @@ public class GUI extends JFrame {
 		JPanel panel_13 = new JPanel();
 		panel_13.setBorder(new TitledBorder(null, "Enchants", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_4.add(panel_13);
-
-		JLabel lblCrit = new JLabel("Crit");
-		panel_13.add(lblCrit);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"crit", "def", "cdef"}));
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		panel_13.add(comboBox);
 
 		ecrit_max_Check.setSelected(true);
 		panel_13.add(ecrit_max_Check);
@@ -474,6 +477,15 @@ public class GUI extends JFrame {
 		minaccu_Text.setToolTipText("Minimum matk the sets must have");
 		minaccu_Text.setColumns(5);
 		panel_16.add(minaccu_Text);
+		
+		JPanel panel_11 = new JPanel();
+		panel_12.add(panel_11);
+		panel_11.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min cdef", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+		
+		mincdef_Text = new JTextField();
+		mincdef_Text.setToolTipText("Minimum matk the sets must have");
+		mincdef_Text.setColumns(5);
+		panel_11.add(mincdef_Text);
 
 		JPanel panel_5 = new JPanel();
 		panel_2.add(panel_5);
