@@ -8,8 +8,8 @@ public class CRITDEF_Combo_Comparator implements Comparator<ComboSoul>{
 
 	@Override
 	public int compare(ComboSoul o1, ComboSoul o2) {
-		Integer a_crit = o1.getCrit();
-		Integer b_crit = o2.getCrit();
+		Integer a_crit = o1.getCritdef();
+		Integer b_crit = o2.getCritdef();
 		
 		if (a_crit.intValue() == b_crit.intValue()){
 			a_crit = o1.getAccu();
