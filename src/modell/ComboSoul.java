@@ -22,7 +22,8 @@ public class ComboSoul {
 	private int accu = 0;
 	private int block = 0;
 	private int eva = 0;
-
+	private int cdef = 0;
+	
 	public ComboSoul(SoulShield s_1, SoulShield s_2, SoulShield s_3, SoulShield s_4, SoulShield s_5, SoulShield s_6,
 			SoulShield s_7, SoulShield s_8) {
 		super();
@@ -47,7 +48,8 @@ public class ComboSoul {
 				+ S_7.getBlock() + S_8.getBlock();
 		eva = S_1.getEvasion() + S_2.getEvasion() + S_3.getEvasion() + S_4.getEvasion() + S_5.getEvasion()
 				+ S_6.getEvasion() + S_7.getEvasion() + S_8.getEvasion();
-
+		cdef = S_1.getCritdef() + S_2.getCritdef() + S_3.getCritdef() + S_4.getCritdef() + S_5.getCritdef()
+		+ S_6.getCritdef() + S_7.getCritdef() + S_8.getCritdef();
 	}
 
 	public String toStringConsole() {
@@ -81,6 +83,10 @@ public class ComboSoul {
 
 	public int getAccu() {
 		return accu;
+	}
+	
+	public int getCritdef() {
+		return cdef;
 	}
 
 }
