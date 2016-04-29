@@ -127,10 +127,13 @@ public class GUI extends JFrame {
 			output += " -accu " + minaccu_Text.getText().trim();
 		}
 		if (minhp_Text.getText().length() > 0) {
-			output += " -hp " + minaccu_Text.getText().trim();
+			output += " -hp " + minhp_Text.getText().trim();
 		}
 		if (mindef_Text.getText().length() > 0) {
-			output += " -def " + minaccu_Text.getText().trim();
+			output += " -def " + mindef_Text.getText().trim();
+		}
+		if (mincdef_Text.getText().length() > 0) {
+			output += " -cdef " + mincdef_Text.getText().trim();
 		}
 
 		if (result_Text.getText().length() > 0) {
