@@ -232,17 +232,14 @@ public class GUI extends JFrame {
 		panel.add(panel_22);
 
 		sort_List = new JList();
-		sort_List.setEnabled(false);
 		panel_22.add(sort_List);
 		sort_List.setToolTipText("Sort by");
 		sort_List.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		sort_List.setModel(new AbstractListModel() {
-			String[] values = new String[] { "crit", "hp", "def" };
-
+			String[] values = new String[] {"crit", "hp", "def", "cdef"};
 			public int getSize() {
 				return values.length;
 			}
-
 			public Object getElementAt(int index) {
 				return values[index];
 			}
