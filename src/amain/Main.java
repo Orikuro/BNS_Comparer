@@ -13,7 +13,7 @@ import logic.ThreadStarter;
 import modell.*;
 
 public class Main {
-	public static final String VERSION = "1.0 - 26.04.16 - by Orikuro";
+	public static final String VERSION = "1.2 - 30.04.16 - by Orikuro";
 
 	public static Comparator<ComboSoul> COMBO_COMPARATOR = new CRIT_Combo_Comparator();
 	public static Comparator<SoulShield> SOUL_COMPARATOR = new CRIT_SoulShield_Comparator();
