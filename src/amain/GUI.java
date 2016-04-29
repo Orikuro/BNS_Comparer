@@ -62,6 +62,7 @@ public class GUI extends JFrame {
 	private JCheckBox ecrit_max_Check = new JCheckBox("max");
 	private JSpinner ecrit_max_Spinner = new JSpinner();
 	private JTextField mincdef_Text;
+	private JComboBox enchant_all_Box = new JComboBox();
 
 	/**
 	 * Launch the application.
@@ -137,10 +138,10 @@ public class GUI extends JFrame {
 		}
 
 		if (ecrit_max_Check.isSelected()) {
-			output += " -ecrit \"9999 crit\" ";
+			output += " -eall \"9999 "+enchant_all_Box.getSelectedItem().toString()+"\"";
 		} else {
 			if ((int) ecrit_max_Spinner.getValue() > 0) {
-				output += " -ecrit \"" + ecrit_max_Spinner.getValue() + " crit\" ";
+				output += " -eall \"" + ecrit_max_Spinner.getValue() + " "+enchant_all_Box.getSelectedItem().toString()+"\"";;
 			}
 		}
 
@@ -237,7 +238,7 @@ public class GUI extends JFrame {
 		sort_List.setToolTipText("Sort by");
 		sort_List.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		sort_List.setModel(new AbstractListModel() {
-			String[] values = new String[] {"crit", "hp", "def", "cdef"};
+			String[] values = new String[] {"crit", "hp", "def", "critdef"};
 			public int getSize() {
 				return values.length;
 			}
@@ -383,10 +384,10 @@ public class GUI extends JFrame {
 		panel_13.setBorder(new TitledBorder(null, "Enchants", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_4.add(panel_13);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"crit", "def", "cdef"}));
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		panel_13.add(comboBox);
+
+		enchant_all_Box.setModel(new DefaultComboBoxModel(new String[] {"crit", "def", "critdef"}));
+		enchant_all_Box.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		panel_13.add(enchant_all_Box);
 
 		ecrit_max_Check.setSelected(true);
 		panel_13.add(ecrit_max_Check);

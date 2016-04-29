@@ -22,7 +22,7 @@ public class Main {
 	public static SoulSet SECOND_SET = new SoulSet("Leer");
 
 	public static enum Sort {
-		crit, hp, def, cdef
+		crit, hp, def, critdef
 	};
 
 	// Main-Infos
@@ -45,7 +45,7 @@ public class Main {
 			COMBO_COMPARATOR = new DEF_Combo_Comparator();
 			SOUL_COMPARATOR = new DEF_SoulShield_Comparator();
 			break;
-		case cdef:
+		case critdef:
 			COMBO_COMPARATOR = new CRITDEF_Combo_Comparator();
 			SOUL_COMPARATOR = new CRITDEF_SoulShield_Comparator();
 			break;
@@ -57,7 +57,7 @@ public class Main {
 	}
 
 	// enchants
-	@Option(name = "-ecrit", usage = "crit to enchant, default: none")
+	@Option(name = "-eall", usage = "enchant all sets with e.g. \"200 crit\", default: none")
 	public static String CRIT_ENCHANT = "";
 
 	// Buffs
