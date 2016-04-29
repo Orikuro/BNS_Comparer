@@ -4,8 +4,8 @@ import amain.Main;
 
 public class ComboSoul {
 
-	public static final String HEADER = "id;crit;accu;hp;def;eva;block;S1;S2;S3;S4;S5;S6;S7;S8;Buff1;Buff2;S1Full;S2Full;S3Full;S4Full;S5Full;S6Full;S7Full;S8Full;";
-	public static final String HEADER_CONSOLE = "id;crit;accu;hp;def;eva;block;S1;S2;S3;S4;S5;S6;S7;S8;Buff1;Buff2;";
+	public static final String HEADER = "id;crit;accu;hp;def;eva;block;critdef;S1;S2;S3;S4;S5;S6;S7;S8;Buff1;Buff2;S1Full;S2Full;S3Full;S4Full;S5Full;S6Full;S7Full;S8Full;";
+	public static final String HEADER_CONSOLE = "id;crit;accu;hp;def;eva;block;critdef;S1;S2;S3;S4;S5;S6;S7;S8;Buff1;Buff2;";
 
 	private SoulShield S_1;
 	private SoulShield S_2;
