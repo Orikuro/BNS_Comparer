@@ -85,6 +85,8 @@ public class Main {
 	public static int DEF = Integer.MIN_VALUE;
 	@Option(name = "-accu", usage = "minimum accu the combo must have, default: None")
 	public static int ACCU = Integer.MIN_VALUE;
+	@Option(name = "-cdef", usage = "minimum cdef the combo must have, default: None")
+	public static int CDEF = Integer.MIN_VALUE;
 
 	@Option(name = "-critonly", usage = "only use shields with crit, default: false")
 	public static boolean CRITONLY = false;

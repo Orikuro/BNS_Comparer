@@ -211,7 +211,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 		for (SoulShield s1 : S_1) {
 			a = 0;
 			aa = 0;
-			t1 = s1.getCrit();
+			t1 = s1.getHp();
 			if (first && s1.getSet().equals(Main.FIRST_SET)) {
 				a++;
 			}
@@ -221,7 +221,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 			for (SoulShield s2 : S_2) {
 				b = 0;
 				bb = 0;
-				t2 = s2.getCrit();
+				t2 = s2.getHp();
 				if (first && s2.getSet().equals(Main.FIRST_SET)) {
 					b++;
 				}
@@ -231,7 +231,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 				for (SoulShield s3 : S_3) {
 					c = 0;
 					cc = 0;
-					t3 = s3.getCrit();
+					t3 = s3.getHp();
 					if (first && s3.getSet().equals(Main.FIRST_SET)) {
 						c++;
 					}
@@ -241,7 +241,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 					for (SoulShield s4 : S_4) {
 						d = 0;
 						dd = 0;
-						t4 = s4.getCrit();
+						t4 = s4.getHp();
 						if (first && s4.getSet().equals(Main.FIRST_SET)) {
 							d++;
 						}
@@ -252,7 +252,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 						for (SoulShield s5 : S_5) {
 							e = 0;
 							ee = 0;
-							t5 = s5.getCrit();
+							t5 = s5.getHp();
 							if (first && s5.getSet().equals(Main.FIRST_SET)) {
 								e++;
 							}
@@ -263,7 +263,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 							for (SoulShield s6 : S_6) {
 								f = 0;
 								ff = 0;
-								t6 = s6.getCrit();
+								t6 = s6.getHp();
 								if (first && s6.getSet().equals(Main.FIRST_SET)) {
 									f++;
 								}
@@ -274,7 +274,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 								for (SoulShield s7 : S_7) {
 									g = 0;
 									gg = 0;
-									t7 = s7.getCrit();
+									t7 = s7.getHp();
 									if (first && s7.getSet().equals(Main.FIRST_SET)) {
 										g++;
 									}
@@ -285,7 +285,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 									for (SoulShield s8 : S_8) {
 										h = 0;
 										hh = 0;
-										t8 = s8.getCrit();
+										t8 = s8.getHp();
 										if (first && s8.getSet().equals(Main.FIRST_SET)) {
 											h++;
 										}
@@ -312,7 +312,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 											Collections.sort(combos, Main.COMBO_COMPARATOR);
 											combos = new ArrayList<ComboSoul>(combos.subList(0, results));
 											synchronized (this) {
-												min = combos.get(results - 1).getCrit();
+												min = combos.get(results - 1).getHp();
 											}
 										}
 									}
@@ -343,7 +343,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 		for (SoulShield s1 : S_1) {
 			a = 0;
 			aa = 0;
-			t1 = s1.getCrit();
+			t1 = s1.getDef();
 			if (first && s1.getSet().equals(Main.FIRST_SET)) {
 				a++;
 			}
@@ -353,7 +353,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 			for (SoulShield s2 : S_2) {
 				b = 0;
 				bb = 0;
-				t2 = s2.getCrit();
+				t2 = s2.getDef();
 				if (first && s2.getSet().equals(Main.FIRST_SET)) {
 					b++;
 				}
@@ -363,7 +363,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 				for (SoulShield s3 : S_3) {
 					c = 0;
 					cc = 0;
-					t3 = s3.getCrit();
+					t3 = s3.getDef();
 					if (first && s3.getSet().equals(Main.FIRST_SET)) {
 						c++;
 					}
@@ -373,7 +373,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 					for (SoulShield s4 : S_4) {
 						d = 0;
 						dd = 0;
-						t4 = s4.getCrit();
+						t4 = s4.getDef();
 						if (first && s4.getSet().equals(Main.FIRST_SET)) {
 							d++;
 						}
@@ -384,7 +384,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 						for (SoulShield s5 : S_5) {
 							e = 0;
 							ee = 0;
-							t5 = s5.getCrit();
+							t5 = s5.getDef();
 							if (first && s5.getSet().equals(Main.FIRST_SET)) {
 								e++;
 							}
@@ -395,7 +395,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 							for (SoulShield s6 : S_6) {
 								f = 0;
 								ff = 0;
-								t6 = s6.getCrit();
+								t6 = s6.getDef();
 								if (first && s6.getSet().equals(Main.FIRST_SET)) {
 									f++;
 								}
@@ -406,7 +406,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 								for (SoulShield s7 : S_7) {
 									g = 0;
 									gg = 0;
-									t7 = s7.getCrit();
+									t7 = s7.getDef();
 									if (first && s7.getSet().equals(Main.FIRST_SET)) {
 										g++;
 									}
@@ -417,7 +417,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 									for (SoulShield s8 : S_8) {
 										h = 0;
 										hh = 0;
-										t8 = s8.getCrit();
+										t8 = s8.getDef();
 										if (first && s8.getSet().equals(Main.FIRST_SET)) {
 											h++;
 										}
@@ -444,7 +444,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 											Collections.sort(combos, Main.COMBO_COMPARATOR);
 											combos = new ArrayList<ComboSoul>(combos.subList(0, results));
 											synchronized (this) {
-												min = combos.get(results - 1).getCrit();
+												min = combos.get(results - 1).getDef();
 											}
 										}
 									}
@@ -475,7 +475,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 		for (SoulShield s1 : S_1) {
 			a = 0;
 			aa = 0;
-			t1 = s1.getCrit();
+			t1 = s1.getCritdef();
 			if (first && s1.getSet().equals(Main.FIRST_SET)) {
 				a++;
 			}
@@ -485,7 +485,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 			for (SoulShield s2 : S_2) {
 				b = 0;
 				bb = 0;
-				t2 = s2.getCrit();
+				t2 = s2.getCritdef();
 				if (first && s2.getSet().equals(Main.FIRST_SET)) {
 					b++;
 				}
@@ -495,7 +495,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 				for (SoulShield s3 : S_3) {
 					c = 0;
 					cc = 0;
-					t3 = s3.getCrit();
+					t3 = s3.getCritdef();
 					if (first && s3.getSet().equals(Main.FIRST_SET)) {
 						c++;
 					}
@@ -505,7 +505,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 					for (SoulShield s4 : S_4) {
 						d = 0;
 						dd = 0;
-						t4 = s4.getCrit();
+						t4 = s4.getCritdef();
 						if (first && s4.getSet().equals(Main.FIRST_SET)) {
 							d++;
 						}
@@ -516,7 +516,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 						for (SoulShield s5 : S_5) {
 							e = 0;
 							ee = 0;
-							t5 = s5.getCrit();
+							t5 = s5.getCritdef();
 							if (first && s5.getSet().equals(Main.FIRST_SET)) {
 								e++;
 							}
@@ -527,7 +527,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 							for (SoulShield s6 : S_6) {
 								f = 0;
 								ff = 0;
-								t6 = s6.getCrit();
+								t6 = s6.getCritdef();
 								if (first && s6.getSet().equals(Main.FIRST_SET)) {
 									f++;
 								}
@@ -538,7 +538,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 								for (SoulShield s7 : S_7) {
 									g = 0;
 									gg = 0;
-									t7 = s7.getCrit();
+									t7 = s7.getCritdef();
 									if (first && s7.getSet().equals(Main.FIRST_SET)) {
 										g++;
 									}
@@ -549,7 +549,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 									for (SoulShield s8 : S_8) {
 										h = 0;
 										hh = 0;
-										t8 = s8.getCrit();
+										t8 = s8.getCritdef();
 										if (first && s8.getSet().equals(Main.FIRST_SET)) {
 											h++;
 										}
@@ -576,7 +576,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 											Collections.sort(combos, Main.COMBO_COMPARATOR);
 											combos = new ArrayList<ComboSoul>(combos.subList(0, results));
 											synchronized (this) {
-												min = combos.get(results - 1).getCrit();
+												min = combos.get(results - 1).getCritdef();
 											}
 										}
 									}
@@ -605,6 +605,9 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 			return false;
 		}
 		if (combo.getDef() < Main.DEF) {
+			return false;
+		}
+		if (combo.getCritdef() < Main.CDEF) {
 			return false;
 		}
 
