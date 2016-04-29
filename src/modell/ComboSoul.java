@@ -53,7 +53,7 @@ public class ComboSoul {
 	}
 
 	public String toStringConsole() {
-		return String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;", crit, accu, hp, def, eva, block,
+		return String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;", crit, accu, hp, def, eva, block,cdef,
 				S_1.getSet().getName() + " 1", S_2.getSet().getName() + " 2", S_3.getSet().getName() + " 3",
 				S_4.getSet().getName() + " 4", S_5.getSet().getName() + " 5", S_6.getSet().getName() + " 6",
 				S_7.getSet().getName() + " 7", S_8.getSet().getName() + " 8", Main.FIRST_SET.getBuff(Main.FIRST_COUNT),
@@ -62,7 +62,7 @@ public class ComboSoul {
 
 	@Override
 	public String toString() {
-		return String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;", crit, accu, hp, def, eva, block,
+		return String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;", crit, accu, hp, def, eva, block,cdef,
 				S_1.getSet().getName() + " 1", S_2.getSet().getName() + " 2", S_3.getSet().getName() + " 3",
 				S_4.getSet().getName() + " 4", S_5.getSet().getName() + " 5", S_6.getSet().getName() + " 6",
 				S_7.getSet().getName() + " 7", S_8.getSet().getName() + " 8", Main.FIRST_SET.getBuff(Main.FIRST_COUNT),
