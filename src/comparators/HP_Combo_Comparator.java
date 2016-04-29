@@ -10,6 +10,10 @@ public class HP_Combo_Comparator implements Comparator<ComboSoul>{
 	public int compare(ComboSoul o1, ComboSoul o2) {
 		Integer a = o1.getHp();
 		Integer b = o2.getHp();
+		if (a.intValue() == b.intValue()){
+			a = o1.getAccu();
+			b = o2.getAccu();
+		}
 		return b.compareTo(a);
 	}
 
