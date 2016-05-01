@@ -103,10 +103,10 @@ public class GUI extends JFrame {
 		output += sets + sort + cpu;
 
 		if (buff1Combo.getSelectedIndex() > 0) {
-			output += " -aset " + buff1Box.getSelectedItem().toString() + " -acount " + buff1Combo.getSelectedItem();
+			output += " -aset \"" + buff1Box.getSelectedItem().toString() + "\" -acount " + buff1Combo.getSelectedItem();
 		}
 		if (buff2Box.isEnabled() && buff2Combo.getSelectedIndex() > 0) {
-			output += " -bset " + buff2Box.getSelectedItem().toString() + " -bcount " + buff2Combo.getSelectedItem();
+			output += " -bset \"" + buff2Box.getSelectedItem().toString() + "\" -bcount " + buff2Combo.getSelectedItem();
 		}
 
 		if (noinfo_Check.isSelected()) {
