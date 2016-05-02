@@ -89,4 +89,8 @@ public class ComboSoul {
 		return cdef;
 	}
 
+	public int calcDefstats() {
+		return def+eva+block+cdef;
+	}
+
 }

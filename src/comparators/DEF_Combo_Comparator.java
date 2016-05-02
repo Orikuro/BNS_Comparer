@@ -10,8 +10,8 @@ public class DEF_Combo_Comparator implements Comparator<ComboSoul>{
 		Integer a = o1.getDef();
 		Integer b = o2.getDef();
 		if (a.intValue() == b.intValue()){
-			a = o1.getAccu();
-			b = o2.getAccu();
+			a = o1.calcDefstats();
+			b = o2.calcDefstats();
 		}
 		return b.compareTo(a);
 	}

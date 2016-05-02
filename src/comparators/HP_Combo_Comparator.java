@@ -11,8 +11,8 @@ public class HP_Combo_Comparator implements Comparator<ComboSoul>{
 		Integer a = o1.getHp();
 		Integer b = o2.getHp();
 		if (a.intValue() == b.intValue()){
-			a = o1.getAccu();
-			b = o2.getAccu();
+			a = o1.calcDefstats();
+			b = o2.calcDefstats();
 		}
 		return b.compareTo(a);
 	}
