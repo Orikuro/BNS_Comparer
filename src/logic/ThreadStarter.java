@@ -28,10 +28,10 @@ public class ThreadStarter {
 
 	private void start(SoulShields shields) {
 		List<ComboSoul> combs = new ArrayList<ComboSoul>();
-		
+
 		int results = 10;
-		
-		if (!Main.NOCSV){
+
+		if (Main.RESULTS > 0) {
 			results = Main.RESULTS;
 		}
 
@@ -97,13 +97,9 @@ public class ThreadStarter {
 			return;
 		}
 
-		System.out.println(ComboSoul.HEADER);
+		System.out.println(ComboSoul.HEADER_CONSOLE);
 		for (int i = 0; i < combs.size(); i++) {
 			System.out.println(i + ";" + combs.get(i).toStringConsole());
-			if (i >= 10) {
-				System.out.println("[...]");
-				break;
-			}
 		}
 
 		if (!Main.NOCSV) {
