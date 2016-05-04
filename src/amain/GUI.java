@@ -482,8 +482,7 @@ public class GUI extends JFrame {
 		panel_2.setBorder(new TitledBorder(null, "Restrictions", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
 		JPanel panel_28 = new JPanel();
-		panel_28.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "only", TitledBorder.LEADING,
-				TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+		panel_28.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "not", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 		panel_2.add(panel_28);
 
 		JLabel label_1 = new JLabel(" ");
@@ -501,7 +500,7 @@ public class GUI extends JFrame {
 				return values[index];
 			}
 		});
-		not_List.setToolTipText("only select ss number this");
+		not_List.setToolTipText("dont use these ss");
 
 		JLabel label_2 = new JLabel(" ");
 		panel_28.add(label_2);
