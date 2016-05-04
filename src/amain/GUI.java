@@ -235,9 +235,13 @@ public class GUI extends JFrame {
 		panel_22.setAlignmentX(0.0f);
 		panel_22.setBorder(new TitledBorder(null, "Sort by", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.add(panel_22);
+		
+		JPanel panel_27 = new JPanel();
+		panel_22.add(panel_27);
+		panel_27.setLayout(new BoxLayout(panel_27, BoxLayout.Y_AXIS));
 
 		sort_List = new JList();
-		panel_22.add(sort_List);
+		panel_27.add(sort_List);
 		sort_List.setToolTipText("Sort by");
 		sort_List.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		sort_List.setModel(new AbstractListModel() {
@@ -250,6 +254,9 @@ public class GUI extends JFrame {
 			}
 		});
 		sort_List.setSelectedIndex(0);
+		
+		JLabel label = new JLabel("  ");
+		panel_27.add(label);
 
 		JPanel panel_15 = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel_15.getLayout();
@@ -457,6 +464,29 @@ public class GUI extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_3.add(panel_2);
 		panel_2.setBorder(new TitledBorder(null, "Restrictions", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
+		JPanel panel_28 = new JPanel();
+		panel_28.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "only", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+		panel_2.add(panel_28);
+		
+		JLabel label_1 = new JLabel(" ");
+		panel_28.add(label_1);
+		
+		JList list = new JList();
+		panel_28.add(list);
+		list.setModel(new AbstractListModel() {
+			String[] values = new String[] {"1", "2", "3", "4", "5", "6", "7", "8"};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		list.setToolTipText("only select ss number this");
+		
+		JLabel label_2 = new JLabel(" ");
+		panel_28.add(label_2);
 
 		JPanel panel_12 = new JPanel();
 		panel_2.add(panel_12);
