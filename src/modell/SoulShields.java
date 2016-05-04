@@ -323,7 +323,7 @@ public class SoulShields {
 		System.out.println(count + " Soulshields removed due to no crit ;_;" );
 	}
 
-	public void onlyUse(String only) {
+	public void dontUse(String only) {
 		
 		SoulShield empty = new SoulShield("");
 		

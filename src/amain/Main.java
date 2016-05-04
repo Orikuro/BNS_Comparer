@@ -144,10 +144,6 @@ public class Main {
 			shields.filterCrit();
 		}
 		
-		if (NOT.length() > 0) {
-			shields.onlyUse(NOT);
-		}
-
 		// pre-sort ss by crit, def, hp
 		shields.sort(SOUL_COMPARATOR);
 
@@ -155,7 +151,11 @@ public class Main {
 		if (CRIT_ENCHANT.length() > 0) {
 			shields.enchantAll(CRIT_ENCHANT);
 		}
-
+		
+		if (NOT.length() > 0) {
+			shields.dontUse(NOT);
+		}
+		System.out.println(shields.getS_1());
 		// minimum stats
 		new ThreadStarter(args, shields);
 

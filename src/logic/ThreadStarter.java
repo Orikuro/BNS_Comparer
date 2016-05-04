@@ -107,6 +107,7 @@ public class ThreadStarter {
 
 		int maxsize = shields.getS_1().size();
 		int index = 1;
+		System.out.println(shields.getS_1());
 
 		if (shields.getS_2().size() > maxsize) {
 			maxsize = shields.getS_2().size();
