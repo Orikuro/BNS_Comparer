@@ -49,6 +49,7 @@ public class SoulSet {
 	public SoulSet(String name) {
 		super();
 		this.name = name;
+		id = -1;
 	}
 
 	public String getName() {
