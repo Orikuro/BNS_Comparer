@@ -322,4 +322,44 @@ public class SoulShields {
 		
 		System.out.println(count + " Soulshields removed due to no crit ;_;" );
 	}
+
+	public void onlyUse(String only) {
+		
+		SoulShield empty = new SoulShield("");
+		
+		if (only.contains("1")){
+			S_1.clear();
+			S_1.add(empty);
+		}
+		if (only.contains("2")){
+			S_2.clear();
+			S_2.add(empty);
+		}
+		if (only.contains("3")){
+			S_3.clear();
+			S_3.add(empty);
+		}
+		if (only.contains("4")){
+			S_4.clear();
+			S_4.add(empty);
+		}
+		if (only.contains("5")){
+			S_5.clear();
+			S_5.add(empty);
+		}
+		if (only.contains("6")){
+			S_6.clear();
+			S_6.add(empty);
+		}
+		if (only.contains("7")){
+			S_7.clear();
+			S_7.add(empty);
+		}
+		if (only.contains("8")){
+			S_8.clear();
+			S_8.add(empty);
+		}
+		
+		
+	}
 }

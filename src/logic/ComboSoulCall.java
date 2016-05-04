@@ -29,10 +29,11 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 
 	private List<ComboSoul> combos = new ArrayList<>();
 
-	public ComboSoulCall(int res, SoulShield s_1, List<SoulShield> s_2, List<SoulShield> s_3, List<SoulShield> s_4,
-			List<SoulShield> s_5, List<SoulShield> s_6, List<SoulShield> s_7, List<SoulShield> s_8) {
+	public ComboSoulCall(int res, List<SoulShield> s_1, List<SoulShield> s_2, List<SoulShield> s_3,
+			List<SoulShield> s_4, List<SoulShield> s_5, List<SoulShield> s_6, List<SoulShield> s_7,
+			List<SoulShield> s_8) {
 		super();
-		S_1.add(s_1);
+		S_1 = s_1;
 		S_2 = s_2;
 		S_3 = s_3;
 		S_4 = s_4;

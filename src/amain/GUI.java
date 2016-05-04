@@ -63,6 +63,7 @@ public class GUI extends JFrame {
 	private JSpinner ecrit_max_Spinner = new JSpinner();
 	private JTextField mincdef_Text;
 	private JComboBox enchant_all_Box = new JComboBox();
+	JList not_List = new JList();
 
 	/**
 	 * Launch the application.
@@ -103,10 +104,12 @@ public class GUI extends JFrame {
 		output += sets + sort + cpu;
 
 		if (buff1Combo.getSelectedIndex() > 0) {
-			output += " -aset \"" + buff1Box.getSelectedItem().toString() + "\" -acount " + buff1Combo.getSelectedItem();
+			output += " -aset \"" + buff1Box.getSelectedItem().toString() + "\" -acount "
+					+ buff1Combo.getSelectedItem();
 		}
 		if (buff2Box.isEnabled() && buff2Combo.getSelectedIndex() > 0) {
-			output += " -bset \"" + buff2Box.getSelectedItem().toString() + "\" -bcount " + buff2Combo.getSelectedItem();
+			output += " -bset \"" + buff2Box.getSelectedItem().toString() + "\" -bcount "
+					+ buff2Combo.getSelectedItem();
 		}
 
 		if (noinfo_Check.isSelected()) {
@@ -141,11 +144,23 @@ public class GUI extends JFrame {
 		}
 
 		if (ecrit_max_Check.isSelected()) {
-			output += " -eall \"9999 "+enchant_all_Box.getSelectedItem().toString()+"\"";
+			output += " -eall \"9999 " + enchant_all_Box.getSelectedItem().toString() + "\"";
 		} else {
 			if ((int) ecrit_max_Spinner.getValue() > 0) {
-				output += " -eall \"" + ecrit_max_Spinner.getValue() + " "+enchant_all_Box.getSelectedItem().toString()+"\"";;
+				output += " -eall \"" + ecrit_max_Spinner.getValue() + " "
+						+ enchant_all_Box.getSelectedItem().toString() + "\"";
+				;
 			}
+		}
+
+		if (!not_List.isSelectionEmpty()) {
+			String only = " -not \"";
+
+			for (Object s : not_List.getSelectedValues()) {
+				only += s;
+			}
+			only += "\"";
+			output += only;
 		}
 
 		System.out.println(output);
@@ -235,7 +250,7 @@ public class GUI extends JFrame {
 		panel_22.setAlignmentX(0.0f);
 		panel_22.setBorder(new TitledBorder(null, "Sort by", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.add(panel_22);
-		
+
 		JPanel panel_27 = new JPanel();
 		panel_22.add(panel_27);
 		panel_27.setLayout(new BoxLayout(panel_27, BoxLayout.Y_AXIS));
@@ -245,16 +260,18 @@ public class GUI extends JFrame {
 		sort_List.setToolTipText("Sort by");
 		sort_List.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		sort_List.setModel(new AbstractListModel() {
-			String[] values = new String[] {"crit", "hp", "def", "critdef"};
+			String[] values = new String[] { "crit", "hp", "def", "critdef" };
+
 			public int getSize() {
 				return values.length;
 			}
+
 			public Object getElementAt(int index) {
 				return values[index];
 			}
 		});
 		sort_List.setSelectedIndex(0);
-		
+
 		JLabel label = new JLabel("  ");
 		panel_27.add(label);
 
@@ -393,9 +410,8 @@ public class GUI extends JFrame {
 		JPanel panel_13 = new JPanel();
 		panel_13.setBorder(new TitledBorder(null, "Enchants", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_4.add(panel_13);
-		
 
-		enchant_all_Box.setModel(new DefaultComboBoxModel(new String[] {"crit", "def", "critdef"}));
+		enchant_all_Box.setModel(new DefaultComboBoxModel(new String[] { "crit", "def", "critdef" }));
 		enchant_all_Box.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panel_13.add(enchant_all_Box);
 
@@ -464,27 +480,29 @@ public class GUI extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_3.add(panel_2);
 		panel_2.setBorder(new TitledBorder(null, "Restrictions", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		
+
 		JPanel panel_28 = new JPanel();
-		panel_28.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "only", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+		panel_28.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "only", TitledBorder.LEADING,
+				TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
 		panel_2.add(panel_28);
-		
+
 		JLabel label_1 = new JLabel(" ");
 		panel_28.add(label_1);
-		
-		JList list = new JList();
-		panel_28.add(list);
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"1", "2", "3", "4", "5", "6", "7", "8"};
+
+		panel_28.add(not_List);
+		not_List.setModel(new AbstractListModel() {
+			String[] values = new String[] { "1", "2", "3", "4", "5", "6", "7", "8" };
+
 			public int getSize() {
 				return values.length;
 			}
+
 			public Object getElementAt(int index) {
 				return values[index];
 			}
 		});
-		list.setToolTipText("only select ss number this");
-		
+		not_List.setToolTipText("only select ss number this");
+
 		JLabel label_2 = new JLabel(" ");
 		panel_28.add(label_2);
 
@@ -511,11 +529,12 @@ public class GUI extends JFrame {
 		minaccu_Text.setToolTipText("Minimum matk the sets must have");
 		minaccu_Text.setColumns(5);
 		panel_16.add(minaccu_Text);
-		
+
 		JPanel panel_11 = new JPanel();
 		panel_12.add(panel_11);
-		panel_11.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min cdef", TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
-		
+		panel_11.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Min cdef",
+				TitledBorder.LEADING, TitledBorder.BOTTOM, null, new Color(0, 0, 0)));
+
 		mincdef_Text = new JTextField();
 		mincdef_Text.setToolTipText("Minimum matk the sets must have");
 		mincdef_Text.setColumns(5);

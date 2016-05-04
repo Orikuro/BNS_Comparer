@@ -15,11 +15,17 @@ public class SoulShield {
 	private int evasion = 0;
 	private int critdef = 0;
 
+	public SoulShield(String name) {
+		set = SoulSet.getSetByName(name.trim());
+		position = 0;
+		maxenchant = 0;
+		set = new SoulSet(" ");
+	}
+	
 	public SoulShield(String name, String pos, String max) {
 		set = SoulSet.getSetByName(name.trim());
 		position = new Integer(pos.trim());
 		maxenchant = new Integer(max.trim());
-
 	}
 
 	public SoulShield(SoulShield base) {

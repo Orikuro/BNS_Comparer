@@ -13,7 +13,7 @@ import logic.ThreadStarter;
 import modell.*;
 
 public class Main {
-	public static final String VERSION = "1.4 - 03.05.16 - by Orikuro";
+	public static final String VERSION = "1.5 - 04.05.16 - 1-8SS - by Orikuro";
 
 	public static Comparator<ComboSoul> COMBO_COMPARATOR = new CRIT_Combo_Comparator();
 	public static Comparator<SoulShield> SOUL_COMPARATOR = new CRIT_SoulShield_Comparator();
@@ -87,6 +87,8 @@ public class Main {
 	public static int ACCU = Integer.MIN_VALUE;
 	@Option(name = "-cdef", usage = "minimum cdef the combo must have, default: None")
 	public static int CDEF = Integer.MIN_VALUE;
+	@Option(name = "-not", usage = "soulshields to ignore, eg. \"1458\" = dont use 1,4,5 and 8 for comparisons")
+	public static String NOT = "";
 
 	@Option(name = "-critonly", usage = "only use shields with crit, default: false")
 	public static boolean CRITONLY = false;
@@ -140,6 +142,10 @@ public class Main {
 
 		if (CRITONLY) {
 			shields.filterCrit();
+		}
+		
+		if (NOT.length() > 0) {
+			shields.onlyUse(NOT);
 		}
 
 		// pre-sort ss by crit, def, hp
