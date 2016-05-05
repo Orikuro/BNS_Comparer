@@ -131,7 +131,7 @@ Dragon Citadel;3;235;4230 hp;329 eva;1;141 accu;1410 hp;141 eva;
 Dragon Citadel;4;245;4420 hp;343 def;1;147 crit;1470 hp;147 block;
 Dragon Citadel;5;266;4790 hp;372 eva;1;159 crit;159 def;159 block;
 Dragon Citadel;6;276;4970 hp;3860 hp;1;165 crit;165 def;165 block;
-Dragon Citadel;7;286;5160 hp;401 block;1;171 critdef;171 block;171 def;
+Dragon Citadel;7;286;5160 hp;401 block;1;171 crit;171 block;171 def;
 Dragon Citadel;8;296;5340 hp;415 crit;1;177 accu;177 def;1770 hp;
 ;;;;;;;;;
 Legenday;1;268;4640 hp;376 accu;1;160 crit;160 block;160 eva;
