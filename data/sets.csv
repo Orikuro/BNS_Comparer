@@ -10,3 +10,8 @@ Mushin;560 hp;169 def;2370 hp, 101 eva
 Moonwater;50 block;1520 hp;2130 hp, 91 def
 Blackram;50 accu;152 eva;213 pierce, 91 block
 Hell Island;122 accu;3670 hp;5140 hp, 220def, 300 crit, 500 crit 9sec buff
+Split Maze;96 accu, 265 pierce;;
+Erosion;104 pierce;314 eva;440 pierce, 188 crit
+Forgotten Tomb;7 critdam;;
+Dragon Citadel;7 ap;12 critdam;284 pierce, 2000 hp
+Legenday;BUFF1;10 ap, 15 critdam;BUFF2
