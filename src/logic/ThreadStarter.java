@@ -41,7 +41,7 @@ public class ThreadStarter {
 				* shields.getS_8().size();
 
 		System.out.println(df.format(total) + " Combinations");
-
+		
 		long start = System.currentTimeMillis();
 		try {
 			// 1/4 Loadbalancing - Forking
@@ -136,7 +136,6 @@ public class ThreadStarter {
 			maxsize = shields.getS_8().size();
 			index = 8;
 		}
-		
 
 		switch (index) {
 		case 1:
@@ -170,8 +169,9 @@ public class ThreadStarter {
 			for (int i = 0; i < shields.getS_4().size(); i++) {
 				List<SoulShield> splits = new ArrayList<>();
 				splits.add(shields.getS_4().get(i));
-				Callable<List<ComboSoul>> c = new ComboSoulCall(results, shields.getS_1(), shields.getS_2(), shields.getS_3(),
-						splits, shields.getS_5(), shields.getS_6(), shields.getS_7(), shields.getS_8());
+				Callable<List<ComboSoul>> c = new ComboSoulCall(results, shields.getS_1(), shields.getS_2(),
+						shields.getS_3(), splits, shields.getS_5(), shields.getS_6(), shields.getS_7(),
+						shields.getS_8());
 				tasks.add(c);
 			}
 			break;
@@ -179,8 +179,9 @@ public class ThreadStarter {
 			for (int i = 0; i < shields.getS_5().size(); i++) {
 				List<SoulShield> splits = new ArrayList<>();
 				splits.add(shields.getS_5().get(i));
-				Callable<List<ComboSoul>> c = new ComboSoulCall(results, shields.getS_1(), shields.getS_2(), shields.getS_3(),
-						shields.getS_4(), splits, shields.getS_6(), shields.getS_7(), shields.getS_8());
+				Callable<List<ComboSoul>> c = new ComboSoulCall(results, shields.getS_1(), shields.getS_2(),
+						shields.getS_3(), shields.getS_4(), splits, shields.getS_6(), shields.getS_7(),
+						shields.getS_8());
 				tasks.add(c);
 			}
 			break;
@@ -188,8 +189,9 @@ public class ThreadStarter {
 			for (int i = 0; i < shields.getS_6().size(); i++) {
 				List<SoulShield> splits = new ArrayList<>();
 				splits.add(shields.getS_6().get(i));
-				Callable<List<ComboSoul>> c = new ComboSoulCall(results, shields.getS_1(), shields.getS_2(), shields.getS_3(),
-						shields.getS_4(), shields.getS_5(), splits, shields.getS_7(), shields.getS_8());
+				Callable<List<ComboSoul>> c = new ComboSoulCall(results, shields.getS_1(), shields.getS_2(),
+						shields.getS_3(), shields.getS_4(), shields.getS_5(), splits, shields.getS_7(),
+						shields.getS_8());
 				tasks.add(c);
 			}
 			break;
@@ -197,8 +199,9 @@ public class ThreadStarter {
 			for (int i = 0; i < shields.getS_7().size(); i++) {
 				List<SoulShield> splits = new ArrayList<>();
 				splits.add(shields.getS_7().get(i));
-				Callable<List<ComboSoul>> c = new ComboSoulCall(results, shields.getS_1(), shields.getS_2(), shields.getS_3(),
-						shields.getS_4(), shields.getS_5(), shields.getS_6(), splits, shields.getS_8());
+				Callable<List<ComboSoul>> c = new ComboSoulCall(results, shields.getS_1(), shields.getS_2(),
+						shields.getS_3(), shields.getS_4(), shields.getS_5(), shields.getS_6(), splits,
+						shields.getS_8());
 				tasks.add(c);
 			}
 			break;
@@ -206,13 +209,20 @@ public class ThreadStarter {
 			for (int i = 0; i < shields.getS_8().size(); i++) {
 				List<SoulShield> splits = new ArrayList<>();
 				splits.add(shields.getS_8().get(i));
-				Callable<List<ComboSoul>> c = new ComboSoulCall(results, shields.getS_1(), shields.getS_2(), shields.getS_3(),
-						shields.getS_4(), shields.getS_5(), shields.getS_6(), shields.getS_7(), splits);
+				Callable<List<ComboSoul>> c = new ComboSoulCall(results, shields.getS_1(), shields.getS_2(),
+						shields.getS_3(), shields.getS_4(), shields.getS_5(), shields.getS_6(), shields.getS_7(),
+						splits);
 				tasks.add(c);
 			}
 			break;
 
 		}
+
+		long total = 1l * shields.getS_1().size() * shields.getS_2().size() * shields.getS_3().size()
+				* shields.getS_4().size() * shields.getS_5().size() * shields.getS_6().size() * shields.getS_7().size()
+				* shields.getS_8().size();
+		System.out.println("Each dot is 100m checks. x means 1 Task finished. 1 Task has "
+				+ df.format(total / maxsize) + " comparisons. "+tasks.size()+" total Tasks.");
 		
 		return tasks;
 	}

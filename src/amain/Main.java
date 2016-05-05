@@ -1,6 +1,5 @@
 package amain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -13,7 +12,7 @@ import logic.ThreadStarter;
 import modell.*;
 
 public class Main {
-	public static final String VERSION = "1.5 - 04.05.16 - 1-8SS - by Orikuro";
+	public static final String VERSION = "1.6 - 05.05.16 - 1-8SS, new Sets - by Orikuro";
 
 	public static Comparator<ComboSoul> COMBO_COMPARATOR = new CRIT_Combo_Comparator();
 	public static Comparator<SoulShield> SOUL_COMPARATOR = new CRIT_SoulShield_Comparator();
@@ -155,7 +154,7 @@ public class Main {
 		if (NOT.length() > 0) {
 			shields.dontUse(NOT);
 		}
-		System.out.println(shields.getS_1());
+
 		// minimum stats
 		new ThreadStarter(args, shields);
 
