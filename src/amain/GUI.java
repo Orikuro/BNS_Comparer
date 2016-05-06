@@ -257,15 +257,13 @@ public class GUI extends JFrame {
 
 		sort_List = new JList();
 		panel_27.add(sort_List);
-		sort_List.setToolTipText("Sort by");
+		sort_List.setToolTipText("Sort by X  ( offensiv = crit+accu  II  deffensiv = hp/10 + def + eva + block + critdef )");
 		sort_List.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		sort_List.setModel(new AbstractListModel() {
-			String[] values = new String[] { "crit", "hp", "def", "critdef" };
-
+			String[] values = new String[] {"crit", "hp", "def", "critdef", "offensiv", "deffensiv"};
 			public int getSize() {
 				return values.length;
 			}
-
 			public Object getElementAt(int index) {
 				return values[index];
 			}

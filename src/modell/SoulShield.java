@@ -16,7 +16,7 @@ public class SoulShield {
 	private int critdef = 0;
 	private int offensiv = 0;
 	private int deffensiv = 0;
-	
+
 	public SoulShield(String name) {
 		position = 0;
 		maxenchant = 0;
@@ -40,8 +40,11 @@ public class SoulShield {
 		this.block = base.getBlock();
 		this.evasion = base.getEvasion();
 		this.critdef = base.getCritdef();
-		offensiv = crit+accuracy;
-		deffensiv = hp/10+def+block+evasion+critdef;
+	}
+
+	public void calcOffensivDeffensiv() {
+		offensiv = crit + accuracy;
+		deffensiv = hp / 10 + def + block + evasion + critdef;
 	}
 
 	public int calcTotalAttributeBonus() {
@@ -155,6 +158,7 @@ public class SoulShield {
 		if (temp.endsWith("block")) {
 			block += new Integer(temp.substring(0, temp.indexOf("block")).trim());
 		}
+		calcOffensivDeffensiv();
 	}
 
 	public void addLimited(String string) {
@@ -207,7 +211,7 @@ public class SoulShield {
 			}
 			block += ench;
 		}
-
+		calcOffensivDeffensiv();
 	}
 
 	@Override
