@@ -358,8 +358,6 @@ public class SoulShields {
 		if (only.contains("8")){
 			S_8.clear();
 			S_8.add(empty);
-		}
-		
-		
+		}		
 	}
 }

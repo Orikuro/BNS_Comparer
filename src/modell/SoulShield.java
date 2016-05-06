@@ -14,13 +14,15 @@ public class SoulShield {
 	private int block = 0;
 	private int evasion = 0;
 	private int critdef = 0;
-
+	private int offensiv = 0;
+	private int deffensiv = 0;
+	
 	public SoulShield(String name) {
 		position = 0;
 		maxenchant = 0;
 		set = new SoulSet(" ");
 	}
-	
+
 	public SoulShield(String name, String pos, String max) {
 		set = SoulSet.getSetByName(name.trim());
 		position = new Integer(pos.trim());
@@ -38,6 +40,8 @@ public class SoulShield {
 		this.block = base.getBlock();
 		this.evasion = base.getEvasion();
 		this.critdef = base.getCritdef();
+		offensiv = crit+accuracy;
+		deffensiv = hp/10+def+block+evasion+critdef;
 	}
 
 	public int calcTotalAttributeBonus() {
@@ -241,6 +245,39 @@ public class SoulShield {
 			builder.append(" critdef ");
 		}
 		return builder.toString().trim();
+	}
+
+	public int getdynamic(int flag) {
+		switch (flag) {
+		case 1:
+			return crit;
+		case 2:
+			return accuracy;
+		case 3:
+			return hp;
+		case 4:
+			return def;
+		case 5:
+			return block;
+		case 6:
+			return evasion;
+		case 7:
+			return critdef;
+		case 8:
+			return offensiv;
+		case 9:
+			return deffensiv;
+		}
+
+		return 0;
+	}
+
+	public int getOffensiv() {
+		return offensiv;
+	}
+
+	public int getDeffensiv() {
+		return deffensiv;
 	}
 
 }

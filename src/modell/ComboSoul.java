@@ -23,7 +23,9 @@ public class ComboSoul {
 	private int block = 0;
 	private int eva = 0;
 	private int cdef = 0;
-	
+	private int offensiv = 0;
+	private int deffensiv = 0;
+
 	public ComboSoul(SoulShield s_1, SoulShield s_2, SoulShield s_3, SoulShield s_4, SoulShield s_5, SoulShield s_6,
 			SoulShield s_7, SoulShield s_8) {
 		super();
@@ -49,12 +51,17 @@ public class ComboSoul {
 		eva = S_1.getEvasion() + S_2.getEvasion() + S_3.getEvasion() + S_4.getEvasion() + S_5.getEvasion()
 				+ S_6.getEvasion() + S_7.getEvasion() + S_8.getEvasion();
 		cdef = S_1.getCritdef() + S_2.getCritdef() + S_3.getCritdef() + S_4.getCritdef() + S_5.getCritdef()
-		+ S_6.getCritdef() + S_7.getCritdef() + S_8.getCritdef();
+				+ S_6.getCritdef() + S_7.getCritdef() + S_8.getCritdef();
+
+		offensiv = S_1.getOffensiv() + S_2.getOffensiv() + S_3.getOffensiv() + S_4.getOffensiv() + S_5.getOffensiv()
+				+ S_6.getOffensiv() + S_7.getOffensiv() + S_8.getOffensiv();
+		deffensiv = S_1.getDeffensiv() + S_2.getDeffensiv() + S_3.getDeffensiv() + S_4.getDeffensiv() + S_5.getDeffensiv()
+				+ S_6.getDeffensiv() + S_7.getDeffensiv() + S_8.getDeffensiv();
 	}
 
 	public String toStringConsole() {
-		return String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;", crit, accu, hp, def, eva, block,cdef,
-				S_1.getSet().getName() + " 1", S_2.getSet().getName() + " 2", S_3.getSet().getName() + " 3",
+		return String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;", crit, accu, hp, def, eva, block,
+				cdef, S_1.getSet().getName() + " 1", S_2.getSet().getName() + " 2", S_3.getSet().getName() + " 3",
 				S_4.getSet().getName() + " 4", S_5.getSet().getName() + " 5", S_6.getSet().getName() + " 6",
 				S_7.getSet().getName() + " 7", S_8.getSet().getName() + " 8", Main.FIRST_SET.getBuff(Main.FIRST_COUNT),
 				Main.SECOND_SET.getBuff(Main.SECOND_COUNT));
@@ -62,11 +69,12 @@ public class ComboSoul {
 
 	@Override
 	public String toString() {
-		return String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;", crit, accu, hp, def, eva, block,cdef,
-				S_1.getSet().getName() + " 1", S_2.getSet().getName() + " 2", S_3.getSet().getName() + " 3",
-				S_4.getSet().getName() + " 4", S_5.getSet().getName() + " 5", S_6.getSet().getName() + " 6",
-				S_7.getSet().getName() + " 7", S_8.getSet().getName() + " 8", Main.FIRST_SET.getBuff(Main.FIRST_COUNT),
-				Main.SECOND_SET.getBuff(Main.SECOND_COUNT), S_1, S_2, S_3, S_4, S_5, S_6, S_7, S_8);
+		return String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;", crit, accu,
+				hp, def, eva, block, cdef, S_1.getSet().getName() + " 1", S_2.getSet().getName() + " 2",
+				S_3.getSet().getName() + " 3", S_4.getSet().getName() + " 4", S_5.getSet().getName() + " 5",
+				S_6.getSet().getName() + " 6", S_7.getSet().getName() + " 7", S_8.getSet().getName() + " 8",
+				Main.FIRST_SET.getBuff(Main.FIRST_COUNT), Main.SECOND_SET.getBuff(Main.SECOND_COUNT), S_1, S_2, S_3,
+				S_4, S_5, S_6, S_7, S_8);
 	}
 
 	public int getCrit() {
@@ -84,21 +92,54 @@ public class ComboSoul {
 	public int getAccu() {
 		return accu;
 	}
-	
+
 	public int getCritdef() {
 		return cdef;
 	}
 
 	public int calcDefstats() {
-		return def+eva+block+cdef;
+		return def + eva + block + cdef;
 	}
-	
+
 	public int getOffensive() {
-		return crit+accu;
+		return crit + accu;
 	}
-	
-	public int getDeffensive(){
-		return hp/10+def+cdef+block+eva;
+
+	public int getDeffensive() {
+		return hp / 10 + def + cdef + block + eva;
+	}
+
+	public int getdynamic(int flag) {
+		switch (flag) {
+		case 1:
+			return crit;
+		case 2:
+			return accu;
+		case 3:
+			return hp;
+		case 4:
+			return def;
+		case 5:
+			return block;
+		case 6:
+			return eva;
+		case 7:
+			return cdef;
+		case 8:
+			return offensiv;
+		case 9:
+			return deffensiv;
+		}
+
+		return 0;
+	}
+
+	public int getOffensiv() {
+		return offensiv;
+	}
+
+	public int getDeffensiv() {
+		return deffensiv;
 	}
 
 }

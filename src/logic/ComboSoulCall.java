@@ -26,6 +26,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 
 	private int results = 30;
 	private int thresh;
+	private int flag = 0;
 
 	private List<ComboSoul> combos = new ArrayList<>();
 
@@ -45,7 +46,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 		thresh = results * 2;
 	}
 
-	private static int min = -1;
+
 
 	@Override
 	public List<ComboSoul> call() throws Exception {
@@ -54,19 +55,31 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 
 		switch (compname) {
 		case "CRIT_Combo":
-			return callCrit();
+			flag = 1;
+			break;
 		case "DEF_Combo":
-			return callDef();
+			flag = 4;
+			break;
 		case "HP_Combo":
-			return callHp();
+			flag = 3;
+			break;
 		case "CRITDEF_Combo":
-			return callCritDef();
+			flag = 7;
+			break;
+		case "OFFENSIV_Combo":
+			flag = 8;
+			break;
+		case "DEFFENSIV_Combo":
+			flag = 9;
+			break;
 		default:
 			throw new Exception("Comparator not found");
 		}
+
+		return callDynamic();
 	}
 
-	private List<ComboSoul> callCrit() throws Exception {
+	private List<ComboSoul> callDynamic() throws Exception {
 
 		int i = 0;
 		int total, t1, t2, t3, t4, t5, t6, t7, t8;
