@@ -2,19 +2,17 @@ package logic;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import org.kohsuke.args4j.Option;
-
 import amain.Main;
-import comparators.*;
 import modell.ComboSoul;
 import modell.SoulShield;
 
 public class ComboSoulCall implements Callable<List<ComboSoul>> {
 
+	private static int min = -1;
+	
 	private List<SoulShield> S_1 = new ArrayList<>();
 	private List<SoulShield> S_2 = new ArrayList<>();
 	private List<SoulShield> S_3 = new ArrayList<>();
@@ -27,6 +25,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 	private int results = 30;
 	private int thresh;
 	private int flag = 0;
+	
 
 	private List<ComboSoul> combos = new ArrayList<>();
 
@@ -93,7 +92,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 		for (SoulShield s1 : S_1) {
 			a = 0;
 			aa = 0;
-			t1 = s1.getCrit();
+			t1 = s1.getdynamic(flag);
 			if (first && s1.getSet().equals(Main.FIRST_SET)) {
 				a++;
 			}
@@ -103,7 +102,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 			for (SoulShield s2 : S_2) {
 				b = 0;
 				bb = 0;
-				t2 = s2.getCrit();
+				t2 = s2.getdynamic(flag);
 				if (first && s2.getSet().equals(Main.FIRST_SET)) {
 					b++;
 				}
@@ -113,7 +112,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 				for (SoulShield s3 : S_3) {
 					c = 0;
 					cc = 0;
-					t3 = s3.getCrit();
+					t3 = s3.getdynamic(flag);
 					if (first && s3.getSet().equals(Main.FIRST_SET)) {
 						c++;
 					}
@@ -123,7 +122,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 					for (SoulShield s4 : S_4) {
 						d = 0;
 						dd = 0;
-						t4 = s4.getCrit();
+						t4 = s4.getdynamic(flag);
 						if (first && s4.getSet().equals(Main.FIRST_SET)) {
 							d++;
 						}
@@ -134,7 +133,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 						for (SoulShield s5 : S_5) {
 							e = 0;
 							ee = 0;
-							t5 = s5.getCrit();
+							t5 = s5.getdynamic(flag);
 							if (first && s5.getSet().equals(Main.FIRST_SET)) {
 								e++;
 							}
@@ -145,7 +144,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 							for (SoulShield s6 : S_6) {
 								f = 0;
 								ff = 0;
-								t6 = s6.getCrit();
+								t6 = s6.getdynamic(flag);
 								if (first && s6.getSet().equals(Main.FIRST_SET)) {
 									f++;
 								}
@@ -156,7 +155,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 								for (SoulShield s7 : S_7) {
 									g = 0;
 									gg = 0;
-									t7 = s7.getCrit();
+									t7 = s7.getdynamic(flag);
 									if (first && s7.getSet().equals(Main.FIRST_SET)) {
 										g++;
 									}
@@ -167,7 +166,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 									for (SoulShield s8 : S_8) {
 										h = 0;
 										hh = 0;
-										t8 = s8.getCrit();
+										t8 = s8.getdynamic(flag);
 										if (first && s8.getSet().equals(Main.FIRST_SET)) {
 											h++;
 										}
@@ -194,7 +193,7 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 											Collections.sort(combos, Main.COMBO_COMPARATOR);
 											combos = new ArrayList<ComboSoul>(combos.subList(0, results));
 											synchronized (this) {
-												min = combos.get(results - 1).getCrit();
+												min = combos.get(results - 1).getdynamic(flag);
 											}
 										}
 									}
