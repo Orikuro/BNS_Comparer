@@ -53,13 +53,13 @@ public class ComboSoulCall implements Callable<List<ComboSoul>> {
 		String compname = Main.COMBO_COMPARATOR.getClass().getSimpleName();
 
 		switch (compname) {
-		case "CRIT_Combo_Comparator":
+		case "CRIT_Combo":
 			return callCrit();
-		case "DEF_Combo_Comparator":
+		case "DEF_Combo":
 			return callDef();
-		case "HP_Combo_Comparator":
+		case "HP_Combo":
 			return callHp();
-		case "CRITDEF_Combo_Comparator":
+		case "CRITDEF_Combo":
 			return callCritDef();
 		default:
 			throw new Exception("Comparator not found");

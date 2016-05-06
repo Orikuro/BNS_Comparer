@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import modell.ComboSoul;
 
-public class CRITDEF_Combo_Comparator implements Comparator<ComboSoul>{
+public class CRITDEF_Combo implements Comparator<ComboSoul>{
 
 	@Override
 	public int compare(ComboSoul o1, ComboSoul o2) {

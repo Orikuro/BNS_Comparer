@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import modell.SoulShield;
 
-public class CRIT_SoulShield_Comparator implements Comparator<SoulShield> {
+public class CRIT_SoulShield implements Comparator<SoulShield> {
 
 	@Override
 	public int compare(SoulShield o1, SoulShield o2) {

@@ -92,5 +92,13 @@ public class ComboSoul {
 	public int calcDefstats() {
 		return def+eva+block+cdef;
 	}
+	
+	public int getOffensive() {
+		return crit+accu;
+	}
+	
+	public int getDeffensive(){
+		return hp/10+def+cdef+block+eva;
+	}
 
 }

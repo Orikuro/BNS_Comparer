@@ -12,16 +12,16 @@ import logic.ThreadStarter;
 import modell.*;
 
 public class Main {
-	public static final String VERSION = "1.6 - 05.05.16 - 1-8SS, new Sets - by Orikuro";
+	public static final String VERSION = "1.7 - 06.05.16 - 1-8SS, new Sets - by Orikuro";
 
-	public static Comparator<ComboSoul> COMBO_COMPARATOR = new CRIT_Combo_Comparator();
-	public static Comparator<SoulShield> SOUL_COMPARATOR = new CRIT_SoulShield_Comparator();
+	public static Comparator<ComboSoul> COMBO_COMPARATOR = new CRIT_Combo();
+	public static Comparator<SoulShield> SOUL_COMPARATOR = new CRIT_SoulShield();
 
 	public static SoulSet FIRST_SET = new SoulSet("Leer");
 	public static SoulSet SECOND_SET = new SoulSet("Leer");
 
 	public static enum Sort {
-		crit, hp, def, critdef
+		crit, hp, def, critdef, offensiv, deffensiv
 	};
 
 	// Main-Infos
@@ -33,24 +33,32 @@ public class Main {
 	private void setComparator(Sort sort) {
 		switch (sort) {
 		case crit:
-			COMBO_COMPARATOR = new CRIT_Combo_Comparator();
-			SOUL_COMPARATOR = new CRIT_SoulShield_Comparator();
+			COMBO_COMPARATOR = new CRIT_Combo();
+			SOUL_COMPARATOR = new CRIT_SoulShield();
 			break;
 		case hp:
-			COMBO_COMPARATOR = new HP_Combo_Comparator();
-			SOUL_COMPARATOR = new HP_SoulShield_Comparator();
+			COMBO_COMPARATOR = new HP_Combo();
+			SOUL_COMPARATOR = new HP_SoulShield();
 			break;
 		case def:
-			COMBO_COMPARATOR = new DEF_Combo_Comparator();
-			SOUL_COMPARATOR = new DEF_SoulShield_Comparator();
+			COMBO_COMPARATOR = new DEF_Combo();
+			SOUL_COMPARATOR = new DEF_SoulShield();
 			break;
 		case critdef:
-			COMBO_COMPARATOR = new CRITDEF_Combo_Comparator();
-			SOUL_COMPARATOR = new CRITDEF_SoulShield_Comparator();
+			COMBO_COMPARATOR = new CRITDEF_Combo();
+			SOUL_COMPARATOR = new CRITDEF_SoulShield();
+			break;
+		case offensiv:
+			COMBO_COMPARATOR = new OFFENSIV_Combo();
+			SOUL_COMPARATOR = new OFFENSIV_SoulShield();
+			break;
+		case deffensiv:
+			COMBO_COMPARATOR = new DEFFENSIV_Combo();
+			SOUL_COMPARATOR = new DEFFENSIV_SoulShield();
 			break;
 		default:
-			COMBO_COMPARATOR = new CRIT_Combo_Comparator();
-			SOUL_COMPARATOR = new CRIT_SoulShield_Comparator();
+			COMBO_COMPARATOR = new CRIT_Combo();
+			SOUL_COMPARATOR = new CRIT_SoulShield();
 			break;
 		}
 	}
